@@ -5,6 +5,7 @@
 *.lock
 /.flutter-plugins
 /.flutter-plugins-dependencies
+/.pubspec.lock
 /.packages
 .git.zip
 .git
