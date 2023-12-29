@@ -3,6 +3,7 @@ import 'package:hadrmouthamza/core/themes/colors.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData(
+    fontFamily: 'Cairo',
     colorScheme: const ColorScheme.light(
       primary: AppColors.yellowOp100,
       onPrimary: AppColors.darkBlue,
