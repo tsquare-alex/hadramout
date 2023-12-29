@@ -17,3 +17,5 @@ export 'package:hadrmouthamza/core/themes/colors.dart';
 export 'package:hadrmouthamza/core/themes/themes.dart';
 export 'package:hadrmouthamza/firebase_options.dart';
 export 'package:responsive_framework/responsive_framework.dart';
+export 'package:equatable/equatable.dart';
+export 'package:json_annotation/json_annotation.dart';
