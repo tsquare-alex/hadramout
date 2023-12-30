@@ -1,5 +1,6 @@
-import 'package:hadrmouthamza/features/dashboard/data/models/section.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
+
+import 'section.dart';
 
 part 'dishes.g.dart';
 

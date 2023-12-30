@@ -1,5 +1,6 @@
-import 'package:hadrmouthamza/features/dashboard/data/models/section.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
+
+import 'section.dart';
 
 part 'species.g.dart';
 
@@ -29,6 +30,6 @@ class SpeciesModel extends Equatable {
   Map<String, dynamic> toJson() => _$SpeciesModelToJson(this);
 
   @override
-  List<Object> get props =>
-      [id, title, description!, image!, price, createdAt, section];
+  List<Object?> get props =>
+      [id, title, description, image, price, createdAt, section];
 }
