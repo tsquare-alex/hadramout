@@ -31,6 +31,7 @@ class AppColors {
 
   static const Color redOp100 = Color(0xFFF70000);
   static const Color redOp50 = Color(0x80F70000);
+  static const Color redOp10 = Color(0x1AF70000);
 
   static const Color greyOp100 = Color(0xFFF0F0F0);
   static const Color greyOp75 = Color(0xBFF0F0F0);

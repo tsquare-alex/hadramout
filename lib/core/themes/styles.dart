@@ -462,7 +462,132 @@ class AppTextStyles {
 }
 
 class AppButtonStyles {
-  static ButtonStyle buttonYellowSize188Rounded10 = ButtonStyle(
+  static ButtonStyle buttonOutlinedYellowSize167x58Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.whiteOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(167, 58),
+    ),
+    side: MaterialStateProperty.all(
+        const BorderSide(color: AppColors.yellowOp100, width: 1)),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonOutlinedYellowSize180x60Rounded5 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.whiteOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(180, 60),
+    ),
+    side: MaterialStateProperty.all(
+        const BorderSide(color: AppColors.yellowOp100, width: 1)),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonOutlinedYellowSize188x55Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.whiteOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(188, 55),
+    ),
+    side: MaterialStateProperty.all(
+        const BorderSide(color: AppColors.yellowOp100, width: 2)),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonOutlinedYellowSize457x66Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.whiteOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(457, 66),
+    ),
+    side: MaterialStateProperty.all(
+        const BorderSide(color: AppColors.yellowOp100, width: 1)),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonTransparentSize118x52Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(Colors.transparent),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(118, 52),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonWhiteSize135x52Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.whiteOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(135, 52),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize135x52Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(135, 52),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize167x58Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(167, 58),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize180x60Rounded5 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(180, 60),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize188x55Rounded10 = ButtonStyle(
     backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     minimumSize: MaterialStateProperty.all(
@@ -471,6 +596,45 @@ class AppButtonStyles {
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize457x66Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(457, 66),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize489x85Rounded10 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(489, 85),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ButtonStyle buttonYellowSize511x77Rounded20 = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(AppColors.yellowOp100),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    minimumSize: MaterialStateProperty.all(
+      const Size(511, 77),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
       ),
     ),
   );
