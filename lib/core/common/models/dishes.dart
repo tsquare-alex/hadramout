@@ -2,9 +2,6 @@ import 'package:hadrmouthamza/src/app_export.dart';
 
 import 'section.dart';
 
-part 'dishes.g.dart';
-
-@JsonSerializable()
 class DishesModel extends Equatable {
   final String id;
   final String title;
@@ -28,10 +25,6 @@ class DishesModel extends Equatable {
     required this.offer,
     required this.offerValue,
   });
-  factory DishesModel.fromJson(Map<String, dynamic> json) =>
-      _$DishesModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DishesModelToJson(this);
 
   @override
   List<Object> get props => [
@@ -45,4 +38,32 @@ class DishesModel extends Equatable {
         offer,
         offerValue,
       ];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'image': image,
+      'price': price,
+      'created_at': createdAt,
+      'section': section.toJson(),
+      'offer': offer,
+      'offerValue': offerValue,
+    };
+  }
+
+  factory DishesModel.fromJson(Map<String, dynamic> json) {
+    return DishesModel(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      description: json['description'] ?? '',
+      image: json['image'] ?? '',
+      price: json['price']?.toDouble() ?? 0.0,
+      createdAt: json['created_at'] ?? '',
+      section: SectionModel.fromJson(json['section']),
+      offer: json['offer'] ?? false,
+      offerValue: json['offerValue']?.toInt() ?? 0,
+    );
+  }
 }

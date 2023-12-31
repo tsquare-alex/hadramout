@@ -1,8 +1,5 @@
 import 'package:hadrmouthamza/src/app_export.dart';
 
-part 'client.g.dart';
-
-@JsonSerializable()
 class ClientModel extends Equatable {
   final String id;
   final String name;
@@ -22,11 +19,6 @@ class ClientModel extends Equatable {
     required this.apartment,
   });
 
-  factory ClientModel.fromJson(Map<String, dynamic> json) =>
-      _$ClientModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ClientModelToJson(this);
-
   @override
   List<Object?> get props => [
         id,
@@ -37,4 +29,28 @@ class ClientModel extends Equatable {
         floor,
         apartment,
       ];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'number': number,
+      'address': address,
+      'building': building,
+      'floor': floor,
+      'apartment': apartment,
+    };
+  }
+
+  factory ClientModel.fromJson(Map<String, dynamic> json) {
+    return ClientModel(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      number: json['number']?.toInt() ?? 0,
+      address: json['address'] ?? '',
+      building: json['building'] ?? '',
+      floor: json['floor'] ?? '',
+      apartment: json['apartment'] ?? '',
+    );
+  }
 }
