@@ -1,4 +1,5 @@
 import 'package:hadrmouthamza/features/feature/presentation/screens/feature_screen.dart';
+import 'package:hadrmouthamza/features/home/presentation/screens/home_screen.dart';
 import 'package:hadrmouthamza/features/splash_screen/splash_screen.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -19,16 +20,16 @@ class AppRouter {
         path: AppRoutes.initScreen,
         pageBuilder: (context, state) => NoTransitionPage(
           key: state.pageKey,
-          child: const SplashScreen(),
+          child: const HomeScreen(),
         ),
       ),
-      GoRoute(
-        path: AppRoutes.featureScreen,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const FeatureScreen(),
-        ),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.featureScreen,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const FeatureScreen(),
+      //   ),
+      // ),
     ],
     // redirect: (context, state) {
     //   if (FirebaseAuth.instance.currentUser == null &&

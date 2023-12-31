@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class MyApp extends StatelessWidget {
@@ -17,6 +19,9 @@ class MyApp extends StatelessWidget {
             title: 'Hadrmout Hamza',
             debugShowCheckedModeBanner: false,
             theme: AppThemes.lightTheme,
+            scrollBehavior: const MaterialScrollBehavior().copyWith(
+              dragDevices: {PointerDeviceKind.mouse},
+            ),
             localizationsDelegates: const [
               AppLocalizationDelegate(),
               GlobalMaterialLocalizations.delegate,
