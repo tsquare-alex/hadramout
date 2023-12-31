@@ -1,64 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'core/app_export.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:url_strategy/url_strategy.dart';
 
+import 'package:hadrmouthamza/core/helpers/app_bloc_observer.dart';
+import 'package:hadrmouthamza/src/app.dart';
+import 'package:hadrmouthamza/src/app_export.dart';
 
-var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
+  initGetIt();
+  setPathUrlStrategy();
+  Bloc.observer = AppBlocObserver();
+
   Future.wait([
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]),
-    PrefUtils().init()
   ]).then((value) {
-    runApp(MyApp());
+    runApp(const MyApp());
   });
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return BlocProvider(
-          create: (context) => ThemeBloc(
-            ThemeState(
-              themeType: PrefUtils().getThemeData(),
-            ),
-          ),
-          child: BlocBuilder<ThemeBloc, ThemeState>(
-            builder: (context, state) {
-              return MaterialApp(
-                theme: theme,
-                title: 'hadrmouthamza',
-                navigatorKey: NavigatorService.navigatorKey,
-                debugShowCheckedModeBanner: false,
-                localizationsDelegates: [
-                  AppLocalizationDelegate(),
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: [
-                  Locale(
-                    'en',
-                    '',
-                  ),
-                ],
-                initialRoute: AppRoutes.initialRoute,
-                routes: AppRoutes.routes,
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
 }
