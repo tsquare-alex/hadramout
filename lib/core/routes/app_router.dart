@@ -1,3 +1,5 @@
+import 'package:hadrmouthamza/features/dashboard/cubit/dashboard_cubit.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:hadrmouthamza/features/feature/presentation/screens/feature_screen.dart';
 import 'package:hadrmouthamza/features/splash_screen/splash_screen.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
@@ -20,6 +22,17 @@ class AppRouter {
         pageBuilder: (context, state) => NoTransitionPage(
           key: state.pageKey,
           child: const SplashScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.dashboardScreen,
+        pageBuilder: (context, state) => NoTransitionPage(
+          key: state.pageKey,
+          child: BlocProvider(
+            lazy: false,
+            create: (context) => getIt<DashboardBloc>(),
+            child: const DashboardScreen(),
+          ),
         ),
       ),
       GoRoute(

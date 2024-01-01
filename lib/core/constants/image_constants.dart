@@ -4,6 +4,8 @@ class ImageConstants {
 
   // home bage images
   static const String imgVector = '$imagePath/img_vector.svg';
+  
+  static const String dashboardLogo = '$imagePath/dashboard_logo.png';
 
   static const String imgLinkedin = '$imagePath/img_linkedin.svg';
 
