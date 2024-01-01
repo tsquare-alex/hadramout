@@ -30,7 +30,7 @@ class AppRouter {
           key: state.pageKey,
           child: BlocProvider(
             lazy: false,
-            create: (context) => getIt<DashboardBloc>()..addOrder(),
+            create: (context) => getIt<DashboardBloc>(),
             child: const DashboardScreen(),
           ),
         ),

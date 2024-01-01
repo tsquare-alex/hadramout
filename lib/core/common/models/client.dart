@@ -1,7 +1,7 @@
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class ClientModel extends Equatable {
-  final String id;
+  final String uid;
   final String name;
   final int number;
   final String address;
@@ -10,7 +10,7 @@ class ClientModel extends Equatable {
   final String apartment;
 
   const ClientModel({
-    required this.id,
+    required this.uid,
     required this.name,
     required this.number,
     required this.address,
@@ -21,7 +21,7 @@ class ClientModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
+        uid,
         name,
         address,
         number,
@@ -32,7 +32,7 @@ class ClientModel extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'uid': uid,
       'name': name,
       'number': number,
       'address': address,
@@ -44,7 +44,7 @@ class ClientModel extends Equatable {
 
   factory ClientModel.fromJson(Map<String, dynamic> json) {
     return ClientModel(
-      id: json['id'] ?? '',
+      uid: json['uid'] ?? '',
       name: json['name'] ?? '',
       number: json['number']?.toInt() ?? 0,
       address: json['address'] ?? '',
