@@ -42,6 +42,7 @@ dependencies:
   flutter_staggered_animations:
   location:
   fl_chart:
+  badges:
 
 dev_dependencies:
   flutter_test:
@@ -58,8 +59,8 @@ flutter:
 
   assets:
     - assets/
+    - assets/fonts/
     - assets/images/
-
   fonts:
     - family: Cairo
       fonts:

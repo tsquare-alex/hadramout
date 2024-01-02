@@ -95,7 +95,7 @@ class TopHomeWidget extends StatelessWidget {
             height: 100,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () =>context.go(AppRoutes.cartScreen),
             icon: const Icon(
               Icons.shopping_cart_outlined,
               color: AppColors.yellowOp100,

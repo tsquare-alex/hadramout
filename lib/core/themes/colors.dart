@@ -22,6 +22,8 @@ class AppColors {
   static const Color whiteOp10 = Color(0x1AFFFFFF);
   static const Color whiteOp05 = Color(0x0DFFFFFF);
 
+  static const Color shadow= Color(0xFFe8e7fa);
+
   static const Color blackOp100 = Color(0xFF000000);
   static const Color blackOp75 = Color(0xBF000000);
   static const Color blackOp50 = Color(0x80000000);

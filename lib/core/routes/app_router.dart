@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen.dart';
 import 'package:hadrmouthamza/features/feature/presentation/screens/feature_screen.dart';
 import 'package:hadrmouthamza/features/home/presentation/screens/home_screen.dart';
 import 'package:hadrmouthamza/features/splash_screen/splash_screen.dart';
@@ -23,13 +24,13 @@ class AppRouter {
           child: const HomeScreen(),
         ),
       ),
-      // GoRoute(
-      //   path: AppRoutes.featureScreen,
-      //   pageBuilder: (context, state) => NoTransitionPage(
-      //     key: state.pageKey,
-      //     child: const FeatureScreen(),
-      //   ),
-      // ),
+      GoRoute(
+        path: AppRoutes.cartScreen,
+        pageBuilder: (context, state) => NoTransitionPage(
+          key: state.pageKey,
+          child: const CartScreen(),
+        ),
+      ),
     ],
     // redirect: (context, state) {
     //   if (FirebaseAuth.instance.currentUser == null &&
