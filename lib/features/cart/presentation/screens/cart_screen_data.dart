@@ -8,10 +8,11 @@ class CartScreenData {
 
   void showCustomDialog(BuildContext context) {
     showDialog(
+
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           content: BuildConfirmOrder(data: this,),
         );
       },
