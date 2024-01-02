@@ -7,8 +7,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       minTextAdapt: true,
-      splitScreenMode: true,
-      designSize: const Size(430, 932),
       builder: (context, child) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
@@ -33,8 +31,8 @@ class MyApp extends StatelessWidget {
               child: child!,
               breakpoints: [
                 const Breakpoint(start: 350, end: 700, name: MOBILE),
-                const Breakpoint(start: 701, end: 1100, name: TABLET),
-                const Breakpoint(start: 1101, end: 1500, name: DESKTOP),
+                const Breakpoint(start: 701, end: 950, name: TABLET),
+                const Breakpoint(start: 951, end: 1500, name: DESKTOP),
                 const Breakpoint(start: 1501, end: double.infinity, name: '4K'),
               ],
             ),
