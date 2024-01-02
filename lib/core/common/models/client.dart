@@ -6,8 +6,8 @@ class ClientModel extends Equatable {
   final int number;
   final String address;
   final String building;
-  final String floor;
-  final String apartment;
+  final String? floor;
+  final String? apartment;
 
   const ClientModel({
     required this.uid,
@@ -15,8 +15,8 @@ class ClientModel extends Equatable {
     required this.number,
     required this.address,
     required this.building,
-    required this.floor,
-    required this.apartment,
+    this.floor,
+    this.apartment,
   });
 
   @override

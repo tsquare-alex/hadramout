@@ -4,8 +4,23 @@ class ImageConstants {
 
   // home bage images
   static const String imgVector = '$imagePath/img_vector.svg';
-  
+
   static const String dashboardLogo = '$imagePath/dashboard_logo.png';
+  static const String homeIcon = '$imagePath/home_icon.png';
+  static const String homeIconFill = '$imagePath/home_icon_fill.png';
+  static const String dishesIcon = '$imagePath/dishes_icon.png';
+  static const String dishesIconFill = '$imagePath/dishes_icon_fill.png';
+  static const String menuIcon = '$imagePath/menu_icon.png';
+  static const String menuIconFill = '$imagePath/menu_icon_fill.png';
+  static const String offersIcon = '$imagePath/offers_icon.png';
+  static const String offersIconFill = '$imagePath/offers_icon_fill.png';
+  static const String sectionsIcon = '$imagePath/sections_icon.png';
+  static const String sectionsIconFill = '$imagePath/sections_icon_fill.png';
+  static const String teamIcon = '$imagePath/team_icon.png';
+  static const String teamIconFill = '$imagePath/team_icon_fill.png';
+  static const String logoutIcon = '$imagePath/logout_icon.png';
+  static const String searchIcon = '$imagePath/search_icon.png';
+  static const String notificationsIcon = '$imagePath/notifications_icon.png';
 
   static const String imgLinkedin = '$imagePath/img_linkedin.svg';
 
@@ -50,7 +65,8 @@ class ImageConstants {
 
   static const String img61x77 = '$imagePath/img__61x77.png';
 
-  static const String imgSettingsGray100 = '$imagePath/img_settings_gray_100.svg';
+  static const String imgSettingsGray100 =
+      '$imagePath/img_settings_gray_100.svg';
 
   static const String imgLine49 = '$imagePath/img_line_49.svg';
 
@@ -77,7 +93,8 @@ class ImageConstants {
 
   static const String imgIcons8Wallet50 = '$imagePath/img_icons8_wallet_50.png';
 
-  static const String imgCheckmarkPrimary = '$imagePath/img_checkmark_primary.svg';
+  static const String imgCheckmarkPrimary =
+      '$imagePath/img_checkmark_primary.svg';
 
   // shopping cart images
   static const String imgArrowDownBlack900 =
@@ -94,9 +111,11 @@ class ImageConstants {
   static const String imgCheckmarkOnprimarycontainer =
       '$imagePath/img_checkmark_onprimarycontainer.svg';
 
-  static const String imgContrastGray200 = '$imagePath/img_contrast_gray_200.svg';
+  static const String imgContrastGray200 =
+      '$imagePath/img_contrast_gray_200.svg';
 
-  static const String imgRemovebgpreview7 = '$imagePath/img_removebgpreview_7.png';
+  static const String imgRemovebgpreview7 =
+      '$imagePath/img_removebgpreview_7.png';
 
   // Set a date to send the food images
   static const String imgContrastGray20001 =
@@ -113,7 +132,8 @@ class ImageConstants {
   static const String imgFrameGray20070x70 =
       '$imagePath/img_frame_gray_200_70x70.svg';
 
-  static const String imgRemovebgPreview = '$imagePath/img_removebg_preview.png';
+  static const String imgRemovebgPreview =
+      '$imagePath/img_removebg_preview.png';
 
   static const String img83x77 = '$imagePath/img__83x77.png';
 
@@ -130,7 +150,8 @@ class ImageConstants {
 
   static const String imgCheckmark = '$imagePath/img_checkmark.svg';
 
-  static const String imgTelevisionPrimary = '$imagePath/img_television_primary.svg';
+  static const String imgTelevisionPrimary =
+      '$imagePath/img_television_primary.svg';
 
   static const String imgVectorOnprimarycontainer4x6 =
       '$imagePath/img_vector_onprimarycontainer_4x6.svg';
@@ -147,7 +168,8 @@ class ImageConstants {
   static const String imgThumbsUpOnprimarycontainer =
       '$imagePath/img_thumbs_up_onprimarycontainer.svg';
 
-  static const String imgArrowLeftPrimary = '$imagePath/img_arrow_left_primary.svg';
+  static const String imgArrowLeftPrimary =
+      '$imagePath/img_arrow_left_primary.svg';
 
   static const String imgCheckmarkPrimary16x16 =
       '$imagePath/img_checkmark_primary_16x16.svg';

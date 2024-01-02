@@ -1,15 +1,11 @@
-import 'package:hadrmouthamza/core/themes/styles.dart';
+import 'package:hadrmouthamza/features/dashboard/cubit/dashboard_cubit.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/widgets/drawer_tile.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
-class DashboardScreen extends StatefulWidget {
+import '../widgets/app_bar_button.dart';
+
+class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
-
-  @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
-}
-
-class _DashboardScreenState extends State<DashboardScreen> {
-  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +13,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Flexible(
+          SizedBox(
+            width: ResponsiveValue<double>(
+              context,
+              conditionalValues: [
+                Condition.smallerThan(value: 180, name: DESKTOP),
+                Condition.smallerThan(value: 120, name: TABLET),
+              ],
+              defaultValue: 268,
+            ).value,
             child: ScrollConfiguration(
               behavior:
                   ScrollConfiguration.of(context).copyWith(scrollbars: false),
               child: ListView(
                 physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 shrinkWrap: true,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                  SizedBox(
+                    height: 93,
                     child: Center(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
                             ImageConstants.dashboardLogo,
@@ -39,7 +44,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                           ResponsiveVisibility(
                             hiddenConditions: [
-                              Condition.smallerThan(value: false, name: DESKTOP)
+                              Condition.smallerThan(
+                                  value: false, breakpoint: 1160),
                             ],
                             child: const SizedBox(
                               width: 12,
@@ -47,7 +53,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                           ResponsiveVisibility(
                             hiddenConditions: [
-                              Condition.smallerThan(value: false, name: DESKTOP)
+                              Condition.smallerThan(
+                                  value: false, breakpoint: 1160),
                             ],
                             child: const Text(
                               'حضرموت حمزة',
@@ -58,61 +65,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                   ),
-                  ListTile(
-                    style: ListTileStyle.drawer,
-                    selected: true,
-                    title: const Text(
-                      'الرئيسية',
-                      style: TextStyle(
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
-                    selectedColor: AppColors.whiteOp100,
-                    selectedTileColor: AppColors.yellowOp100,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    onTap: () {
-                      // HomeBloc.get(context).changeIndex(index);
-                      // HomeBloc.get(context).changeRoute(context);
-                    },
-                  ),
-                  ListTile(
-                    style: ListTileStyle.drawer,
-                    selected: false,
-                    title: const Text(
-                      'الرئيسية',
-                      style: TextStyle(
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
-                    selectedColor: AppColors.whiteOp100,
-                    selectedTileColor: AppColors.yellowOp100,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    onTap: () {
-                      // HomeBloc.get(context).changeIndex(index);
-                      // HomeBloc.get(context).changeRoute(context);
-                    },
-                  ),
-                  ListTile(
-                    style: ListTileStyle.drawer,
-                    selected: false,
-                    title: const Text(
-                      'الرئيسية',
-                      style: TextStyle(
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
-                    selectedColor: AppColors.whiteOp100,
-                    selectedTileColor: AppColors.yellowOp100,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    onTap: () {
-                      // HomeBloc.get(context).changeIndex(index);
-                      // HomeBloc.get(context).changeRoute(context);
+                  BlocBuilder<DashboardBloc, DashboardState>(
+                    builder: (context, state) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: DashboardBloc.get(context)
+                            .drawerLabels
+                            .toList()
+                            .length,
+                        itemBuilder: (context, index) {
+                          final label =
+                              DashboardBloc.get(context).drawerLabels[index];
+                          return DrawerTile(
+                            isSelected: DashboardBloc.get(context)
+                                .isSelectedTile(index, label),
+                            label: label,
+                            selectedIcon: DashboardBloc.get(context)
+                                .drawerSelectedIcons[index],
+                            unSelectedIcon: DashboardBloc.get(context)
+                                .drawerUnselectedIcons[index],
+                            onTap: () =>
+                                DashboardBloc.get(context).changeIndex(index),
+                            toolTip: label,
+                          );
+                        },
+                      );
                     },
                   ),
                 ],
@@ -120,7 +97,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
           Expanded(
-            flex: 3,
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
@@ -136,27 +112,70 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     defaultValue: 235,
                   ).value,
                   title: Text(
-                    'الاطباق',
+                    DashboardBloc.get(context)
+                        .drawerLabels[DashboardBloc.get(context).selectedIndex],
                     style: AppTextStyles.font20BlackSemiBold.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  actions: const [
-                    Icon(Icons.search),
-                    SizedBox(width: 20),
-                    Icon(Icons.search),
-                    SizedBox(width: 20),
-                    Icon(Icons.search),
-                    SizedBox(width: 20),
-                    Icon(Icons.search),
-                    SizedBox(width: 20),
+                  actions: [
+                    AppBarButton(
+                      onTap: () {},
+                      icon: ImageConstants.searchIcon,
+                      toolTip: 'البحث',
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    AppBarButton(
+                      onTap: () {},
+                      icon: ImageConstants.notificationsIcon,
+                      toolTip: 'التنبيهات',
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    AppBarButton(
+                      onTap: () {},
+                      icon: ImageConstants.logoutIcon,
+                      toolTip: 'تسجيل الخروج',
+                    ),
+                    const SizedBox(
+                      width: 40,
+                    ),
+                    const CircleAvatar(
+                      radius: 25,
+                      backgroundColor: AppColors.darkGrey,
+                      child: Text(
+                        'A',
+                        style: AppTextStyles.font20WhiteSemiBold,
+                      ),
+                    ),
+                    ResponsiveVisibility(
+                      hiddenConditions: [
+                        Condition.smallerThan(value: false, name: DESKTOP),
+                      ],
+                      child: const SizedBox(
+                        width: 20,
+                      ),
+                    ),
+                    ResponsiveVisibility(
+                      hiddenConditions: [
+                        Condition.smallerThan(value: false, name: DESKTOP),
+                      ],
+                      child: const Text(
+                        'Admin',
+                        style: AppTextStyles.font16BlackSemiBold,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
                   ],
                 ),
                 SliverFillRemaining(
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    color: AppColors.whiteOp100,
-                  ),
+                  child: DashboardBloc.get(context)
+                      .screens[context.watch<DashboardBloc>().selectedIndex],
                 ),
               ],
             ),

@@ -79,3 +79,5 @@ class AddSpeciesDashboardError extends DashboardState {
 
 }
 class AddSpeciesDashboardLoading extends DashboardState {}
+
+class ChangeDrawerIndex extends DashboardState {}

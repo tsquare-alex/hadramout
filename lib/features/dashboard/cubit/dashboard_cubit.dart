@@ -2,6 +2,11 @@ import 'package:hadrmouthamza/core/common/models/client.dart';
 import 'package:hadrmouthamza/core/common/models/order.dart';
 import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/screens/dishes_page.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/screens/main_page.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/screens/menu_page.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/screens/offers_page.dart';
+import 'package:hadrmouthamza/features/dashboard/presentation/screens/sections_page.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 import '../../../core/common/models/dishes.dart';
@@ -22,15 +27,15 @@ class DashboardBloc extends Cubit<DashboardState> {
 
   List<OrderModel> get orders => _orders;
 
-  late List<DishesModel> _dishes = [];
+  late final List<DishesModel> _dishes = [];
 
   List<DishesModel> get dishes => _dishes;
 
-  late List<SectionModel> _sections = [];
+  late final List<SectionModel> _sections = [];
 
   List<SectionModel> get sections => _sections;
 
-  late List<SpeciesModel> _species = [];
+  late final List<SpeciesModel> _species = [];
 
   List<SpeciesModel> get species => _species;
   late String errorMessage;
@@ -105,7 +110,7 @@ class DashboardBloc extends Cubit<DashboardState> {
           "https://img.freepik.com/free-photo/beautiful-sea-ocean-with-cloud-blue-sky_74190-6828.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1704067200&semt=ais",
       price: 90000000000,
       createdAt: DateTime.now().toString(),
-      section: SectionModel(id: "id", title: "Chicken"),
+      section: const SectionModel(id: "id", title: "Chicken"),
       offer: false,
       offerValue: 20,
     );
@@ -128,7 +133,7 @@ class DashboardBloc extends Cubit<DashboardState> {
 
   Future<void> addSection() async {
     emit(AddSectionDashboardLoading());
-    var section = SectionModel(id: "id", title: "Section");
+    var section = const SectionModel(id: "id", title: "Section");
     await _dashboardRepository.addSection(section);
     emit(AddSectionDashboardSuccess());
   }
@@ -153,11 +158,54 @@ class DashboardBloc extends Cubit<DashboardState> {
         title: "New Meals",
         price: 30099,
         createdAt: DateTime.now().toIso8601String(),
-        section: SectionModel(
-          id: "",
-          title: "New Meals"
-        ));
+        section: const SectionModel(id: "", title: "New Meals"));
     await _dashboardRepository.addSpecies(section);
     emit(AddSpeciesDashboardSuccess());
+  }
+
+  List<String> get drawerLabels => _drawerLabels;
+  static const List<String> _drawerLabels = [
+    'الرئيسية',
+    'التصنيفات',
+    'المنيو',
+    'الاطباق',
+    'العروض',
+  ];
+
+  List<String> get drawerSelectedIcons => _drawerSelectedIcons;
+  static const List<String> _drawerSelectedIcons = [
+    ImageConstants.homeIconFill,
+    ImageConstants.sectionsIconFill,
+    ImageConstants.menuIconFill,
+    ImageConstants.dishesIconFill,
+    ImageConstants.offersIconFill,
+  ];
+  List<String> get drawerUnselectedIcons => _drawerUnselectedIcons;
+  static const List<String> _drawerUnselectedIcons = [
+    ImageConstants.homeIcon,
+    ImageConstants.sectionsIcon,
+    ImageConstants.menuIcon,
+    ImageConstants.dishesIcon,
+    ImageConstants.offersIcon,
+  ];
+
+  int selectedIndex = 0;
+  void changeIndex(int index) {
+    emit(DashboardInitial());
+    selectedIndex = index;
+    emit(ChangeDrawerIndex());
+  }
+
+  List screens = [
+    const MainPage(),
+    const SectionsPage(),
+    const MenuPage(),
+    const DishesPage(),
+    const OffersPage(),
+  ];
+
+  bool isSelectedTile(int index, String tileName) {
+    return _drawerLabels.indexWhere((element) => element == tileName) ==
+        selectedIndex;
   }
 }
