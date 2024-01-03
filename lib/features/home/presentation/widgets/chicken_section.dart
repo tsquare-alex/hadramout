@@ -1,61 +1,10 @@
-// class FeatureDataSource {
-//   void yourGetDataFunction() {}
-// }
-
+import 'package:flutter/material.dart';
+import 'package:hadrmouthamza/core/themes/colors.dart';
+import 'package:hadrmouthamza/core/themes/styles.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/data_dummy.dart';
 
-import '../../../../src/app_export.dart';
-
-class SectionsFinder extends StatelessWidget {
-  const SectionsFinder({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        padding: const EdgeInsetsDirectional.symmetric(horizontal: 100),
-        itemBuilder: (context, index) => Column(
-          children: [
-            Container(
-              width: 240,
-              height: 208,
-              margin: const EdgeInsetsDirectional.symmetric(
-                  horizontal: 10, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadiusDirectional.circular(10),
-                border: Border.all(
-                  color: AppColors.blackOp10,
-                ),
-              ),
-              child: Center(
-                child: Image.network(
-                  HomeData.titleImage[index],
-                  width: 200,
-                  height: 200,
-                ),
-              ),
-            ),
-            Text(
-              HomeData.titles[index],
-              style: AppTextStyles.font20BlackMedium,
-            ),
-          ],
-        ),
-        itemCount: HomeData.titles.length,
-      ),
-    );
-  }
-}
-
-class BestOffers extends StatelessWidget {
-  const BestOffers({
-    super.key,
-  });
+class ChickenSection extends StatelessWidget {
+  const ChickenSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +13,7 @@ class BestOffers extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        padding: const EdgeInsetsDirectional.symmetric(horizontal: 100),
+        // padding: const EdgeInsetsDirectional.symmetric(horizontal: 10),
         itemBuilder: (context, index) => Stack(
           alignment: AlignmentDirectional.center,
           children: [
@@ -249,70 +198,6 @@ class BestOffers extends StatelessWidget {
           ],
         ),
         itemCount: HomeData.titles.length,
-      ),
-    );
-  }
-}
-
-class Footer extends StatelessWidget {
-  const Footer({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional.bottomCenter,
-      child: Container(
-        width: double.infinity,
-        height: 400,
-        color: AppColors.darkBlue,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "حضرموت  حمزه",
-              style: AppTextStyles.font32WhiteSemiBold,
-            ),
-            const Text(
-              "قد سختلف توافر العناصر والاسعار والمشاركه ومناطق التواصل والرسوم ومتطلبات الشراء للتوصل",
-              style: AppTextStyles.font24WhiteOp50Medium,
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.symmetric(
-                horizontal: 61,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  HomeData.bottomTitles.length,
-                  (ii) => Flexible(
-                    // fit: FlexFit.tight,
-                    child: Text(
-                      HomeData.bottomTitles[ii],
-                      style: AppTextStyles.font32WhiteRegular,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                HomeData.bottomTitlesIcons.length,
-                (iii) => Image.asset(
-                  "assets/images/${HomeData.bottomTitlesIcons[iii]}",
-                  width: 40.w,
-                  height: 40.h,
-                ),
-              ),
-            ),
-            const Text(
-              " حضرموت حمزه جميع الحقوق محفوظه",
-              style: AppTextStyles.font24WhiteOp50Medium,
-            ),
-          ],
-        ),
       ),
     );
   }
