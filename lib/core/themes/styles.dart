@@ -468,6 +468,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(167, 58),
     ),
+    elevation: MaterialStateProperty.all(0),
     side: MaterialStateProperty.all(
         const BorderSide(color: AppColors.yellowOp100, width: 1)),
     shape: MaterialStateProperty.all(
@@ -483,6 +484,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(180, 60),
     ),
+    elevation: MaterialStateProperty.all(0),
     side: MaterialStateProperty.all(
         const BorderSide(color: AppColors.yellowOp100, width: 1)),
     shape: MaterialStateProperty.all(
@@ -498,6 +500,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(188, 55),
     ),
+    elevation: MaterialStateProperty.all(0),
     side: MaterialStateProperty.all(
         const BorderSide(color: AppColors.yellowOp100, width: 2)),
     shape: MaterialStateProperty.all(
@@ -513,6 +516,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(457, 66),
     ),
+    elevation: MaterialStateProperty.all(0),
     side: MaterialStateProperty.all(
         const BorderSide(color: AppColors.yellowOp100, width: 1)),
     shape: MaterialStateProperty.all(
@@ -528,6 +532,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(118, 52),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -541,6 +546,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(135, 52),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -554,6 +560,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(135, 52),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -567,6 +574,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(167, 58),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -580,6 +588,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(180, 60),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
@@ -593,6 +602,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(188, 55),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -606,6 +616,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(457, 66),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -619,6 +630,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(489, 85),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -632,6 +644,7 @@ class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size(511, 77),
     ),
+    elevation: MaterialStateProperty.all(0),
     shape: MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
