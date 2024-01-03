@@ -13,16 +13,13 @@ class GrillSection extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        // padding: const EdgeInsetsDirectional.symmetric(horizontal: 100),
         itemBuilder: (context, index) => Stack(
           alignment: AlignmentDirectional.center,
           children: [
             Container(
               width: 347,
               height: 421,
-              margin: const EdgeInsetsDirectional.symmetric(
-                horizontal: 32,
-              ),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
               decoration: ShapeDecoration(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -117,33 +114,36 @@ class GrillSection extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "تخصيص",
-                                    style: AppTextStyles.font12BrownBold,
-                                  ),
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  Container(
-                                    width: 20,
-                                    height: 18,
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFF5A2E15),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(3)),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "تخصيص",
+                                      style: AppTextStyles.font12BrownBold,
                                     ),
-                                    child: const Center(
-                                        child: Icon(
-                                      Icons.arrow_forward,
-                                      size: 12,
-                                      color: Colors.white,
-                                    )),
-                                  )
-                                ],
+                                    const SizedBox(
+                                      width: 12,
+                                    ),
+                                    Container(
+                                      width: 20,
+                                      height: 18,
+                                      decoration: ShapeDecoration(
+                                        color: const Color(0xFF5A2E15),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(3)),
+                                      ),
+                                      child: const Center(
+                                          child: Icon(
+                                        Icons.arrow_forward,
+                                        size: 12,
+                                        color: Colors.white,
+                                      )),
+                                    )
+                                  ],
+                                ),
                               ),
                             )
                           ],
@@ -176,22 +176,28 @@ class GrillSection extends StatelessWidget {
                     borderRadius: BorderRadiusDirectional.circular(10),
                     border: Border.all(color: AppColors.yellowOp100),
                     color: AppColors.whiteOp100),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: AppColors.yellowOp100,
-                      size: 13,
-                    ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Text(
-                      "أضف إلي العربة",
-                      style: AppTextStyles.font16YellowSemiBold,
-                    ),
-                  ],
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  onPressed: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: AppColors.yellowOp100,
+                        size: 13,
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Text(
+                        "أضف إلي العربة",
+                        style: AppTextStyles.font16YellowSemiBold,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
