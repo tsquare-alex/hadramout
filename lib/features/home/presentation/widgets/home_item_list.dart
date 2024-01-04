@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:hadrmouthamza/core/themes/colors.dart';
 import 'package:hadrmouthamza/core/themes/styles.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/data_dummy.dart';
 
-class MeatSection extends StatelessWidget {
-  const MeatSection({super.key});
+class HomeItemList extends StatelessWidget {
+  final String title;
+  final String description;
+  final String preOfferPrice;
+  final String offerPrice;
+  final String imageUrl;
+  final Function()? onpress;
+  final int itemCount;
+
+  const HomeItemList({
+    super.key,
+    required this.itemCount,
+    required this.onpress,
+    required this.title,
+    required this.description,
+    required this.preOfferPrice,
+    required this.offerPrice,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +35,7 @@ class MeatSection extends StatelessWidget {
             Container(
               width: 265,
               height: 315,
-              margin: const EdgeInsets.symmetric(horizontal: 24),
+              margin: const EdgeInsets.symmetric(horizontal: 18),
               decoration: ShapeDecoration(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -45,8 +61,8 @@ class MeatSection extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "صينية الحبايب",
+                          Text(
+                            title,
                             style: AppTextStyles.font20BlackSemiBold,
                           ),
                           IconButton(
@@ -67,8 +83,8 @@ class MeatSection extends StatelessWidget {
                       const SizedBox(
                         height: 4,
                       ),
-                      const Text(
-                        "1ك كفته + 2ك رز + 3 قطع دجاج + 1 ك طرب او 1/2 خروف مشوي",
+                      Text(
+                        description,
                         style: AppTextStyles.font16BlackOp50Medium,
                       ),
                       const SizedBox(
@@ -89,11 +105,10 @@ class MeatSection extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "EGP 850",
+                                  preOfferPrice,
                                   style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.black.withOpacity(0.5),
@@ -101,8 +116,8 @@ class MeatSection extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                const Text(
-                                  "EGP 750",
+                                Text(
+                                  offerPrice,
                                   style: AppTextStyles.font16BlackSemiBold,
                                 ),
                               ],
@@ -158,7 +173,8 @@ class MeatSection extends StatelessWidget {
               right: 51,
               left: 51,
               child: Image.network(
-                "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
+                imageUrl,
+                // "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
                 width: 150,
                 height: 150,
               ),
@@ -167,7 +183,7 @@ class MeatSection extends StatelessWidget {
               top: 390,
               child: ElevatedButton(
                 style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10,
-                onPressed: () {},
+                onPressed: onpress,
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -189,7 +205,7 @@ class MeatSection extends StatelessWidget {
             ),
           ],
         ),
-        itemCount: HomeData.titles.length,
+        itemCount: itemCount,
       ),
     );
   }

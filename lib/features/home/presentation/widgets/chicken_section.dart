@@ -17,9 +17,9 @@ class ChickenSection extends StatelessWidget {
           alignment: AlignmentDirectional.center,
           children: [
             Container(
-              width: 347,
-              height: 421,
-              margin: const EdgeInsets.symmetric(horizontal: 24),
+              width: 265,
+              height: 315,
+              margin: const EdgeInsets.symmetric(horizontal: 18),
               decoration: ShapeDecoration(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -38,7 +38,7 @@ class ChickenSection extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.only(
-                    top: 180,
+                    top: 90,
                   ),
                   child: Column(
                     children: [
@@ -59,7 +59,7 @@ class ChickenSection extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 6,
+                        height: 3,
                       ),
                       const Divider(
                         color: AppColors.blackOp10,
@@ -72,7 +72,7 @@ class ChickenSection extends StatelessWidget {
                         style: AppTextStyles.font16BlackOp50Medium,
                       ),
                       const SizedBox(
-                        height: 22,
+                        height: 12,
                       ),
                       Container(
                         width: 315,
@@ -89,7 +89,8 @@ class ChickenSection extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              // mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   "EGP 850",
@@ -114,36 +115,33 @@ class ChickenSection extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)),
                               ),
-                              child: InkWell(
-                                onTap: () {},
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      "تخصيص",
-                                      style: AppTextStyles.font12BrownBold,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "تخصيص",
+                                    style: AppTextStyles.font12BrownBold,
+                                  ),
+                                  const SizedBox(
+                                    width: 12,
+                                  ),
+                                  Container(
+                                    width: 20,
+                                    height: 18,
+                                    decoration: ShapeDecoration(
+                                      color: const Color(0xFF5A2E15),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(3)),
                                     ),
-                                    const SizedBox(
-                                      width: 12,
-                                    ),
-                                    Container(
-                                      width: 20,
-                                      height: 18,
-                                      decoration: ShapeDecoration(
-                                        color: const Color(0xFF5A2E15),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(3)),
-                                      ),
-                                      child: const Center(
-                                          child: Icon(
-                                        Icons.arrow_forward,
-                                        size: 12,
-                                        color: Colors.white,
-                                      )),
-                                    )
-                                  ],
-                                ),
+                                    child: const Center(
+                                        child: Icon(
+                                      Icons.arrow_forward,
+                                      size: 12,
+                                      color: Colors.white,
+                                    )),
+                                  )
+                                ],
                               ),
                             )
                           ],
@@ -166,38 +164,26 @@ class ChickenSection extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 440,
-              right: 80,
-              left: 80,
-              child: Container(
-                width: 188,
-                height: 55,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(10),
-                    border: Border.all(color: AppColors.yellowOp100),
-                    color: AppColors.whiteOp100),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  onPressed: () {},
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: AppColors.yellowOp100,
-                        size: 13,
-                      ),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        "أضف إلي العربة",
-                        style: AppTextStyles.font16YellowSemiBold,
-                      ),
-                    ],
-                  ),
+              top: 390,
+              child: ElevatedButton(
+                style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10,
+                onPressed: () {},
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add,
+                      color: AppColors.yellowOp100,
+                      size: 13,
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      "أضف إلي العربة",
+                      style: AppTextStyles.font16YellowSemiBold,
+                    ),
+                  ],
                 ),
               ),
             ),
