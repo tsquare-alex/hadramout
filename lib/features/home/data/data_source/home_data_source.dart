@@ -2,6 +2,13 @@
 //   void yourGetDataFunction() {}
 // }
 
+import 'package:hadrmouthamza/core/common/models/section.dart';
+import 'package:hadrmouthamza/core/common/models/species.dart';
+import 'package:hadrmouthamza/core/helpers/generic_bloc/generic_cubit.dart';
+import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
+import 'package:hadrmouthamza/features/cart/data/data_source/cart_data_source.dart';
+import 'package:hadrmouthamza/features/cart/data/repository/cart_repository.dart';
+
 import '../../../../src/app_export.dart';
 
 class HomeData {
@@ -74,7 +81,6 @@ class HomeData {
       ],
     );
   }
-
 }
 
 class TopHomeWidget extends StatelessWidget {
@@ -95,7 +101,7 @@ class TopHomeWidget extends StatelessWidget {
             height: 100,
           ),
           IconButton(
-            onPressed: () =>context.go(AppRoutes.cartScreen),
+            onPressed: () => context.go(AppRoutes.cartScreen),
             icon: const Icon(
               Icons.shopping_cart_outlined,
               color: AppColors.yellowOp100,
@@ -242,8 +248,7 @@ class BestOffers extends StatelessWidget {
                           ),
                         ),
                         child: Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -251,8 +256,7 @@ class BestOffers extends StatelessWidget {
                                 Text(
                                   "EGP 850",
                                   style: TextStyle(
-                                    decoration:
-                                    TextDecoration.lineThrough,
+                                    decoration: TextDecoration.lineThrough,
                                     color: Colors.black.withOpacity(0.5),
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -260,8 +264,7 @@ class BestOffers extends StatelessWidget {
                                 ),
                                 const Text(
                                   "EGP 750",
-                                  style:
-                                  AppTextStyles.font16BlackSemiBold,
+                                  style: AppTextStyles.font16BlackSemiBold,
                                 ),
                               ],
                             ),
@@ -271,12 +274,10 @@ class BestOffers extends StatelessWidget {
                               decoration: ShapeDecoration(
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
                               child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text(
                                     "تخصيص",
@@ -292,14 +293,14 @@ class BestOffers extends StatelessWidget {
                                       color: const Color(0xFF5A2E15),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(3)),
+                                              BorderRadius.circular(3)),
                                     ),
                                     child: const Center(
                                         child: Icon(
-                                          Icons.arrow_forward,
-                                          size: 12,
-                                          color: Colors.white,
-                                        )),
+                                      Icons.arrow_forward,
+                                      size: 12,
+                                      color: Colors.white,
+                                    )),
                                   )
                                 ],
                               ),
@@ -317,40 +318,74 @@ class BestOffers extends StatelessWidget {
               top: 0,
               right: 51,
               left: 51,
-              child: Image.network(
-                "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
-                width: 150,
-                height: 150,
+              child: BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return InkWell(
+                    onTap: () => CartBloc.get(context).addToCart(SpeciesModel(
+                      id: '1',
+                      title: 'wqewqe ',
+                      price: 120,
+                      createdAt: 'createdAt',
+                      section: SectionModel(id: 'id', title: 'قسم الدجاج'),
+                      offer: false,
+                      offerValue: 20,
+                      description: "",
+                      quantity: 1,
+                    )),
+                    child: Image.network(
+                      "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
+                      width: 150,
+                      height: 150,
+                    ),
+                  );
+                },
               ),
             ),
             Positioned(
               top: 440,
               right: 80,
               left: 80,
-              child: Container(
-                width: 188,
-                height: 55,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(10),
-                    border: Border.all(color: AppColors.yellowOp100),
-                    color: AppColors.whiteOp100),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: AppColors.yellowOp100,
-                      size: 13,
+              child: BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return InkWell(
+                    onTap: () => CartBloc.get(context).addToCart(SpeciesModel(
+                      id: '2',
+                      title: 'vf ',
+                      price: 120,
+                      createdAt: 'createdAt',
+                      section: SectionModel(id: 'id', title: 'قسم الدجاج'),
+                      offer: false,
+                      offerValue: 20,
+                      description: "",
+                      quantity: 1,
+                    )),
+                    child: Container(
+                      width: 188,
+                      height: 55,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadiusDirectional.circular(10),
+                          border: Border.all(color: AppColors.yellowOp100),
+                          color: AppColors.whiteOp100),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: AppColors.yellowOp100,
+                            size: 13,
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            "أضف إلي العربة",
+                            style: AppTextStyles.font16YellowSemiBold,
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Text(
-                      "أضف إلي العربة",
-                      style: AppTextStyles.font16YellowSemiBold,
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],
@@ -393,7 +428,7 @@ class Footer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(
                   HomeData().bottomTitles.length,
-                      (ii) => Flexible(
+                  (ii) => Flexible(
                     // fit: FlexFit.tight,
                     child: Text(
                       HomeData().bottomTitles[ii],
@@ -407,7 +442,7 @@ class Footer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 HomeData().bottomTitlesIcons.length,
-                    (iii) => Image.asset(
+                (iii) => Image.asset(
                   "assets/images/${HomeData().bottomTitlesIcons[iii]}",
                   width: 40.w,
                   height: 40.h,

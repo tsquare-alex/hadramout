@@ -1,9 +1,13 @@
+import 'package:hadrmouthamza/core/common/models/species.dart';
+import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen_data.dart';
+import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class BuildCartItems extends StatelessWidget {
-  const BuildCartItems({super.key, required this.data});
+  const BuildCartItems({super.key, required this.data, required this.model});
   final CartScreenData data;
+  final List<CartModel> model;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +15,7 @@ class BuildCartItems extends StatelessWidget {
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 5,
+        itemCount: model.length,
         itemBuilder: (context, i) => Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -34,8 +38,8 @@ class BuildCartItems extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "صينية الحبايب",
+                    Text(
+                      model[i].title,
                       style: AppTextStyles.font16BlackSemiBold,
                     ),
                     const SizedBox(
@@ -45,7 +49,7 @@ class BuildCartItems extends StatelessWidget {
                       width: 150,
                       child: Theme(
                         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                        child: const ExpansionTile(
+                        child: ExpansionTile(
                           // shape: RoundedRectangleBorder(
                           //   borderRadius: BorderRadius.circular(10.0),
                           //   side: BorderSide(
@@ -61,7 +65,7 @@ class BuildCartItems extends StatelessWidget {
                           trailing: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,),
                           children: [
                             Text(
-                              "1ك كفتة + 2ك رز + 3 قطع دجاج + 1ك طرب او 1/2 خروف مشوي",
+                              model[i].description??"",
                               style: AppTextStyles.font16BlackOp50Medium,
                             )
                           ],
@@ -73,8 +77,8 @@ class BuildCartItems extends StatelessWidget {
               ),
               Column(
                 children: [
-                  const Text(
-                    "750 EGP",
+                  Text(
+                    model[i].totalPrice.toString(),
                     style: AppTextStyles.font16BlackSemiBold,
                   ),
                   const SizedBox(
@@ -102,9 +106,9 @@ class BuildCartItems extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          '1',
+                          model[i].quantity.toString(),
                           style: AppTextStyles.font16BlackBold,
                         ),
                       ),

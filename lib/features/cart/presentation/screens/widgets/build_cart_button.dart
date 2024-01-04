@@ -1,8 +1,10 @@
+import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
+import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen_data.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class BuildCartButton extends StatelessWidget {
-  const BuildCartButton({super.key, required this.data});
+  const BuildCartButton({super.key, required this.data, });
   final CartScreenData data;
 
   @override
@@ -15,20 +17,20 @@ class BuildCartButton extends StatelessWidget {
           color: AppColors.yellowOp100,
           borderRadius: BorderRadius.circular(15)
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("500EGP",style: AppTextStyles.font18WhiteBold,),
-                SizedBox(
+                Text(context.watch<CartBloc>().totalCost.toString(),style: AppTextStyles.font18WhiteBold,),
+                const SizedBox(
                   height: 10,
                 ),
-                Text("جميع الاسعار تشمل ضريبة القيمة المضافة",style: AppTextStyles.font10WhiteOp75Medium,),
+                const Text("جميع الاسعار تشمل ضريبة القيمة المضافة",style: AppTextStyles.font10WhiteOp75Medium,),
               ],
             ),
-            Row(
+            const Row(
               children: [
                 Text("اكمال الطلب",style: AppTextStyles.font16WhiteBold,),
                 SizedBox(

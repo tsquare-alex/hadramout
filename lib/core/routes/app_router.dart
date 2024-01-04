@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen.dart';
 import 'package:hadrmouthamza/features/feature/presentation/screens/feature_screen.dart';
 import 'package:hadrmouthamza/features/home/presentation/screens/home_screen.dart';

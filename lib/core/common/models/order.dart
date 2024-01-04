@@ -1,7 +1,6 @@
 import 'package:hadrmouthamza/src/app_export.dart';
 
 import 'client.dart';
-import 'dishes.dart';
 import 'species.dart';
 
 class OrderModel extends Equatable {
@@ -14,7 +13,6 @@ class OrderModel extends Equatable {
   final double price;
   final String createdAt;
   final List<SpeciesModel>? species;
-  final List<DishesModel>? dishes;
 
   const OrderModel({
     required this.id,
@@ -26,7 +24,6 @@ class OrderModel extends Equatable {
     required this.price,
     required this.createdAt,
     required this.species,
-    required this.dishes,
   });
 
   @override
@@ -39,7 +36,6 @@ class OrderModel extends Equatable {
         deliveryFees,
         price,
         species,
-        dishes,
       ];
 
   Map<String, dynamic> toJson() {
@@ -53,7 +49,6 @@ class OrderModel extends Equatable {
       'price': price,
       'created_at': createdAt,
       'species': species?.map((x) => x.toJson()).toList(),
-      'dishes': dishes?.map((x) => x.toJson()).toList(),
     };
   }
 
@@ -70,10 +65,6 @@ class OrderModel extends Equatable {
       species: json['species'] != null
           ? List<SpeciesModel>.from(
               json['species']?.map((x) => SpeciesModel.fromJson(x)))
-          : null,
-      dishes: json['dishes'] != null
-          ? List<DishesModel>.from(
-              json['dishes']?.map((x) => DishesModel.fromJson(x)))
           : null,
     );
   }

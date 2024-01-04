@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:hadrmouthamza/features/dashboard/cubit/dashboard_cubit.dart';
-import 'package:hadrmouthamza/features/dashboard/data/data_source/dashboard_data_source.dart';
-import 'package:hadrmouthamza/features/dashboard/data/repository/dashboard_repository.dart';
+import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
+import 'package:hadrmouthamza/features/cart/data/data_source/cart_data_source.dart';
+import 'package:hadrmouthamza/features/cart/data/repository/cart_repository.dart';
 import 'package:hadrmouthamza/features/feature/cubit/feature_cubit.dart';
 import 'package:hadrmouthamza/features/feature/data/data_source/feature_data_source.dart';
 import 'package:hadrmouthamza/features/feature/data/repository/feature_repository.dart';
@@ -14,17 +14,17 @@ void initGetIt() {
   /// BLoC
   getIt.registerFactory<AppThemeBloc>(() => AppThemeBloc());
   getIt.registerFactory<FeatureBloc>(() => FeatureBloc(getIt()));
-  getIt.registerFactory<DashboardBloc>(() => DashboardBloc(getIt()));
+  getIt.registerFactory<CartBloc>(() => CartBloc(getIt()));
 
   /// Data Sources
   getIt.registerLazySingleton<FeatureDataSource>(() => FeatureDataSource());
-  getIt.registerLazySingleton<DashboardDataSource>(() => DashboardDataSource());
+  getIt.registerLazySingleton<CartDataSource>(() => CartDataSource());
 
   /// Repository
   getIt.registerLazySingleton<FeatureRepository>(
     () => FeatureRepository(getIt()),
   );
-  getIt.registerLazySingleton<DashboardRepository>(
-    () => DashboardRepository(getIt()),
+  getIt.registerLazySingleton<CartRepository>(
+    () => CartRepository(getIt()),
   );
 }

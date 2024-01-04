@@ -3,7 +3,6 @@ import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_c
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class CartScreenData {
-  GenericBloc<bool> detailsCubit = GenericBloc(false);
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();

@@ -17,10 +17,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 1),
       () {
-        Router.neglect(
-          context,
-          () => context.go(AppRoutes.dashboardScreen),
-        );
+        // Router.neglect(
+        //   context,
+        //   () => context.go(AppRoutes.dashboardScreen),
+        // );
       },
     );
   }

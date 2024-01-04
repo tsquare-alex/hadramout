@@ -6,3 +6,10 @@ class CartState extends Equatable {
 }
 
 class CartInitial extends CartState {}
+
+class AddOrderCartLoading extends CartState {}
+class AddOrderCartSuccess extends CartState {}
+
+class AddOrderSpeciesLoading extends CartState {}
+class AddOrderSpeciesSuccess extends CartState {}
+class AddOrderSpeciesError extends CartState {}
