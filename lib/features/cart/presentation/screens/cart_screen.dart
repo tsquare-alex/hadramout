@@ -6,6 +6,7 @@ import 'package:hadrmouthamza/features/cart/data/repository/cart_repository.dart
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen_data.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_cart_button.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_cart_items.dart';
+import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_cart_no_data.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class CartScreen extends StatefulWidget {
@@ -65,14 +66,13 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
               SliverToBoxAdapter(
-                child: Column(
+                child: cubit.cartList.isEmpty?BuildCartNoData():Column(
                   children: [
-                    // BuildCartAppBar(),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
                         children: [
-                          BuildCartItems(data: data, model: cubit.cartList,),
+                          BuildCartItems(data: data, model: cubit.cartList, cubit: cubit,),
                           BuildCartButton(data: data,),
                         ],
                       ),

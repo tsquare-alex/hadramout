@@ -3,7 +3,7 @@ import 'package:hadrmouthamza/core/themes/colors.dart';
 import 'package:hadrmouthamza/core/themes/styles.dart';
 
 class InputFormField extends StatefulWidget {
-  final String Function(String?)? validator;
+  final FormFieldValidator<dynamic>? validator;
   final VoidCallback? onTap;
   final Function(String?)? onSave,onChanged;
   final int? maxLines,maxLength;
@@ -108,7 +108,7 @@ class _InputFormFieldState extends State<InputFormField> {
                     required isFocused,
                     maxLength}) =>
               null,
-              style: AppTextStyles.font24BlackOp25Medium,
+              style: AppTextStyles.font16BlackSemiBold,
               decoration: InputDecoration(
                   fillColor: widget.fillColor??AppColors.blackOp10,
                   filled: true,

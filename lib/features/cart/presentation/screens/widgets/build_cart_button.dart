@@ -1,5 +1,4 @@
 import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
-import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen_data.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -10,7 +9,7 @@ class BuildCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>data.showCustomDialog(context),
+      onTap: ()=>context.read<CartBloc>().showCustomDialog(context),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(

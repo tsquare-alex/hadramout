@@ -3,20 +3,6 @@ import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_c
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class CartScreenData {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
 
-  void showCustomDialog(BuildContext context) {
-    showDialog(
-
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          surfaceTintColor: Colors.white,
-          content: BuildConfirmOrder(data: this,),
-        );
-      },
-    );}
 
 }

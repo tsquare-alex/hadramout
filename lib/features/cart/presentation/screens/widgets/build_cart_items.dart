@@ -1,13 +1,15 @@
-import 'package:hadrmouthamza/core/common/models/species.dart';
+import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen_data.dart';
 import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class BuildCartItems extends StatelessWidget {
-  const BuildCartItems({super.key, required this.data, required this.model});
+  const BuildCartItems({super.key, required this.data, required this.model, required this.cubit});
   final CartScreenData data;
   final List<CartModel> model;
+  final CartBloc cubit;
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -57,12 +59,12 @@ class BuildCartItems extends StatelessWidget {
                           //     width: 1.0,
                           //   ),
                           // ),
-                          childrenPadding: EdgeInsets.all(5),
-                          title: Text(
+                          childrenPadding: const EdgeInsets.all(5),
+                          title: const Text(
                             "تفاصيل",
                             style: AppTextStyles.font10YellowSemiBold,
                           ),
-                          trailing: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,),
+                          trailing: const Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,),
                           children: [
                             Text(
                               model[i].description??"",
@@ -88,7 +90,7 @@ class BuildCartItems extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () =>cubit.decrement(model[i], i),
                         child: Container(
                           padding: const EdgeInsets.all(3),
                           decoration: BoxDecoration(
@@ -122,7 +124,7 @@ class BuildCartItems extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.r),
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () =>cubit.increment(model[i]),
                           child: const Center(
                             child: Icon(
                               Icons.add,
