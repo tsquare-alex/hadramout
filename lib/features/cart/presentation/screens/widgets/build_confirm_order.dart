@@ -1,4 +1,5 @@
 import 'package:hadrmouthamza/core/widgets/input_form_field.dart';
+import 'package:hadrmouthamza/core/widgets/loading_circle.dart';
 import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen_data.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
@@ -32,18 +33,18 @@ class BuildConfirmOrder extends StatelessWidget {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "برجاء ادخال الاسم";
-                      }else{
+                      } else {
                         return null;
                       }
                     },
                   ),
                   InputFormField(
-                      controller: context.read<CartBloc>().numberController,
-                      hint: "رقم الهاتف",
+                    controller: context.read<CartBloc>().numberController,
+                    hint: "رقم الهاتف",
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "برجاء ادخال رقم الهاتف";
-                      }else{
+                      } else {
                         return null;
                       }
                     },
@@ -54,7 +55,7 @@ class BuildConfirmOrder extends StatelessWidget {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "برجاء ادخال العنوان";
-                      }else{
+                      } else {
                         return null;
                       }
                     },
@@ -79,13 +80,13 @@ class BuildConfirmOrder extends StatelessWidget {
                           child: InputFormField(
                         controller: context.read<CartBloc>().floorController,
                         hint: "الدور",
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "برجاء ادخال رقم الدور";
-                              }else{
-                                return null;
-                              }
-                            },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "برجاء ادخال رقم الدور";
+                          } else {
+                            return null;
+                          }
+                        },
                       )),
                       const SizedBox(
                         width: 5,
@@ -95,13 +96,13 @@ class BuildConfirmOrder extends StatelessWidget {
                         controller:
                             context.read<CartBloc>().apartmentController,
                         hint: "الشقة",
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "برجاء ادخال رقم الشقة";
-                              }else{
-                                return null;
-                              }
-                            },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "برجاء ادخال رقم الشقة";
+                          } else {
+                            return null;
+                          }
+                        },
                       )),
                     ],
                   ),
@@ -109,21 +110,30 @@ class BuildConfirmOrder extends StatelessWidget {
                   SizedBox(
                     width: 180,
                     height: 60,
-                    child: ElevatedButton(
-                      onPressed: () => context.read<CartBloc>().addOrder(context),
-                      style: ElevatedButton.styleFrom(
-                        primary: AppColors.yellowOp100,
-                        onPrimary: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      child: const Text(
-                        'تاكيد الطلب',
-                        style: AppTextStyles.font20WhiteSemiBold,
-                      ),
+                    child: BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            await context.read<CartBloc>().addOrder(context);
+                            if (context.mounted) {
+                              context.pop();
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.yellowOp100,
+                            onPrimary: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: state is AddOrderCartLoading? LoadingSpinningCircle(color: AppColors.whiteOp100,):Text(
+                            'تاكيد الطلب',
+                            style: AppTextStyles.font20WhiteSemiBold,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

@@ -34,10 +34,18 @@ class BuildCartItems extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage(Res.home_logo),
+              ),
+              SizedBox(
+                width: 15,
+              ),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -52,13 +60,6 @@ class BuildCartItems extends StatelessWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
                         child: ExpansionTile(
-                          // shape: RoundedRectangleBorder(
-                          //   borderRadius: BorderRadius.circular(10.0),
-                          //   side: BorderSide(
-                          //     color: AppColors.yellowOp100,
-                          //     width: 1.0,
-                          //   ),
-                          // ),
                           childrenPadding: const EdgeInsets.all(5),
                           title: const Text(
                             "تفاصيل",

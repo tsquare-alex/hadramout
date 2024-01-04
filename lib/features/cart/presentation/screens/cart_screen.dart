@@ -69,7 +69,7 @@ class _CartScreenState extends State<CartScreen> {
                 child: cubit.cartList.isEmpty?BuildCartNoData():Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.symmetric(vertical: 15.0,horizontal: MediaQuery.of(context).size.width*0.20),
                       child: Column(
                         children: [
                           BuildCartItems(data: data, model: cubit.cartList, cubit: cubit,),

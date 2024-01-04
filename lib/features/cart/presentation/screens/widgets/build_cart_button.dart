@@ -19,17 +19,19 @@ class BuildCartButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(context.watch<CartBloc>().totalCost.toString(),style: AppTextStyles.font18WhiteBold,),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text("جميع الاسعار تشمل ضريبة القيمة المضافة",style: AppTextStyles.font10WhiteOp75Medium,),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(context.watch<CartBloc>().totalCost.toString(),style: AppTextStyles.font18WhiteBold,),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text("جميع الاسعار تشمل ضريبة القيمة المضافة",style: AppTextStyles.font10WhiteOp75Medium,),
+                ],
+              ),
             ),
-            const Row(
+            Row(
               children: [
                 Text("اكمال الطلب",style: AppTextStyles.font16WhiteBold,),
                 SizedBox(

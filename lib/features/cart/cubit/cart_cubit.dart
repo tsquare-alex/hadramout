@@ -30,74 +30,85 @@ class CartBloc extends Cubit<CartState> {
 
   Future<void> addOrder(BuildContext context) async {
     emit(AddOrderCartLoading());
-    if(cartList.isNotEmpty){
-      if(formKey.currentState!.validate()){
-        List<SpeciesModel> speciesModels = cartList.map((model) => model.species).toList();
-        var userData = await FirebaseAuth.instance.signInAnonymously();
-        var order = OrderModel(
-          id: '',
-          cancelled: false,
-          client: ClientModel(
-            uid: userData.user!.uid,
-            name: nameController.text,
-            number: int.parse(numberController.text),
-            address: addressController.text,
-            building: buildingController.text,
-            floor: floorController.text,
-            apartment: apartmentController.text,
-          ),
-          confirmed: false,
-          deliveryFees: 20,
-          delivered: false,
-          price: totalCost,
-          createdAt: DateTime.now().toIso8601String(),
-          species: speciesModels,
-        );
-        await _cartRepository.addOrder(order);
-        emit(AddOrderCartSuccess());
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.remove("cartList");
-        Navigator.pop(context);
-        fetchCartItems();
-      }
+    if (formKey.currentState!.validate()) {
+      List<SpeciesModel> speciesModels =
+          cartList.map((model) => model.species).toList();
+      var userData = await FirebaseAuth.instance.signInAnonymously();
+      var order = OrderModel(
+        id: '',
+        cancelled: false,
+        client: ClientModel(
+          uid: userData.user!.uid,
+          name: nameController.text,
+          number: int.parse(numberController.text),
+          address: addressController.text,
+          building: buildingController.text,
+          floor: floorController.text,
+          apartment: apartmentController.text,
+        ),
+        confirmed: false,
+        deliveryFees: 20,
+        delivered: false,
+        price: totalCost,
+        createdAt: DateTime.now().toIso8601String(),
+        species: speciesModels,
+      );
+      await _cartRepository.addOrder(order);
+      emit(AddOrderCartSuccess());
+      clearData();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.remove("cartList");
+      fetchCartItems();
     }
-    else{
-      CustomToast.showSimpleToast(msg: "لا يوجد بيانات للاضافة",color: Colors.red);
-    }
+  }
+
+  clearData(){
+    nameController.clear();
+    numberController.clear();
+    addressController.clear();
+    floorController.clear();
+    apartmentController.clear();
+    buildingController.clear();
   }
 
   List<CartModel> cartList = [];
 
-  Future<void> increment(CartModel model) async{
+  Future<void> increment(CartModel model) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String list = prefs.getString('cartList') ?? '[]';
     List<dynamic> jsonList = jsonDecode(list);
     List<CartModel> speciesList =
-    jsonList.map((json) => CartModel.fromJson(json)).toList();
-    CartModel targetModel = speciesList.firstWhere((element) => element.title==model.title);
+        jsonList.map((json) => CartModel.fromJson(json)).toList();
+    CartModel targetModel =
+        speciesList.firstWhere((element) => element.title == model.title);
     included = true;
-    speciesList[speciesList.indexOf(targetModel)].quantity +=1;
-    speciesList[speciesList.indexOf(targetModel)].totalPrice =speciesList[speciesList.indexOf(targetModel)].price * speciesList[speciesList.indexOf(targetModel)].quantity;
+    speciesList[speciesList.indexOf(targetModel)].quantity += 1;
+    speciesList[speciesList.indexOf(targetModel)].totalPrice =
+        speciesList[speciesList.indexOf(targetModel)].price *
+            speciesList[speciesList.indexOf(targetModel)].quantity;
     print(speciesList[speciesList.indexOf(targetModel)].quantity);
     prefs.setString("cartList", jsonEncode(speciesList));
     fetchCartItems();
   }
 
-  Future<void> decrement(CartModel model,int index) async{
+  Future<void> decrement(CartModel model, int index) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String list = prefs.getString('cartList') ?? '[]';
     List<dynamic> jsonList = jsonDecode(list);
     List<CartModel> speciesList =
-    jsonList.map((json) => CartModel.fromJson(json)).toList();
-    CartModel targetModel = speciesList.firstWhere((element) => element.title==model.title);
+        jsonList.map((json) => CartModel.fromJson(json)).toList();
+    CartModel targetModel =
+        speciesList.firstWhere((element) => element.title == model.title);
     included = true;
-    if(model.quantity !=1){
-      speciesList[speciesList.indexOf(targetModel)].quantity -=1;
-      speciesList[speciesList.indexOf(targetModel)].totalPrice =speciesList[speciesList.indexOf(targetModel)].price * speciesList[speciesList.indexOf(targetModel)].quantity;
+    if (model.quantity != 1) {
+      speciesList[speciesList.indexOf(targetModel)].quantity -= 1;
+      speciesList[speciesList.indexOf(targetModel)].totalPrice =
+          speciesList[speciesList.indexOf(targetModel)].price *
+              speciesList[speciesList.indexOf(targetModel)].quantity;
       print(speciesList[speciesList.indexOf(targetModel)].quantity);
       prefs.setString("cartList", jsonEncode(speciesList));
       fetchCartItems();
-    }else{
+    } else {
       speciesList.removeAt(speciesList.indexOf(targetModel));
       prefs.setString("cartList", jsonEncode(speciesList));
       fetchCartItems();
@@ -105,18 +116,29 @@ class CartBloc extends Cubit<CartState> {
   }
 
   Future<void> addToCart(SpeciesModel model) async {
-    CartModel newCartModel = CartModel(title: model.title, description: model.description, image: model.image, price: model.price,quantity: 1,totalPrice: model.price, species: model);
-    CartModel cartModel = cartList.any((element) => element.title == newCartModel.title)?
-    cartList.firstWhere((element) => element.title == newCartModel.title):newCartModel;
+    CartModel newCartModel = CartModel(
+        title: model.title,
+        description: model.description,
+        image: model.image,
+        price: model.price,
+        quantity: 1,
+        totalPrice: model.price,
+        species: model);
+    CartModel cartModel = cartList
+            .any((element) => element.title == newCartModel.title)
+        ? cartList.firstWhere((element) => element.title == newCartModel.title)
+        : newCartModel;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if(cartList.contains(cartModel)){
+    if (cartList.contains(cartModel)) {
       included = true;
-      cartList[cartList.indexOf(cartModel)].quantity +=1;
-      cartList[cartList.indexOf(cartModel)].totalPrice =cartList[cartList.indexOf(cartModel)].price * cartList[cartList.indexOf(cartModel)].quantity;
+      cartList[cartList.indexOf(cartModel)].quantity += 1;
+      cartList[cartList.indexOf(cartModel)].totalPrice =
+          cartList[cartList.indexOf(cartModel)].price *
+              cartList[cartList.indexOf(cartModel)].quantity;
       print(cartList[cartList.indexOf(cartModel)].quantity);
       prefs.setString("cartList", jsonEncode(cartList));
       CustomToast.showSimpleToast(msg: "تمت الإضافة بنجاح");
-    }else{
+    } else {
       included = false;
       cartList.add(cartModel);
       prefs.setString("cartList", jsonEncode(cartList));
@@ -135,10 +157,10 @@ class CartBloc extends Cubit<CartState> {
     emit(AddOrderSpeciesSuccess());
   }
 
-  double get totalCost{
+  double get totalCost {
     var total = 0.0;
-    for(CartModel model in cartList){
-      total+=model.totalPrice;
+    for (CartModel model in cartList) {
+      total += model.totalPrice;
     }
     return total;
   }
@@ -154,7 +176,6 @@ class CartBloc extends Cubit<CartState> {
 
   void showCustomDialog(BuildContext context) {
     showDialog(
-
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -162,6 +183,6 @@ class CartBloc extends Cubit<CartState> {
           content: BuildConfirmOrder(),
         );
       },
-    );}
-
+    );
+  }
 }
