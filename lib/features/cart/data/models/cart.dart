@@ -6,11 +6,13 @@ class CartModel extends Equatable {
   final String title;
   final String? description;
   final String? image;
-  final SpeciesModel species;
   double price;
   double totalPrice;
   int quantity;
-
+  final String? createdAt;
+  final SectionModel section;
+  final bool? offer;
+  final int? offerValue;
   CartModel(
       {required this.title,
        this.description,
@@ -18,11 +20,14 @@ class CartModel extends Equatable {
       required this.price,
       required this.totalPrice,
       required this.quantity,
-        required this.species
+        this.createdAt,
+        required this.section,
+        this.offer,
+        this.offerValue,
       });
 
   @override
-  List<Object?> get props => [title, description, image, price, quantity,totalPrice,species];
+  List<Object?> get props => [title, description, image, price, quantity,totalPrice,createdAt,section,offer,offerValue];
 
   Map<String, dynamic> toJson() {
     return {
@@ -32,15 +37,21 @@ class CartModel extends Equatable {
       'price': price,
       'totalPrice': totalPrice,
       'quantity': quantity,
-      'species': species.toJson(),
+      'createdAt': createdAt,
+      'offer': offer,
+      'offerValue': offerValue,
+      'section': section.toJson(),
     };
   }
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
       title: json['title'] ?? '',
-      species: SpeciesModel.fromJson(json['species']),
+      section: SectionModel.fromJson(json['section']),
       description: json['description'],
+      createdAt: json['created_at'] ?? '',
+      offer: json['offer'] ?? false,
+      offerValue: json['offerValue']?.toInt() ?? 0,
       image: json['image'],
       quantity: json['quantity']?.toInt() ?? 1,
       price: json['price']?.toDouble() ?? 0.0,

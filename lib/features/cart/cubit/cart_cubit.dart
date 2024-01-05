@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadrmouthamza/core/common/models/client.dart';
 import 'package:hadrmouthamza/core/common/models/order.dart';
 import 'package:hadrmouthamza/core/common/models/section.dart';
@@ -29,10 +27,8 @@ class CartBloc extends Cubit<CartState> {
   static CartBloc get(context) => BlocProvider.of<CartBloc>(context);
 
   Future<void> addOrder(BuildContext context) async {
-    emit(AddOrderCartLoading());
     if (formKey.currentState!.validate()) {
-      List<SpeciesModel> speciesModels =
-          cartList.map((model) => model.species).toList();
+      emit(AddOrderCartLoading());
       var userData = await FirebaseAuth.instance.signInAnonymously();
       var order = OrderModel(
         id: '',
@@ -51,14 +47,15 @@ class CartBloc extends Cubit<CartState> {
         delivered: false,
         price: totalCost,
         createdAt: DateTime.now().toIso8601String(),
-        species: speciesModels,
+        cartModel: cartList,
       );
       await _cartRepository.addOrder(order);
+      cartList = [];
       emit(AddOrderCartSuccess());
       clearData();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("cartList");
-      fetchCartItems();
+
     }
   }
 
@@ -123,7 +120,9 @@ class CartBloc extends Cubit<CartState> {
         price: model.price,
         quantity: 1,
         totalPrice: model.price,
-        species: model);
+      section: model.section,
+
+    );
     CartModel cartModel = cartList
             .any((element) => element.title == newCartModel.title)
         ? cartList.firstWhere((element) => element.title == newCartModel.title)

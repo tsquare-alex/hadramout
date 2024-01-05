@@ -36,36 +36,41 @@ class BuildCartItems extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 30,
                 backgroundImage: AssetImage(Res.home_logo),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       model[i].title,
                       style: AppTextStyles.font16BlackSemiBold,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+
                     SizedBox(
-                      width: 150,
+                      width: 250,
                       child: Theme(
                         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
                         child: ExpansionTile(
                           childrenPadding: const EdgeInsets.all(5),
-                          title: const Text(
-                            "تفاصيل",
-                            style: AppTextStyles.font10YellowSemiBold,
+                          tilePadding: EdgeInsets.zero,
+                          title: const Row(
+                            children: [
+                              Text(
+                                "تفاصيل",
+                                style: AppTextStyles.font10YellowSemiBold,
+                              ),
+                              Gap(5),
+                              Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,)
+                            ],
                           ),
-                          trailing: const Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,),
+                          trailing: const SizedBox.shrink(),
                           children: [
                             Text(
                               model[i].description??"",
@@ -78,14 +83,14 @@ class BuildCartItems extends StatelessWidget {
                   ],
                 ),
               ),
-              Column(
+              Row(
                 children: [
                   Text(
-                    model[i].totalPrice.toString(),
-                    style: AppTextStyles.font16BlackSemiBold,
+                    '${model[i].totalPrice}EGP',
+                    style: AppTextStyles.font14BlackSemiBold,
                   ),
                   const SizedBox(
-                    height: 10,
+                    width: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,7 +127,7 @@ class BuildCartItems extends StatelessWidget {
                         padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: AppColors.yellowOp100,
-                          borderRadius: BorderRadius.circular(5.r),
+                          borderRadius: BorderRadius.circular(5),
                         ),
                         child: InkWell(
                           onTap: () =>cubit.increment(model[i]),

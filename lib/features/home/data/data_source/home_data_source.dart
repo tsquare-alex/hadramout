@@ -323,13 +323,14 @@ class BestOffers extends StatelessWidget {
                   return InkWell(
                     onTap: () => CartBloc.get(context).addToCart(SpeciesModel(
                       id: '1',
+                      image:                       "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
                       title: 'wqewqe ',
                       price: 120,
                       createdAt: 'createdAt',
                       section: SectionModel(id: 'id', title: 'قسم الدجاج'),
                       offer: false,
                       offerValue: 20,
-                      description: "",
+                      description: "//media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish",
                       quantity: 1,
                     )),
                     child: Image.network(

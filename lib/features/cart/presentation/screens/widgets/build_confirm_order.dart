@@ -41,6 +41,7 @@ class BuildConfirmOrder extends StatelessWidget {
                   InputFormField(
                     controller: context.read<CartBloc>().numberController,
                     hint: "رقم الهاتف",
+                    isNumber: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "برجاء ادخال رقم الهاتف";
@@ -66,6 +67,7 @@ class BuildConfirmOrder extends StatelessWidget {
                           child: InputFormField(
                         controller: context.read<CartBloc>().buildingController,
                         hint: "العمارة",
+                        isNumber: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'برجاء ادخال رقم العمارة';
@@ -80,6 +82,7 @@ class BuildConfirmOrder extends StatelessWidget {
                           child: InputFormField(
                         controller: context.read<CartBloc>().floorController,
                         hint: "الدور",
+                        isNumber: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "برجاء ادخال رقم الدور";
@@ -96,6 +99,7 @@ class BuildConfirmOrder extends StatelessWidget {
                         controller:
                             context.read<CartBloc>().apartmentController,
                         hint: "الشقة",
+                        isNumber: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "برجاء ادخال رقم الشقة";
@@ -110,14 +114,18 @@ class BuildConfirmOrder extends StatelessWidget {
                   SizedBox(
                     width: 180,
                     height: 60,
-                    child: BlocBuilder<CartBloc, CartState>(
+                    child: BlocConsumer<CartBloc, CartState>(
+                      listener: (context,state){
+                        if(state is AddOrderCartSuccess){
+                          if(context.mounted){
+                            context.pop();
+                          }
+                        }
+                      },
                       builder: (context, state) {
                         return ElevatedButton(
                           onPressed: () async {
                             await context.read<CartBloc>().addOrder(context);
-                            if (context.mounted) {
-                              context.pop();
-                            }
                           },
                           style: ElevatedButton.styleFrom(
                             primary: AppColors.yellowOp100,
@@ -128,10 +136,14 @@ class BuildConfirmOrder extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          child: state is AddOrderCartLoading? LoadingSpinningCircle(color: AppColors.whiteOp100,):Text(
-                            'تاكيد الطلب',
-                            style: AppTextStyles.font20WhiteSemiBold,
-                          ),
+                          child: state is AddOrderCartLoading
+                              ? LoadingSpinningCircle(
+                                  color: AppColors.whiteOp100,
+                                )
+                              : Text(
+                                  'تاكيد الطلب',
+                                  style: AppTextStyles.font20WhiteSemiBold,
+                                ),
                         );
                       },
                     ),

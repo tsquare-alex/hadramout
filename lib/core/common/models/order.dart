@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 import 'client.dart';
@@ -12,7 +13,7 @@ class OrderModel extends Equatable {
   final bool delivered;
   final double price;
   final String createdAt;
-  final List<SpeciesModel>? species;
+  final List<CartModel> cartModel;
 
   const OrderModel({
     required this.id,
@@ -23,7 +24,7 @@ class OrderModel extends Equatable {
     required this.delivered,
     required this.price,
     required this.createdAt,
-    required this.species,
+    required this.cartModel,
   });
 
   @override
@@ -35,7 +36,7 @@ class OrderModel extends Equatable {
         delivered,
         deliveryFees,
         price,
-        species,
+    cartModel,
       ];
 
   Map<String, dynamic> toJson() {
@@ -48,7 +49,7 @@ class OrderModel extends Equatable {
       'delivered': delivered,
       'price': price,
       'created_at': createdAt,
-      'species': species?.map((x) => x.toJson()).toList(),
+      'cartModel': cartModel.map((x) => x.toJson()).toList(),
     };
   }
 
@@ -62,10 +63,8 @@ class OrderModel extends Equatable {
       delivered: json['delivered'] ?? false,
       price: json['price']?.toDouble() ?? 0.0,
       createdAt: json['created_at'] ?? '',
-      species: json['species'] != null
-          ? List<SpeciesModel>.from(
-              json['species']?.map((x) => SpeciesModel.fromJson(x)))
-          : null,
+      cartModel: json['cartModel'] ?? List<CartModel>.from(
+              json['cartModel']?.map((x) => CartModel.fromJson(x))),
     );
   }
 }
