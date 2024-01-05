@@ -5,7 +5,12 @@ class HomeRepository {
 
   HomeRepository(this._homeDataSource);
 
-  void yourFunction() {
-    _homeDataSource.yourGetDataFunction();
-  }
+  // Future<List<OrderModel>> getOrders() async {
+  //   try {
+  //     final data = await _dashboardDataSource.getOrders();
+  //     return data.docs.map((doc) => OrderModel.fromJson(doc.data())).toList();
+  //   } on FirebaseException catch (_) {
+  //     return List.empty();
+  //   }
+  // }
 }
