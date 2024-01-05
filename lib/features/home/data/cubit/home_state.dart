@@ -1,4 +1,4 @@
-import 'package:hadrmouthamza/src/app_export.dart';
+part of 'home_cubit.dart';
 
 class HomeState extends Equatable {
   @override
