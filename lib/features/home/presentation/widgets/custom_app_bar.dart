@@ -33,14 +33,25 @@ class CustomAppBar extends StatelessWidget {
         //     )
         //   ],
         // ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.shopping_cart_outlined,
+        Stack(children: [
+          IconButton(
+            onPressed: () {},
+            icon: Image.asset(
+              ImageConstants.cart,
+              width: 30,
+              height: 30,
+            ),
             color: AppColors.yellowOp100,
-            size: 50,
           ),
-        ),
+          const CircleAvatar(
+            backgroundColor: AppColors.yellowOp100,
+            radius: 12,
+            child: Text(
+              "2",
+              style: AppTextStyles.font16WhiteBold,
+            ),
+          )
+        ]),
       ],
     );
   }

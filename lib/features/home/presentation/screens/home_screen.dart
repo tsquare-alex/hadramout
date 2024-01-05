@@ -15,84 +15,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 80),
-        child: Column(
-          children: [
-            const CustomAppBar(),
-            Expanded(
-                child: ListView(
-              children: [
-                const Text(
-                  "قسم الدجاج",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const ChickenSection(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "قسم اللحوم",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(height: 10.h),
-                const MeatSection(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "قسم المطبخ ",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(height: 10.h),
-                const KitchenSection(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "قسم المشويات",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(height: 10.h),
-                const GrillSection(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "قسم الطواجن",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(height: 10.h),
-                const CasseroleSection(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "قسم السلطات",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(height: 10.h),
-                const SaladSection(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "قسم المشروبات",
-                  style: AppTextStyles.font24BlackSemiBold,
-                ),
-                SizedBox(height: 10.h),
-                const DrinksSection(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Footer(),
-              ],
-            )),
-          ],
-        ),
+      body: Column(
+        children: [
+          const CustomAppBar(),
+          Expanded(
+              child: ListView(
+            children: const [
+              ChickenSection(),
+              MeatSection(),
+              KitchenSection(),
+              GrillSection(),
+              CasseroleSection(),
+              SaladSection(),
+              DrinksSection(),
+              Footer(),
+            ],
+          )),
+        ],
       ),
     );
   }

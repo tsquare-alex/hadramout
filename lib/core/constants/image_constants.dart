@@ -7,6 +7,7 @@ class ImageConstants {
   static const String inesta = "$imagePath/inesta.png";
   static const String facebook = "$imagePath/facebook.png";
   static const String twitter = "$imagePath/twitter.png";
+  static const String cart = "$imagePath/empty_cart.png";
 
   static const String imgLinkedin = '$imagePath/img_linkedin.svg';
 
