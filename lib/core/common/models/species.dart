@@ -12,7 +12,6 @@ class SpeciesModel extends Equatable {
   final SectionModel section;
   final bool? offer;
   final int? offerValue;
-  int? quantity;
 
   SpeciesModel({
     required this.id,
@@ -24,7 +23,6 @@ class SpeciesModel extends Equatable {
     required this.section,
      this.offer,
      this.offerValue,
-    this.quantity,
   });
 
   @override
@@ -38,7 +36,6 @@ class SpeciesModel extends Equatable {
       'description': description,
       'image': image,
       'price': price,
-      'quantity': quantity,
       'created_at': createdAt,
       'section': section.toJson(),
       'offer': offer,
@@ -52,7 +49,6 @@ class SpeciesModel extends Equatable {
       title: json['title'] ?? '',
       description: json['description'],
       image: json['image'],
-      quantity: json['quantity']?.toInt()??1,
       price: json['price']?.toDouble() ?? 0.0,
       createdAt: json['created_at'] ?? '',
       section: SectionModel.fromJson(json['section']),

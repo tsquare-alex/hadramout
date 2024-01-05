@@ -13,3 +13,6 @@ class AddOrderCartSuccess extends CartState {}
 class AddOrderSpeciesLoading extends CartState {}
 class AddOrderSpeciesSuccess extends CartState {}
 class AddOrderSpeciesError extends CartState {}
+
+class SelectDeliveryLoading extends CartState {}
+class SelectDeliverySuccess extends CartState {}

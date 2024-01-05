@@ -23,7 +23,7 @@ class BuildCartButton extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(context.watch<CartBloc>().totalCost.toString(),style: AppTextStyles.font18WhiteBold,),
+                  Text("${context.watch<CartBloc>().totalCost}EGP",style: AppTextStyles.font18WhiteBold,),
                   const SizedBox(
                     height: 10,
                   ),

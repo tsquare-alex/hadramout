@@ -110,7 +110,7 @@ class _InputFormFieldState extends State<InputFormField> {
               null,
               style: AppTextStyles.font16BlackSemiBold,
               decoration: InputDecoration(
-                  fillColor: widget.fillColor??AppColors.blackOp10,
+                  fillColor: widget.fillColor??AppColors.greyOp100,
                   filled: true,
                   hintStyle: AppTextStyles.font20BlackOp25Medium,
                   labelStyle: AppTextStyles.font20BlackOp25Medium,

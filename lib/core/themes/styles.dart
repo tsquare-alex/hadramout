@@ -80,6 +80,12 @@ class AppTextStyles {
     color: AppColors.whiteOp100,
   );
 
+  static const TextStyle font8WhiteSemiBold = TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.w600,
+    color: AppColors.whiteOp100,
+  );
+
   static const TextStyle font12WhiteOp75Medium = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,

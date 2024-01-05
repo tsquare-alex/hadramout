@@ -7,6 +7,7 @@ import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/core/utils/custom_toast.dart';
 import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
+import 'package:hadrmouthamza/features/cart/data/models/delivery.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_confirm_order.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,8 +27,23 @@ class CartBloc extends Cubit<CartState> {
 
   static CartBloc get(context) => BlocProvider.of<CartBloc>(context);
 
+  DeliveryModel? selectedDelivery;
+
+  List<DeliveryModel> deliveryList = [
+    DeliveryModel(title: "المعادي", fees: 20),
+    DeliveryModel(title: "الجيزة", fees: 30),
+    DeliveryModel(title: "القاهرة", fees: 40),
+    DeliveryModel(title: "الاسماعيلية", fees: 55),
+  ];
+
+  selectModel(DeliveryModel newDelivery) {
+    emit(SelectDeliveryLoading());
+    selectedDelivery = newDelivery;
+    emit(SelectDeliverySuccess());
+  }
+
   Future<void> addOrder(BuildContext context) async {
-    if (formKey.currentState!.validate()) {
+    if (formKey.currentState!.validate() && selectedDelivery != null) {
       emit(AddOrderCartLoading());
       var userData = await FirebaseAuth.instance.signInAnonymously();
       var order = OrderModel(
@@ -43,11 +59,11 @@ class CartBloc extends Cubit<CartState> {
           apartment: apartmentController.text,
         ),
         confirmed: false,
-        deliveryFees: 20,
         delivered: false,
-        price: totalCost,
+        price: totalCost+selectedDelivery!.fees,
         createdAt: DateTime.now().toIso8601String(),
         cartModel: cartList,
+        deliveryModel: selectedDelivery!,
       );
       await _cartRepository.addOrder(order);
       cartList = [];
@@ -55,11 +71,12 @@ class CartBloc extends Cubit<CartState> {
       clearData();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("cartList");
-
+    } else {
+      CustomToast.showSimpleToast(msg: "برجاء إكمال البيانات لتأكيد الطلب");
     }
   }
 
-  clearData(){
+  clearData() {
     nameController.clear();
     numberController.clear();
     addressController.clear();
@@ -114,14 +131,13 @@ class CartBloc extends Cubit<CartState> {
 
   Future<void> addToCart(SpeciesModel model) async {
     CartModel newCartModel = CartModel(
-        title: model.title,
-        description: model.description,
-        image: model.image,
-        price: model.price,
-        quantity: 1,
-        totalPrice: model.price,
+      title: model.title,
+      description: model.description,
+      image: model.image,
+      price: model.price,
+      quantity: 1,
+      totalPrice: model.price,
       section: model.section,
-
     );
     CartModel cartModel = cartList
             .any((element) => element.title == newCartModel.title)
@@ -166,6 +182,7 @@ class CartBloc extends Cubit<CartState> {
 
   final GlobalKey<FormState> formKey = GlobalKey();
 
+  ScrollController pageScrollController = ScrollController();
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController addressController = TextEditingController();

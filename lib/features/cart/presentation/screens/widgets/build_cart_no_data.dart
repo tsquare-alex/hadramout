@@ -1,5 +1,6 @@
 import 'package:hadrmouthamza/core/widgets/DefaultButton.dart';
 import 'package:hadrmouthamza/core/widgets/MyText.dart';
+import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class BuildCartNoData extends StatelessWidget {
@@ -7,47 +8,38 @@ class BuildCartNoData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 100),
+    return Container(
+      padding: const EdgeInsets.only(top: 100),
+      width: 465,
+      height: 507,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.shopping_cart_outlined,
-            color: AppColors.yellowOp25,
-            size: 50.w,
+          Image.asset(
+            Res.cartNoItem,
+            width: 200,
+            height: 171,
           ),
-          const MyText(
-            title: "عربة التسوق فارغة",
-            color: AppColors.blackOp75,
-            size: 12,
-            fontWeight: FontWeight.bold,
+          const Gap(
+            16,
           ),
-          const SizedBox(
-            height: 10,
+          const Text("عربة التسوق فارغة",style: AppTextStyles.font24BlackSemiBold,),
+          const Gap(
+            16,
           ),
-          const MyText(
-            title: "الرجاء اضافة بعض العناصر من القائمة",
-            color: AppColors.blackOp75,
-            size: 12,
+          const Text(
+            "الرجاء اضافة بعض العناصر من القائمة",
+            style: AppTextStyles.font20BlackRegular,
           ),
-          const SizedBox(
-            height: 10,
+          const Gap(
+            16,
           ),
-          DefaultButton(
-            onTap: (){
-              Router.neglect(
-                context,
-                    () => context.go(AppRoutes.initScreen),
-              );
-            },
-            title: "استكشاف قائمة حضرموت حمزة",
-            color: AppColors.yellowOp75,
-            borderColor: AppColors.yellowOp75,
-            textColor: AppColors.whiteOp100,
-            fontWeight: FontWeight.bold,
-            width: 300,
-          ),
+          ElevatedButton(onPressed: (){
+            Router.neglect(
+              context,
+              () => context.go(AppRoutes.initScreen),
+            );
+          },style: AppButtonStyles.buttonYellowSize511x77Rounded20, child: const Text("استكشاف قائمة حضرموت حمزة",style: AppTextStyles.font24WhiteSemiBold,))
         ],
       ),
     );

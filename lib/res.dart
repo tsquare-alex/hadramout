@@ -4,7 +4,14 @@ class Res {
   static const String CairoMedium = "assets/fonts/CairoMedium.ttf";
   static const String CairoRegular = "assets/fonts/CairoRegular.ttf";
   static const String CairoSemiBold = "assets/fonts/CairoSemiBold.ttf";
+  static const String cartIcon = "assets/images/cartIcon.png";
+  static const String cartNoItem = "assets/images/cartNoItem.png";
+  static const String dashboard_logo = "assets/images/dashboard_logo.png";
+  static const String dishes_icon = "assets/images/dishes_icon.png";
+  static const String dishes_icon_fill = "assets/images/dishes_icon_fill.png";
   static const String facebook_logo = "assets/images/facebook_logo.png";
+  static const String home_icon = "assets/images/home_icon.png";
+  static const String home_icon_fill = "assets/images/home_icon_fill.png";
   static const String home_logo = "assets/images/home_logo.png";
   static const String image_not_found = "assets/images/image_not_found.png";
   static const String img_ = "assets/images/img_.png";
@@ -71,6 +78,17 @@ class Res {
   static const String img_vector_onprimarycontainer_4x6 = "assets/images/img_vector_onprimarycontainer_4x6.svg";
   static const String insta_logo = "assets/images/insta_logo.png";
   static const String LalezarRegular = "assets/fonts/LalezarRegular.ttf";
+  static const String logout_icon = "assets/images/logout_icon.png";
+  static const String menu_icon = "assets/images/menu_icon.png";
+  static const String menu_icon_fill = "assets/images/menu_icon_fill.png";
+  static const String notifications_icon = "assets/images/notifications_icon.png";
+  static const String offers_icon = "assets/images/offers_icon.png";
+  static const String offers_icon_fill = "assets/images/offers_icon_fill.png";
   static const String remove = "assets/images/remove.png";
+  static const String search_icon = "assets/images/search_icon.png";
+  static const String sections_icon = "assets/images/sections_icon.png";
+  static const String sections_icon_fill = "assets/images/sections_icon_fill.png";
+  static const String team_icon = "assets/images/team_icon.png";
+  static const String team_icon_fill = "assets/images/team_icon_fill.png";
   static const String twitter_logo = "assets/images/twitter_logo.png";
 }
