@@ -1,5 +1,3 @@
-import 'package:hadrmouthamza/core/widgets/DefaultButton.dart';
-import 'package:hadrmouthamza/core/widgets/MyText.dart';
 import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
