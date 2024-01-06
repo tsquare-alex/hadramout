@@ -49,6 +49,16 @@ List<Data> dataList = [
   ),
 ];
 
+List<String> sectionsNames = [
+  "قسم الدجاج",
+  "قسم اللحوم",
+  "قسم الطواجن",
+  "قسم اللحوم",
+  "قسم المشروبات",
+  "قسم السلطات",
+  "قسم المشويات",
+];
+
 class Data {
   final String title;
   final String imageUrl;

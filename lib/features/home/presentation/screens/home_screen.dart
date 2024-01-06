@@ -3,6 +3,7 @@ import 'package:hadrmouthamza/features/home/presentation/widgets/chicken_section
 import 'package:hadrmouthamza/features/home/presentation/widgets/container_footer.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/drinks_section.dart';
+import 'package:hadrmouthamza/features/home/presentation/widgets/explor_menu.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/grill_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/kitchen_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/meat_section.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
           Expanded(
               child: ListView(
             children: const [
+              ExplorMenu(),
               ChickenSection(),
               MeatSection(),
               KitchenSection(),

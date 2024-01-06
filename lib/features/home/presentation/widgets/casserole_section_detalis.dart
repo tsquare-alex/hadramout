@@ -4,7 +4,9 @@ import 'package:hadrmouthamza/features/home/presentation/widgets/custom_app_bar.
 import 'package:hadrmouthamza/features/home/presentation/widgets/home_item_list.dart';
 
 class CasseroleSectionDetalis extends StatelessWidget {
-  const CasseroleSectionDetalis({super.key});
+  const CasseroleSectionDetalis({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
