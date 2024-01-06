@@ -31,47 +31,20 @@ class CartBloc extends Cubit<CartState> {
   static CartBloc get(context) => BlocProvider.of<CartBloc>(context);
 
 
-  DateTime? selectedDate;
-
   void onSelectDate(
       BuildContext context,
       ) {
     showDatePicker(
         context: context,
         locale: Locale("ar"),
-
         initialDate: DateTime.now(),
         firstDate: DateTime.now().add(Duration(days: -1)),
         lastDate: DateTime(2050),
-        // borderRadius: 16,
-        // height: 20,
-        //
-        // theme: ThemeData.light().copyWith(
-        //   primaryColor: AppColors.yellowOp100,
-        //   backgroundColor: AppColors.whiteOp100,
-        //   buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
-        // )
     ).then((DateTime? date){
       dateController.text= DateFormat("dd MMMM yyyy", "en").format(date!);
     });
   }
 
-  Future<void> selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-
-    if (picked != null && picked != selectedDate) {
-      emit(SelectDateLoading());
-      selectedDate = picked;
-      dateController.text = DateFormat("dd MMMM yyyy", "ar").format(picked);
-      emit(SelectDateSuccess());
-    }
-
-  }
 
 
   DeliveryModel? selectedDelivery;
@@ -160,7 +133,6 @@ class CartBloc extends Cubit<CartState> {
         );
         await _cartRepository.addOrder(orderModel);
       }
-      // await _cartRepository.addOrder(orderModel);
       cartList = [];
       emit(AddOrderCartSuccess());
       clearData();
