@@ -195,6 +195,7 @@ class CartBloc extends Cubit<CartState> {
   }
 
   Future<void> addToCart(SpeciesModel model) async {
+    emit(AddToCartLoading());
     CartModel newCartModel = CartModel(
       title: model.title,
       description: model.description,
@@ -224,6 +225,7 @@ class CartBloc extends Cubit<CartState> {
       prefs.setString("cartList", jsonEncode(cartList));
       CustomToast.showSimpleToast(msg: "تمت الإضافة بنجاح");
     }
+    emit(AddToCartSuccess());
   }
 
   Future<void> fetchCartItems() async {

@@ -22,3 +22,6 @@ class SelectMethodSuccess extends CartState {}
 
 class SelectDateLoading extends CartState {}
 class SelectDateSuccess extends CartState {}
+
+class AddToCartLoading extends CartState {}
+class AddToCartSuccess extends CartState {}

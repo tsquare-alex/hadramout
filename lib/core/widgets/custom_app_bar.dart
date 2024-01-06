@@ -69,9 +69,17 @@ class CustomAppBar extends StatelessWidget {
                         color: AppColors.yellowOp100,
                       ),
                       child: Center(
-                        child: Text(
-                          CartBloc.get(context).cartList.length.toString(),
-                          style: AppTextStyles.font12WhiteBold,
+                        child: BlocBuilder<CartBloc, CartState>(
+                          builder: (context, state) {
+                            var cubit = CartBloc.get(context);
+                            return Text(
+                              cubit
+                                  .cartList
+                                  .length
+                                  .toString(),
+                              style: AppTextStyles.font12WhiteBold,
+                            );
+                          },
                         ),
                       ),
                     ),
