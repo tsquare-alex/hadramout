@@ -29,6 +29,7 @@ class CartModel extends Equatable {
   @override
   List<Object?> get props => [title, description, image, price, quantity,totalPrice,createdAt,section,offer,offerValue];
 
+
   Map<String, dynamic> toJson() {
     return {
       'title': title,

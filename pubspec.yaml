@@ -43,6 +43,7 @@ dependencies:
   location:
   fl_chart:
   badges:
+  flutter_rounded_date_picker:
 
 dev_dependencies:
   flutter_test:

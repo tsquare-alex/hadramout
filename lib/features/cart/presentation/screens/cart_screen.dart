@@ -21,6 +21,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   CartScreenData data = CartScreenData();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,13 +94,6 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                 ),
                               ),
-                              // child: CircleAvatar(
-                              //   backgroundColor: AppColors.yellowOp100,
-                              //   radius: 15,
-                              //   child: Text(cubit.cartList.length.toString(), style: AppTextStyles
-                              //       .font12WhiteBold,),
-                              // ),
-                              //)
                             ],
                           ),
                         ),

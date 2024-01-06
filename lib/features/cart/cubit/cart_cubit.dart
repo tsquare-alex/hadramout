@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:hadrmouthamza/core/common/models/client.dart';
 import 'package:hadrmouthamza/core/common/models/order.dart';
 import 'package:hadrmouthamza/core/common/models/section.dart';
@@ -8,8 +9,10 @@ import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/core/utils/custom_toast.dart';
 import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/features/cart/data/models/delivery.dart';
+import 'package:hadrmouthamza/features/cart/data/models/radio_model.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_confirm_order.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repository/cart_repository.dart';
@@ -27,6 +30,50 @@ class CartBloc extends Cubit<CartState> {
 
   static CartBloc get(context) => BlocProvider.of<CartBloc>(context);
 
+
+  DateTime? selectedDate;
+
+  void onSelectDate(
+      BuildContext context,
+      ) {
+    showDatePicker(
+        context: context,
+        locale: Locale("ar"),
+
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now().add(Duration(days: -1)),
+        lastDate: DateTime(2050),
+        // borderRadius: 16,
+        // height: 20,
+        //
+        // theme: ThemeData.light().copyWith(
+        //   primaryColor: AppColors.yellowOp100,
+        //   backgroundColor: AppColors.whiteOp100,
+        //   buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+        // )
+    ).then((DateTime? date){
+      dateController.text= DateFormat("dd MMMM yyyy", "en").format(date!);
+    });
+  }
+
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      emit(SelectDateLoading());
+      selectedDate = picked;
+      dateController.text = DateFormat("dd MMMM yyyy", "ar").format(picked);
+      emit(SelectDateSuccess());
+    }
+
+  }
+
+
   DeliveryModel? selectedDelivery;
 
   List<DeliveryModel> deliveryList = [
@@ -36,6 +83,30 @@ class CartBloc extends Cubit<CartState> {
     DeliveryModel(title: "الاسماعيلية", fees: 55),
   ];
 
+  RadioModel? selectedMethod;
+
+  List<RadioModel> orderMethod =[
+    RadioModel(
+      title: "التوصيل الي البيت",
+      active: true,
+    ),RadioModel(
+      title: "حجز بالمطعم",
+      active: false,
+    ),
+  ];
+
+
+
+  selectMethod(bool value,int index) {
+    emit(SelectMethodLoading());
+    orderMethod
+        .map((e) => e.active = false)
+        .toList();
+    orderMethod[index].active=!value;
+    selectedMethod=orderMethod[index];
+    emit(SelectMethodSuccess());
+  }
+
   selectModel(DeliveryModel newDelivery) {
     emit(SelectDeliveryLoading());
     selectedDelivery = newDelivery;
@@ -43,36 +114,58 @@ class CartBloc extends Cubit<CartState> {
   }
 
   Future<void> addOrder(BuildContext context) async {
-    if (formKey.currentState!.validate() && selectedDelivery != null) {
+    if (formKey.currentState!.validate() &&selectedDelivery !=null) {
       emit(AddOrderCartLoading());
       var userData = await FirebaseAuth.instance.signInAnonymously();
-      var order = OrderModel(
-        id: '',
-        cancelled: false,
-        client: ClientModel(
-          uid: userData.user!.uid,
-          name: nameController.text,
-          number: int.parse(numberController.text),
-          address: addressController.text,
-          building: buildingController.text,
-          floor: floorController.text,
-          apartment: apartmentController.text,
-        ),
-        confirmed: false,
-        delivered: false,
-        price: totalCost+selectedDelivery!.fees,
-        createdAt: DateTime.now().toIso8601String(),
-        cartModel: cartList,
-        deliveryModel: selectedDelivery!,
-      );
-      await _cartRepository.addOrder(order);
+      if(selectedMethod?.title=="التوصيل الي البيت"){
+        if(selectedDelivery != null){
+          var orderModel = OrderModel(
+            id: '',
+            cancelled: false,
+            client: ClientModel(
+              uid: userData.user!.uid,
+              name: nameController.text,
+              number: int.parse(numberController.text),
+              address: addressController.text,
+              building: buildingController.text,
+              floor: floorController.text,
+              apartment: apartmentController.text,
+            ),
+            confirmed: false,
+            delivered: false,
+            price: totalCost+selectedDelivery!.fees,
+            createdAt: DateTime.now().toIso8601String(),
+            cartModel: cartList,
+            deliveryModel: selectedDelivery!, orderDate: dateController.text,
+          );
+          await _cartRepository.addOrder(orderModel);
+        }else{
+          CustomToast.showSimpleToast(msg: "برجاء اختر مكان التوصيل",color: Colors.red,);
+        }
+      }else if(selectedMethod?.title=="حجز بالمطعم"){
+        print(selectedMethod?.title);
+        var orderModel = OrderModel(
+          id: '',
+          cancelled: false,
+          client: ClientModel(
+            uid: userData.user!.uid,
+            name: nameController.text,
+            number: int.parse(numberController.text),
+          ),
+          confirmed: false,
+          delivered: false,
+          price: totalCost,
+          createdAt: DateTime.now().toIso8601String(),
+          cartModel: cartList, orderDate:dateController.text,
+        );
+        await _cartRepository.addOrder(orderModel);
+      }
+      // await _cartRepository.addOrder(orderModel);
       cartList = [];
       emit(AddOrderCartSuccess());
       clearData();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("cartList");
-    } else {
-      CustomToast.showSimpleToast(msg: "برجاء إكمال البيانات لتأكيد الطلب");
     }
   }
 
@@ -189,6 +282,7 @@ class CartBloc extends Cubit<CartState> {
   TextEditingController buildingController = TextEditingController();
   TextEditingController floorController = TextEditingController();
   TextEditingController apartmentController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
 
   void showCustomDialog(BuildContext context) {
     showDialog(

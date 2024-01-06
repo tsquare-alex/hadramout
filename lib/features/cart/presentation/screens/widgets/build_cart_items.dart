@@ -43,12 +43,10 @@ class BuildCartItems extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const CircleAvatar(
-                    radius: 30,
+                    radius: 30  ,
                     backgroundImage: AssetImage(Res.home_logo),
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
+                  const Gap(15),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +73,7 @@ class BuildCartItems extends StatelessWidget {
                                     ),
                                   ),
                                   Gap(5),
-                                  Flexible(child: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,))
+                                  Flexible(child: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,size: 20,))
                                 ],
                               ),
                               trailing: const SizedBox.shrink(),

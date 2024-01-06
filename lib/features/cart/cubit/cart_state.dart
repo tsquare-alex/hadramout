@@ -16,3 +16,9 @@ class AddOrderSpeciesError extends CartState {}
 
 class SelectDeliveryLoading extends CartState {}
 class SelectDeliverySuccess extends CartState {}
+
+class SelectMethodLoading extends CartState {}
+class SelectMethodSuccess extends CartState {}
+
+class SelectDateLoading extends CartState {}
+class SelectDateSuccess extends CartState {}
