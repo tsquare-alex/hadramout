@@ -5,7 +5,7 @@ import 'package:hadrmouthamza/features/dashboard/data/repository/dashboard_repos
 import 'package:hadrmouthamza/features/feature/cubit/feature_cubit.dart';
 import 'package:hadrmouthamza/features/feature/data/data_source/feature_data_source.dart';
 import 'package:hadrmouthamza/features/feature/data/repository/feature_repository.dart';
-import 'package:hadrmouthamza/features/home/data/cubit/home_cubit.dart';
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/data/data_source/home_data_source.dart';
 
 import '../../features/home/data/repository/home_repository.dart';

@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/screens/home_screen.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/casserole_section_detalis.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/chiken_section_detalis.dart';
@@ -25,7 +26,10 @@ class AppRouter {
         path: AppRoutes.initScreen,
         pageBuilder: (context, state) => NoTransitionPage(
           key: state.pageKey,
-          child: const HomeScreen(),
+          child: BlocProvider(
+            create: (context) => getIt<HomeBloc>(),
+            child: const HomeScreen(),
+          ),
         ),
       ),
       GoRoute(

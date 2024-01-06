@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/casserole_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/chicken_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/container_footer.dart';
@@ -16,25 +17,101 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const CustomAppBar(),
-          Expanded(
-              child: ListView(
-            children: const [
-              ExplorMenu(),
-              ChickenSection(),
-              MeatSection(),
-              KitchenSection(),
-              GrillSection(),
-              CasseroleSection(),
-              SaladSection(),
-              DrinksSection(),
-              Footer(),
-            ],
-          )),
-        ],
+      body: Scrollbar(
+        thumbVisibility: true,
+        trackVisibility: true,
+        interactive: true,
+        thickness: 6,
+        controller: context.read<HomeBloc>().pageScrollController,
+        child: CustomScrollView(
+          controller: context.read<HomeBloc>().pageScrollController,
+          shrinkWrap: true,
+          slivers: [
+            SliverAppBar(
+              toolbarHeight: 93,
+              backgroundColor: AppColors.greyOp100,
+              pinned: true,
+              surfaceTintColor: Colors.transparent,
+              leadingWidth: 100,
+              leading: Image.asset(
+                "assets/images/home_logo.png",
+                width: 100,
+                height: 100,
+              ),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(left: 15.r),
+                  child: InkWell(
+                    hoverColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {},
+                    child: Tooltip(
+                      message: 'عربة التسوق',
+                      decoration: BoxDecoration(
+                        color: AppColors.yellowOp100,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          SizedBox(
+                            width: 32,
+                            height: 30,
+                            child: Image.asset(
+                              ImageConstants.cart,
+                              color: AppColors.yellowOp100,
+                              width: 26,
+                              height: 24,
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 20,
+                            left: 21,
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.yellowOp100,
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "0",
+                                  style: AppTextStyles.font12WhiteBold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  ExplorMenu(),
+                  ChickenSection(),
+                  MeatSection(),
+                  KitchenSection(),
+                  GrillSection(),
+                  CasseroleSection(),
+                  SaladSection(),
+                  DrinksSection(),
+                  Footer(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
+
+    // Scaffold(
+
+    // );
   }
 }
