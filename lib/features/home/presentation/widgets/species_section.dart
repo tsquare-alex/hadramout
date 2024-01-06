@@ -1,33 +1,39 @@
-import 'package:hadrmouthamza/features/home/presentation/widgets/home_item_list.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
-class ChickenSection extends StatelessWidget {
-  const ChickenSection({
+import 'data_dummy.dart';
+import 'home_item.dart';
+
+class SpeciesSection extends StatelessWidget {
+  const SpeciesSection({
     super.key,
+    required this.label,
+    required this.dataList,
   });
+
+  final String label;
+  final List<Data> dataList;
 
   @override
   Widget build(BuildContext context) {
-    String title = "قسم الدجاج";
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+    return SizedBox(
+      height: 510,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "قسم الدجاج",
+              Text(
+                label,
                 style: AppTextStyles.font24BlackSemiBold,
               ),
+              const Gap(16),
               InkWell(
                 hoverColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () {
-                  context.go("${AppRoutes.sectionDetalis}/$title");
+                  context.push(AppRoutes.sectionDetails, extra: label);
                 },
                 child: Row(
                   children: [
@@ -42,21 +48,24 @@ class ChickenSection extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 380,
+          const Gap(20),
+          Expanded(
             child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return const HomeItemList();
-                }),
+              scrollDirection: Axis.horizontal,
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: dataList.indexOf(dataList.last) == index ? 0 : 16,
+                    right: dataList.indexOf(dataList.first) == index ? 0 : 16,
+                  ),
+                  child: const HomeItem(),
+                );
+              },
+            ),
           ),
         ],
       ),

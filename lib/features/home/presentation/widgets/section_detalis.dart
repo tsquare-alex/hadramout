@@ -1,5 +1,5 @@
 import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/home_item_list.dart';
+import 'package:hadrmouthamza/features/home/presentation/widgets/home_item.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class SectionDetails extends StatelessWidget {
@@ -108,7 +108,7 @@ class SectionDetails extends StatelessWidget {
                             20,
                             (index) => const Padding(
                               padding: EdgeInsets.all(28),
-                              child: HomeItemList(),
+                              child: HomeItem(),
                             ),
                           ),
                         ],

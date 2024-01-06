@@ -1,8 +1,9 @@
 import 'package:hadrmouthamza/src/app_export.dart';
 
-class CutomSectionsItem extends StatelessWidget {
-  const CutomSectionsItem({super.key});
+class CustomSectionsItem extends StatelessWidget {
+  const CustomSectionsItem({super.key, required this.title});
 
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -10,22 +11,24 @@ class CutomSectionsItem extends StatelessWidget {
         Container(
           width: 240,
           height: 208,
-          margin: const EdgeInsetsDirectional.symmetric(
-              horizontal: 10, vertical: 10),
+          margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadiusDirectional.circular(10),
+            borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: AppColors.blackOp10,
             ),
           ),
-          child: Center(
-            child: Image.asset(
-              ImageConstants.sectionImage,
-              width: 200,
-              height: 200,
-            ),
+          alignment: Alignment.center,
+          child: Image.asset(
+            ImageConstants.sectionImage,
+            width: 200,
+            height: 200,
           ),
         ),
+        Text(
+          title,
+          style: AppTextStyles.font20BlackMedium,
+        )
       ],
     );
   }

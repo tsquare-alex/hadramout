@@ -1,12 +1,5 @@
 import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/screens/home_screen.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/casserole_section_detalis.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/chiken_section_detalis.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/drinks_sction_detalis.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/grill_section_detalis.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/kitchen_section_detalis.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/meat_section_detalis.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/salad_section_detalis.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/section_detalis.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -33,65 +26,63 @@ class AppRouter {
           ),
         ),
       ),
+      // GoRoute(
+      //   path: AppRoutes.chickenSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const ChickenSectionDetalis(),
+      //   ),
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.casseroleSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const CasseroleSectionDetalis(),
+      //   ),
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.drinksSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const DrinksSectionDetalis(),
+      //   ),
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.grillSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const GrillSectionDetalis(),
+      //   ),
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.kitchenSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const KitchenSectionDetalis(),
+      //   ),
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.meatSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const MeatSectionDetalis(),
+      //   ),
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.saladSection,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child: const SaladSectionDetalis(),
+      //   ),
+      // ),
       GoRoute(
-        path: AppRoutes.chickenSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const ChickenSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-        path: AppRoutes.casseroleSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const CasseroleSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-        path: AppRoutes.drinksSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const DrinksSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-        path: AppRoutes.grillSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const GrillSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-        path: AppRoutes.kitchenSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const KitchenSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-        path: AppRoutes.meatSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const MeatSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-        path: AppRoutes.saladSection,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const SaladSectionDetalis(),
-        ),
-      ),
-      GoRoute(
-          path: "${AppRoutes.sectionDetalis}/:title",
+          path: AppRoutes.sectionDetails,
           pageBuilder: (context, state) {
-            final String title = state.pathParameters["title"]!;
-
             return NoTransitionPage(
                 key: state.pageKey,
                 child: BlocProvider(
                   create: (context) => getIt<HomeBloc>(),
-                  child: SectionDetails(title: title),
+                  child: SectionDetails(title: state.extra as String),
                 ));
           }),
       // GoRoute(

@@ -31,9 +31,6 @@ class HomeBloc extends Cubit<HomeState> {
       emit(HomeDataLoading());
 
       final sections = await _homeRepository.getSections();
-      print(
-          "${sections} =========================================================");
-
       _sections = sections;
       emit(HomeDataSuccess());
     } catch (error) {
