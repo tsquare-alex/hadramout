@@ -6,9 +6,19 @@ class AppThemes {
     fontFamily: 'Cairo',
     colorScheme: const ColorScheme.light(
       primary: AppColors.yellowOp100,
+      shadow: AppColors.whiteOp100,
       onPrimary: AppColors.darkBlue,
       onPrimaryContainer: AppColors.whiteOp75,
       secondaryContainer: AppColors.brownOp25,
+    ),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: AppColors.whiteOp100,
+      surfaceTintColor: AppColors.whiteOp100
+    ),
+    dialogBackgroundColor: AppColors.whiteOp100,
+    dialogTheme: const DialogTheme(
+      backgroundColor: AppColors.whiteOp100,
+      shadowColor: AppColors.whiteOp100,
     ),
     scaffoldBackgroundColor: AppColors.greyOp100,
     // bottomNavigationBarTheme: BottomNavigationBarThemeData(
