@@ -2,6 +2,8 @@ import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/home_item.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
+import '../../../../core/widgets/custom_app_bar.dart';
+
 class SectionDetails extends StatelessWidget {
   final String title;
 
@@ -18,74 +20,12 @@ class SectionDetails extends StatelessWidget {
         trackVisibility: true,
         interactive: true,
         thickness: 6,
-        controller: context.read<HomeBloc>().pageScrollController,
+        controller: context.read<HomeBloc>().sectionDetailsScrollController,
         child: CustomScrollView(
-          controller: context.read<HomeBloc>().pageScrollController,
+          controller: context.read<HomeBloc>().sectionDetailsScrollController,
           shrinkWrap: true,
           slivers: [
-            SliverAppBar(
-              toolbarHeight: 93,
-              backgroundColor: AppColors.greyOp100,
-              pinned: true,
-              surfaceTintColor: Colors.transparent,
-              leadingWidth: 100,
-              leading: Image.asset(
-                "assets/images/home_logo.png",
-                width: 100,
-                height: 100,
-              ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.only(left: 15.r),
-                  child: InkWell(
-                    hoverColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () {},
-                    child: Tooltip(
-                      message: 'عربة التسوق',
-                      decoration: BoxDecoration(
-                        color: AppColors.yellowOp100,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          SizedBox(
-                            width: 32,
-                            height: 30,
-                            child: Image.asset(
-                              ImageConstants.cart,
-                              color: AppColors.yellowOp100,
-                              width: 26,
-                              height: 24,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 20,
-                            left: 21,
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.yellowOp100,
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "0",
-                                  style: AppTextStyles.font12WhiteBold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            const CustomAppBar(),
             SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

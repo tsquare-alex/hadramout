@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               trackVisibility: true,
               interactive: true,
               thickness: 6,
-              controller: context.read<HomeBloc>().pageScrollController,
+              controller: context.read<HomeBloc>().homePageScrollController,
               child: CustomScrollView(
                 shrinkWrap: true,
                 slivers: [
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const ExploreMenu(),
                         ListView.builder(
                           controller:
-                              context.read<HomeBloc>().pageScrollController,
+                              context.read<HomeBloc>().homePageScrollController,
                           padding: const EdgeInsets.symmetric(horizontal: 80),
                           shrinkWrap: true,
                           itemCount: HomeBloc.get(context).sections.length,

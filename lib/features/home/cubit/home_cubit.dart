@@ -14,7 +14,9 @@ class HomeBloc extends Cubit<HomeState> {
 
   static HomeBloc get(context) => BlocProvider.of<HomeBloc>(context);
 
-  ScrollController pageScrollController = ScrollController();
+  ScrollController homePageScrollController = ScrollController();
+  ScrollController sectionDetailsScrollController = ScrollController();
+
 
   // late final List<SectionModel> _sections = [];
   // List<SectionModel> get sections => _sections;
