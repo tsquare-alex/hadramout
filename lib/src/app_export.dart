@@ -20,3 +20,4 @@ export 'package:hadrmouthamza/firebase_options.dart';
 export 'package:responsive_framework/responsive_framework.dart';
 export 'package:equatable/equatable.dart';
 export 'package:json_annotation/json_annotation.dart';
+export 'package:cloud_firestore/cloud_firestore.dart';
