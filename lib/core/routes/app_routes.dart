@@ -10,6 +10,7 @@ class AppRoutes {
   static const String grillSection = "/grillSection";
   static const String kitchenSection = "/kitechenSection";
   static const String saladSection = "/saladSection";
+  static const String sectionDetalis = "/sectionDetalis";
 
   // static const String homeScreen = '/home';
 }
