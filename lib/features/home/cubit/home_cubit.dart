@@ -16,12 +16,29 @@ class HomeBloc extends Cubit<HomeState> {
 
   ScrollController pageScrollController = ScrollController();
 
-  late final List<SectionModel> _sections = [];
+  // late final List<SectionModel> _sections = [];
+  // List<SectionModel> get sections => _sections;
+  late List<SectionModel> _sections = [];
+
   List<SectionModel> get sections => _sections;
 
+  // Future<void> getSections() async {
+  //   final sections = await _homeRepository.getSections();
+  //   _sections.addAll(sections);
+  // }
   Future<void> getSections() async {
-    final sections = await _homeRepository.getSections();
-    _sections.addAll(sections);
+    try {
+      emit(HomeDataLoading());
+
+      final sections = await _homeRepository.getSections();
+      print(
+          "${sections} =========================================================");
+
+      _sections = sections;
+      emit(HomeDataSuccess());
+    } catch (error) {
+      emit(HomeDataError(errorMessage: error.toString()));
+    }
   }
 
   Future<List<SpeciesModel>> getSpeciesBySection(String sectionName) async {

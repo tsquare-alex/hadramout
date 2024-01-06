@@ -8,6 +8,7 @@ class SaladSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String title = "قسم السلطات";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 80),
       child: Column(
@@ -21,8 +22,11 @@ class SaladSection extends StatelessWidget {
                 style: AppTextStyles.font24BlackSemiBold,
               ),
               InkWell(
+                hoverColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: () {
-                  context.go(AppRoutes.saladSection);
+                  context.go("${AppRoutes.sectionDetalis}/$title");
                 },
                 child: Row(
                   children: [

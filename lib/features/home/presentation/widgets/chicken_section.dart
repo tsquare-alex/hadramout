@@ -23,8 +23,11 @@ class ChickenSection extends StatelessWidget {
                 style: AppTextStyles.font24BlackSemiBold,
               ),
               InkWell(
+                hoverColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: () {
-                  context.go("${AppRoutes.sectionDetalis}/title");
+                  context.go("${AppRoutes.sectionDetalis}/$title");
                 },
                 child: Row(
                   children: [

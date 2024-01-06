@@ -88,7 +88,11 @@ class AppRouter {
             final String title = state.pathParameters["title"]!;
 
             return NoTransitionPage(
-                key: state.pageKey, child: SectionDetails(title: title));
+                key: state.pageKey,
+                child: BlocProvider(
+                  create: (context) => getIt<HomeBloc>(),
+                  child: SectionDetails(title: title),
+                ));
           }),
       // GoRoute(
       //   path: AppRoutes.featureScreen,

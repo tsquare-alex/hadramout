@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:hadrmouthamza/core/themes/colors.dart';
+import 'package:hadrmouthamza/src/app_export.dart';
 
 class CutomSectionsItem extends StatelessWidget {
   const CutomSectionsItem({super.key});
@@ -20,8 +19,8 @@ class CutomSectionsItem extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Image.network(
-              "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
+            child: Image.asset(
+              ImageConstants.sectionImage,
               width: 200,
               height: 200,
             ),

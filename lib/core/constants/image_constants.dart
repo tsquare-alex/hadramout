@@ -3,6 +3,7 @@ class ImageConstants {
   static const String imagePath = 'assets/images';
 
   // home bage images
+  static const String sectionImage = "$imagePath/section_image.png";
   static const String imgVector = '$imagePath/img_vector.svg';
   static const String arrowBack = "$imagePath/arrow_back.png";
   static const String inesta = "$imagePath/inesta.png";

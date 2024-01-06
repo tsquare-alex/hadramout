@@ -8,6 +8,7 @@ class MeatSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String title = "قسم اللحوم";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 80),
       child: Column(
@@ -19,8 +20,11 @@ class MeatSection extends StatelessWidget {
               style: AppTextStyles.font24BlackSemiBold,
             ),
             InkWell(
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onTap: () {
-                context.go(AppRoutes.meatSection);
+                context.go("${AppRoutes.sectionDetalis}/$title");
               },
               child: Row(
                 children: [

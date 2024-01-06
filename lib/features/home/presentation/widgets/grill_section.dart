@@ -8,6 +8,7 @@ class GrillSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String title = "قسم المشويات";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 80),
       child: Column(
@@ -21,8 +22,11 @@ class GrillSection extends StatelessWidget {
                 style: AppTextStyles.font24BlackSemiBold,
               ),
               InkWell(
+                hoverColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: () {
-                  context.go(AppRoutes.grillSection);
+                  context.go("${AppRoutes.sectionDetalis}/$title");
                 },
                 child: Row(
                   children: [

@@ -88,7 +88,15 @@ class SectionDetails extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
+                    child: Text(
+                      title,
+                      style: AppTextStyles.font24BlackSemiBold,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 60,

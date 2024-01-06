@@ -32,26 +32,44 @@ class _ExplorMenuState extends State<ExplorMenu> {
           ),
           SizedBox(
             height: 300,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: context.read<HomeBloc>().sections.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      context.go(AppRoutes.casseroleSection);
-                    },
-                    child: Column(
-                      children: [
-                        const CutomSectionsItem(),
-                        Text(
-                          context.read<HomeBloc>().sections[index].title,
-                          style: AppTextStyles.font20BlackMedium,
-                        )
-                      ],
-                    ),
+            child: BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                if (state is HomeDataLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
-                }),
+                } else if (state is HomeDataError) {
+                  return const Center(
+                    child: Text(""),
+                  );
+                } else if (state is HomeDataSuccess) {
+                  return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: context.read<HomeBloc>().sections.length,
+                      itemBuilder: (context, index) {
+                        String title =
+                            context.read<HomeBloc>().sections[index].title;
+                        return InkWell(
+                          onTap: () {
+                            context.go("${AppRoutes.sectionDetalis}/$title");
+                          },
+                          child: Column(
+                            children: [
+                              const CutomSectionsItem(),
+                              Text(
+                                context.read<HomeBloc>().sections[index].title,
+                                style: AppTextStyles.font20BlackMedium,
+                              )
+                            ],
+                          ),
+                        );
+                      });
+                } else {
+                  return const Text("""""data""" "");
+                }
+              },
+            ),
           ),
         ],
       ),
