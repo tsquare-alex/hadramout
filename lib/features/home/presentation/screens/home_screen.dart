@@ -2,7 +2,6 @@ import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/casserole_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/chicken_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/container_footer.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/drinks_section.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/explor_menu.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/grill_section.dart';

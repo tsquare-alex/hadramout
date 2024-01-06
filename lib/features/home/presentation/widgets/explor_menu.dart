@@ -1,9 +1,20 @@
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/custom_sections_item.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/data_dummy.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
-class ExplorMenu extends StatelessWidget {
+class ExplorMenu extends StatefulWidget {
   const ExplorMenu({super.key});
+
+  @override
+  State<ExplorMenu> createState() => _ExplorMenuState();
+}
+
+class _ExplorMenuState extends State<ExplorMenu> {
+  @override
+  void initState() {
+    context.read<HomeBloc>().getSections();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +35,7 @@ class ExplorMenu extends StatelessWidget {
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: sectionsNames.length,
+                itemCount: context.read<HomeBloc>().sections.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
@@ -34,7 +45,7 @@ class ExplorMenu extends StatelessWidget {
                       children: [
                         const CutomSectionsItem(),
                         Text(
-                          sectionsNames[index],
+                          context.read<HomeBloc>().sections[index].title,
                           style: AppTextStyles.font20BlackMedium,
                         )
                       ],

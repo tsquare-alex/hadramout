@@ -8,6 +8,7 @@ class ChickenSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String title = "قسم الدجاج";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 80),
       child: Column(
@@ -23,7 +24,7 @@ class ChickenSection extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  context.go(AppRoutes.chickenSection);
+                  context.go("${AppRoutes.sectionDetalis}/title");
                 },
                 child: Row(
                   children: [

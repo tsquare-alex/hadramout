@@ -7,6 +7,7 @@ import 'package:hadrmouthamza/features/home/presentation/widgets/grill_section_d
 import 'package:hadrmouthamza/features/home/presentation/widgets/kitchen_section_detalis.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/meat_section_detalis.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/salad_section_detalis.dart';
+import 'package:hadrmouthamza/features/home/presentation/widgets/section_detalis.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 part 'app_routes.dart';
@@ -81,14 +82,14 @@ class AppRouter {
           child: const SaladSectionDetalis(),
         ),
       ),
-      //       GoRoute(
-      //   path: AppRoutes.sectionDetalis,
-      //   pageBuilder: (context, state) => NoTransitionPage(
-      //     key: state.pageKey,
-      //     child:  SectionDetails(sectionName: ?? "",
-      //     ),
-      //   ),
-      // ),
+      GoRoute(
+          path: "${AppRoutes.sectionDetalis}/:title",
+          pageBuilder: (context, state) {
+            final String title = state.pathParameters["title"]!;
+
+            return NoTransitionPage(
+                key: state.pageKey, child: SectionDetails(title: title));
+          }),
       // GoRoute(
       //   path: AppRoutes.featureScreen,
       //   pageBuilder: (context, state) => NoTransitionPage(
