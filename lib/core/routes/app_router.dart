@@ -80,7 +80,15 @@ class AppRouter {
           key: state.pageKey,
           child: const SaladSectionDetalis(),
         ),
-      )
+      ),
+      //       GoRoute(
+      //   path: AppRoutes.sectionDetalis,
+      //   pageBuilder: (context, state) => NoTransitionPage(
+      //     key: state.pageKey,
+      //     child:  SectionDetails(sectionName: ?? "",
+      //     ),
+      //   ),
+      // ),
       // GoRoute(
       //   path: AppRoutes.featureScreen,
       //   pageBuilder: (context, state) => NoTransitionPage(
