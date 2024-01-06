@@ -1,8 +1,8 @@
+import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
+import 'package:hadrmouthamza/features/cart/data/models/delivery.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
-import 'cart.dart';
 import 'client.dart';
-import 'delivery.dart';
 
 class OrderModel extends Equatable {
   final String id;
@@ -12,15 +12,17 @@ class OrderModel extends Equatable {
   final bool delivered;
   final double price;
   final String createdAt;
+  final String orderDate;
   final List<CartModel> cartModel;
-  final DeliveryModel deliveryModel;
+  final DeliveryModel? deliveryModel;
 
   const OrderModel({
     required this.id,
     required this.cancelled,
     required this.client,
     required this.confirmed,
-    required this.deliveryModel,
+    required this.orderDate,
+    this.deliveryModel,
     required this.delivered,
     required this.price,
     required this.createdAt,
@@ -33,10 +35,11 @@ class OrderModel extends Equatable {
         cancelled,
         client,
         confirmed,
+    orderDate,
         delivered,
         deliveryModel,
         price,
-        cartModel,
+    cartModel,
       ];
 
   Map<String, dynamic> toJson() {
@@ -45,7 +48,8 @@ class OrderModel extends Equatable {
       'cancelled': cancelled,
       'client': client.toJson(),
       'confirmed': confirmed,
-      'delivery_details': deliveryModel.toJson(),
+      'order_date': orderDate,
+      'delivery_details': deliveryModel?.toJson(),
       'delivered': delivered,
       'price': price,
       'created_at': createdAt,
@@ -62,8 +66,8 @@ class OrderModel extends Equatable {
       delivered: json['delivered'] ?? false,
       price: json['price']?.toDouble() ?? 0.0,
       createdAt: json['created_at'] ?? '',
-      cartModel: json['cartModel'] ??
-          List<CartModel>.from(
+      orderDate: json['order_date'] ?? '',
+      cartModel: json['cartModel'] ?? List<CartModel>.from(
               json['cartModel']?.map((x) => CartModel.fromJson(x))),
       deliveryModel: DeliveryModel.fromJson(json['delivery_details']),
     );

@@ -45,7 +45,7 @@ class ExploreMenu extends StatelessWidget {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      context.go("${AppRoutes.sectionDetails}/$title");
+                      context.push(AppRoutes.sectionDetails, extra: title);
                     },
                     child: CustomSectionsItem(title: title),
                   ),

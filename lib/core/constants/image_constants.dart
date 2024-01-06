@@ -11,6 +11,23 @@ class ImageConstants {
   static const String twitter = "$imagePath/twitter.png";
   static const String cart = "$imagePath/empty_cart.png";
 
+  static const String dashboardLogo = '$imagePath/dashboard_logo.png';
+  static const String homeIcon = '$imagePath/home_icon.png';
+  static const String homeIconFill = '$imagePath/home_icon_fill.png';
+  static const String dishesIcon = '$imagePath/dishes_icon.png';
+  static const String dishesIconFill = '$imagePath/dishes_icon_fill.png';
+  static const String menuIcon = '$imagePath/menu_icon.png';
+  static const String menuIconFill = '$imagePath/menu_icon_fill.png';
+  static const String offersIcon = '$imagePath/offers_icon.png';
+  static const String offersIconFill = '$imagePath/offers_icon_fill.png';
+  static const String sectionsIcon = '$imagePath/sections_icon.png';
+  static const String sectionsIconFill = '$imagePath/sections_icon_fill.png';
+  static const String teamIcon = '$imagePath/team_icon.png';
+  static const String teamIconFill = '$imagePath/team_icon_fill.png';
+  static const String logoutIcon = '$imagePath/logout_icon.png';
+  static const String searchIcon = '$imagePath/search_icon.png';
+  static const String notificationsIcon = '$imagePath/notifications_icon.png';
+
   static const String imgLinkedin = '$imagePath/img_linkedin.svg';
 
   static const String imgFrame = '$imagePath/img_frame.svg';

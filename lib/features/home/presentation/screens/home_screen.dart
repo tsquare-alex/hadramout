@@ -1,9 +1,11 @@
 import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/footer.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/explore_menu.dart';
+import 'package:hadrmouthamza/features/home/presentation/widgets/footer.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/species_section.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/loading_circle.dart';
 import '../widgets/data_dummy.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,7 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           if (state is HomeDataLoading) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: SizedBox.square(
+                dimension: 50,
+                child: LoadingSpinningCircle(
+                  color: AppColors.yellowOp100,
+                ),
+              ),
             );
           } else if (state is HomeDataError) {
             return Center(
@@ -43,70 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CustomScrollView(
                 shrinkWrap: true,
                 slivers: [
-                  SliverAppBar(
-                    toolbarHeight: 93,
-                    backgroundColor: AppColors.greyOp100,
-                    pinned: true,
-                    surfaceTintColor: Colors.transparent,
-                    leadingWidth: 150,
-                    leading: Image.asset(
-                      "assets/images/home_logo.png",
-                      width: 100,
-                      height: 100,
-                      alignment: Alignment.centerLeft,
-                    ),
-                    actions: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 80),
-                        child: InkWell(
-                          hoverColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () {},
-                          child: Tooltip(
-                            message: 'عربة التسوق',
-                            decoration: BoxDecoration(
-                              color: AppColors.yellowOp100,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                SizedBox(
-                                  width: 32,
-                                  height: 30,
-                                  child: Image.asset(
-                                    ImageConstants.cart,
-                                    color: AppColors.yellowOp100,
-                                    width: 26,
-                                    height: 24,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 20,
-                                  left: 21,
-                                  child: Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColors.yellowOp100,
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "0",
-                                        style: AppTextStyles.font12WhiteBold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  const CustomAppBar(),
                   SliverToBoxAdapter(
                     child: Column(
                       children: [
@@ -126,13 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        // ChickenSection(),
-                        // MeatSection(),
-                        // KitchenSection(),
-                        // GrillSection(),
-                        // CasseroleSection(),
-                        // SaladSection(),
-                        // DrinksSection(),
                         const Footer(),
                       ],
                     ),

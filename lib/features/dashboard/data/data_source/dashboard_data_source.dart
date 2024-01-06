@@ -1,3 +1,0 @@
-class DashboardDataSource {
-  void yourGetDataFunction() {}
-}

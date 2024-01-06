@@ -43,6 +43,7 @@ class SpeciesSection extends StatelessWidget {
                           "عرض الكل",
                           style: AppTextStyles.font16YellowSemiBold,
                         ),
+                        const Gap(8),
                         Image.asset(ImageConstants.arrowBack),
                       ],
                     ),

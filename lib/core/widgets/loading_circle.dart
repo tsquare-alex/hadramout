@@ -12,7 +12,7 @@ class LoadingSpinningCircle extends StatelessWidget {
     return Center(
       child: CircularProgressIndicator(
         color: color ?? AppColors.brownOp100,
-        strokeWidth: 6.r,
+        strokeWidth: 6,
       ),
     );
   }

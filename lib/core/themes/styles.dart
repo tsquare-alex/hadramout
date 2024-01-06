@@ -80,6 +80,12 @@ class AppTextStyles {
     color: AppColors.whiteOp100,
   );
 
+  static const TextStyle font8WhiteSemiBold = TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.w600,
+    color: AppColors.whiteOp100,
+  );
+
   static const TextStyle font12WhiteOp75Medium = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,
@@ -96,12 +102,6 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.w600,
     color: AppColors.yellowOp100,
-  );
-
-  static const TextStyle font14 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-    color: AppColors.blackOp100,
   );
 
   static const TextStyle font14BlackMedium = TextStyle(
@@ -228,18 +228,6 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: AppColors.yellowOp100,
-  );
-
-  static const TextStyle font16br = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-    color: AppColors.blackOp25,
-  );
-
-  static const TextStyle font16wh = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w700,
-    color: AppColors.whiteOp100,
   );
 
   static const TextStyle font18WhiteBold = TextStyle(

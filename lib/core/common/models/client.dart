@@ -4,8 +4,8 @@ class ClientModel extends Equatable {
   final String uid;
   final String name;
   final int number;
-  final String address;
-  final String building;
+  final String? address;
+  final String? building;
   final String? floor;
   final String? apartment;
 
@@ -13,8 +13,8 @@ class ClientModel extends Equatable {
     required this.uid,
     required this.name,
     required this.number,
-    required this.address,
-    required this.building,
+    this.address,
+    this.building,
     this.floor,
     this.apartment,
   });
