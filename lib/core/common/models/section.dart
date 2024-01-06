@@ -1,8 +1,5 @@
 import 'package:hadrmouthamza/src/app_export.dart';
 
-part 'section.g.dart';
-
-@JsonSerializable()
 class SectionModel extends Equatable {
   final String id;
   final String title;
@@ -12,11 +9,20 @@ class SectionModel extends Equatable {
     required this.title,
   });
 
-  factory SectionModel.fromJson(Map<String, dynamic> json) =>
-      _$SectionModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SectionModelToJson(this);
-
   @override
   List<Object> get props => [id, title];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+    };
+  }
+
+  factory SectionModel.fromJson(Map<String, dynamic> json) {
+    return SectionModel(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+    );
+  }
 }

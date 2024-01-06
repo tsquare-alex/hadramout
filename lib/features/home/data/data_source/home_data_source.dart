@@ -7,7 +7,11 @@ class HomeDataSource {
     return await _firebaseDatabase.collection('sections').get();
   }
 
-  Future<QuerySnapshot<Map<String, dynamic>>> getSpecies() async {
-    return await _firebaseDatabase.collection('species').get();
+  Future<QuerySnapshot<Map<String, dynamic>>> getSpeciesBySection(
+      String sectionName) async {
+    return await _firebaseDatabase
+        .collection('species')
+        .where('section.title', isEqualTo: sectionName)
+        .get();
   }
 }
