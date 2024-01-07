@@ -12,7 +12,9 @@ class OrderModel extends Equatable {
   final bool delivered;
   final double price;
   final String createdAt;
-  final String orderDate;
+  final DateTime orderDate;
+  final String orderTime;
+  final String orderMethod;
   final List<CartModel> cartModel;
   final DeliveryModel? deliveryModel;
 
@@ -22,6 +24,8 @@ class OrderModel extends Equatable {
     required this.client,
     required this.confirmed,
     required this.orderDate,
+    required this.orderTime,
+    required this.orderMethod,
     this.deliveryModel,
     required this.delivered,
     required this.price,
@@ -40,6 +44,9 @@ class OrderModel extends Equatable {
         deliveryModel,
         price,
     cartModel,
+    orderTime,
+    orderDate,
+    orderMethod,
       ];
 
   Map<String, dynamic> toJson() {
@@ -49,6 +56,8 @@ class OrderModel extends Equatable {
       'client': client.toJson(),
       'confirmed': confirmed,
       'order_date': orderDate,
+      'order_time': orderTime,
+      'order_method': orderMethod,
       'delivery_details': deliveryModel?.toJson(),
       'delivered': delivered,
       'price': price,
@@ -66,7 +75,9 @@ class OrderModel extends Equatable {
       delivered: json['delivered'] ?? false,
       price: json['price']?.toDouble() ?? 0.0,
       createdAt: json['created_at'] ?? '',
-      orderDate: json['order_date'] ?? '',
+      orderDate: json['order_date'] ?? DateTime.now(),
+      orderTime: json['order_time'] ?? '',
+      orderMethod: json['order_method'] ?? '',
       cartModel: json['cartModel'] ?? List<CartModel>.from(
               json['cartModel']?.map((x) => CartModel.fromJson(x))),
       deliveryModel: DeliveryModel.fromJson(json['delivery_details']),
