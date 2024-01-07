@@ -15,7 +15,7 @@ class BuildCartItems extends StatelessWidget {
         color: AppColors.greyOp50,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(8),
       margin: const EdgeInsets.only(bottom: 60.0),
       child: Column(
         children: [
@@ -26,7 +26,7 @@ class BuildCartItems extends StatelessWidget {
             itemBuilder: (context, i) => Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               margin: const EdgeInsets.symmetric(
-                vertical: 10,
+                vertical: 0,
               ),
               decoration: BoxDecoration(
                 color: AppColors.whiteOp100,
@@ -89,9 +89,15 @@ class BuildCartItems extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text(
-                        '${model[i].totalPrice}EGP',
-                        style: AppTextStyles.font14BlackSemiBold,
+                      Row(
+                        children: [
+                          Text("EGP",style: AppTextStyles.font14BlackSemiBold,),
+                          Gap(5),
+                          Text(
+                            '${model[i].totalPrice}',
+                            style: AppTextStyles.font14BlackSemiBold,
+                          ),
+                        ],
                       ),
                       const SizedBox(
                         width: 20,
@@ -155,8 +161,8 @@ class BuildCartItems extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(
-              vertical: 10,
+            margin: const EdgeInsets.only(
+              top: 20,
             ),
             decoration: BoxDecoration(
               color: AppColors.whiteOp100,

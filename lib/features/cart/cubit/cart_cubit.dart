@@ -30,53 +30,111 @@ class CartBloc extends Cubit<CartState> {
 
   static CartBloc get(context) => BlocProvider.of<CartBloc>(context);
 
-
-  void onSelectDate(
-      BuildContext context,
-      ) {
-    showDatePicker(
-        context: context,
-        locale: Locale("ar"),
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now().add(Duration(days: -1)),
-        lastDate: DateTime(2050),
-    ).then((DateTime? date){
-      dateController.text= DateFormat("dd MMMM yyyy", "en").format(date!);
-    });
+  timePicker(
+      {required BuildContext context,
+      required String title,
+      required Function(DateTime? date) onConfirm}) async {
+    var now = DateTime.now();
+    showRoundedTimePicker(
+      context: context,
+      locale: const Locale('en', 'US'),
+      theme: ThemeData(
+        primaryColor: AppColors.whiteOp100,
+        colorScheme: const ColorScheme.light(
+            background: AppColors.whiteOp100,
+            onSurface: AppColors.blackOp100,
+            primary: AppColors.yellowOp100),
+        buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+      ),
+      initialTime: TimeOfDay.now(),
+    ).then((time){
+      orderTime = time!;
+      onConfirm(
+          DateTime(now.year, now.month, now.day, time!.hour, time.minute));
+    }
+    );
   }
 
+  DateTime? orderDate;
+  TimeOfDay? orderTime;
 
+  _androidTimePicker(
+      BuildContext context, Function(DateTime date) onConfirm) {
+    var now = DateTime.now();
+    showRoundedTimePicker(
+      context: context,
+      locale: const Locale('en', 'US'),
+      theme: ThemeData(
+        primaryColor: AppColors.whiteOp100,
+        colorScheme: const ColorScheme.light(
+            background: AppColors.whiteOp100,
+            onSurface: AppColors.blackOp100,
+            primary: AppColors.yellowOp100),
+        buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+      ),
+      initialTime: TimeOfDay.now(),
+    ).then((time){
+      orderTime = time!;
+      onConfirm(
+          DateTime(now.year, now.month, now.day, time!.hour, time.minute));
+    }
+    );
+  }
+
+  void onSelectTime(
+    BuildContext context,
+  ) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    timePicker(
+        context: context,
+        onConfirm: (date) {
+          timeController.text = DateFormat("hh:mm aa", "en").format(date!);
+        },
+        title: '');
+  }
+
+  void onSelectDate(
+    BuildContext context,
+  ) {
+    showDatePicker(
+      context: context,
+      locale: const Locale("ar"),
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now().add(const Duration(days: -1)),
+      lastDate: DateTime(2050),
+    ).then((DateTime? date) {
+      orderDate = date!;
+      dateController.text = DateFormat("dd MMMM yyyy", "en").format(orderDate!);
+    });
+  }
 
   DeliveryModel? selectedDelivery;
 
   List<DeliveryModel> deliveryList = [
-    DeliveryModel(title: "المعادي", fees: 20),
-    DeliveryModel(title: "الجيزة", fees: 30),
-    DeliveryModel(title: "القاهرة", fees: 40),
-    DeliveryModel(title: "الاسماعيلية", fees: 55),
+    const DeliveryModel(title: "المعادي", fees: 20),
+    const DeliveryModel(title: "الجيزة", fees: 30),
+    const DeliveryModel(title: "القاهرة", fees: 40),
+    const DeliveryModel(title: "الاسماعيلية", fees: 55),
   ];
 
   RadioModel? selectedMethod;
 
-  List<RadioModel> orderMethod =[
+  List<RadioModel> orderMethod = [
     RadioModel(
       title: "التوصيل الي البيت",
       active: true,
-    ),RadioModel(
+    ),
+    RadioModel(
       title: "حجز بالمطعم",
       active: false,
     ),
   ];
 
-
-
-  selectMethod(bool value,int index) {
+  selectMethod(bool value, int index) {
     emit(SelectMethodLoading());
-    orderMethod
-        .map((e) => e.active = false)
-        .toList();
-    orderMethod[index].active=!value;
-    selectedMethod=orderMethod[index];
+    orderMethod.map((e) => e.active = false).toList();
+    orderMethod[index].active = !value;
+    selectedMethod = orderMethod[index];
     emit(SelectMethodSuccess());
   }
 
@@ -87,11 +145,11 @@ class CartBloc extends Cubit<CartState> {
   }
 
   Future<void> addOrder(BuildContext context) async {
-    if (formKey.currentState!.validate() &&selectedDelivery !=null) {
+    if (formKey.currentState!.validate()) {
       emit(AddOrderCartLoading());
       var userData = await FirebaseAuth.instance.signInAnonymously();
-      if(selectedMethod?.title=="التوصيل الي البيت"){
-        if(selectedDelivery != null){
+      if (selectedMethod?.title == "التوصيل الي البيت") {
+        if (selectedDelivery != null) {
           var orderModel = OrderModel(
             id: '',
             cancelled: false,
@@ -106,16 +164,23 @@ class CartBloc extends Cubit<CartState> {
             ),
             confirmed: false,
             delivered: false,
-            price: totalCost+selectedDelivery!.fees,
+            price: totalCost + selectedDelivery!.fees,
             createdAt: DateTime.now().toIso8601String(),
             cartModel: cartList,
-            deliveryModel: selectedDelivery!, orderDate: dateController.text,
+            deliveryModel: selectedDelivery!,
+            orderDate: orderDate!,
+            orderMethod: selectedMethod!.title,
+            orderTime: timeController.text,
           );
           await _cartRepository.addOrder(orderModel);
-        }else{
-          CustomToast.showSimpleToast(msg: "برجاء اختر مكان التوصيل",color: Colors.red,);
+        } else if (selectedDelivery == null) {
+          CustomToast.showSimpleToast(
+            msg: "برجاء اختر مكان التوصيل",
+            color: Colors.red,
+          );
+          return;
         }
-      }else if(selectedMethod?.title=="حجز بالمطعم"){
+      } else if (selectedMethod?.title == "حجز بالمطعم") {
         print(selectedMethod?.title);
         var orderModel = OrderModel(
           id: '',
@@ -129,7 +194,10 @@ class CartBloc extends Cubit<CartState> {
           delivered: false,
           price: totalCost,
           createdAt: DateTime.now().toIso8601String(),
-          cartModel: cartList, orderDate:dateController.text,
+          cartModel: cartList,
+          orderDate: orderDate!,
+          orderMethod: selectedMethod!.title,
+          orderTime: timeController.text,
         );
         await _cartRepository.addOrder(orderModel);
       }
@@ -257,12 +325,13 @@ class CartBloc extends Cubit<CartState> {
   TextEditingController floorController = TextEditingController();
   TextEditingController apartmentController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
 
   void showCustomDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return const AlertDialog(
           surfaceTintColor: Colors.white,
           content: BuildConfirmOrder(),
         );
