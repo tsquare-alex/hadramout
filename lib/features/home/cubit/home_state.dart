@@ -16,3 +16,13 @@ class HomeDataError extends HomeState {
 
   HomeDataError({required this.errorMessage});
 }
+
+class SectionDetailsLoading extends HomeState {}
+
+class SectionDetailsSuccess extends HomeState {}
+
+class SectionDetailsError extends HomeState {
+  final String errorMessage;
+
+  SectionDetailsError({required this.errorMessage});
+}

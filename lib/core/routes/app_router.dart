@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/features/cart/presentation/screens/cart_screen.dart';
 import 'package:hadrmouthamza/features/home/presentation/screens/home_screen.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/section_detalis.dart';
@@ -33,9 +34,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.sectionDetails,
         pageBuilder: (context, state) {
+          final section = state.extra as SectionModel;
           return NoTransitionPage(
             key: state.pageKey,
-            child: SectionDetails(title: state.extra as String),
+            child: SectionDetails(section: section),
           );
         },
       ),

@@ -20,8 +20,11 @@ class HomeBloc extends Cubit<HomeState> {
   late final List<SectionModel> _sections = [];
   List<SectionModel> get sections => _sections;
 
-  late final List<SpeciesModel> _species = [];
-  List<SpeciesModel> get species => _species;
+  late final Set<SpeciesModel> _homeSpecies = {};
+  List<SpeciesModel> get homeSpecies => _homeSpecies.toList();
+
+  late final Set<SpeciesModel> _species = {};
+  List<SpeciesModel> get species => _species.toList();
 
   Future<void> getSections() async {
     final sections = await _homeRepository.getSections();
@@ -29,15 +32,27 @@ class HomeBloc extends Cubit<HomeState> {
   }
 
   Future<List<SpeciesModel>> getSpeciesBySection(String sectionName) async {
-    return await _homeRepository.getSpeciesBySection(sectionName)
+    return await _homeRepository.getSpeciesBySectionLimited(sectionName)
       ..sort((a, b) => a.title.compareTo(b.title));
   }
 
-  Future<void> getSpecies() async {
+  Future<void> getHomeSpecies() async {
     for (var section in sections) {
-      _species.addAll(
-        await _homeRepository.getSpeciesBySection(section.title),
+      _homeSpecies.addAll(
+        await _homeRepository.getSpeciesBySectionLimited(section.title),
       );
+    }
+  }
+
+  Future<void> getAllSpecies(SectionModel section) async {
+    emit(SectionDetailsLoading());
+    _species.clear();
+    try {
+      _species
+          .addAll(await _homeRepository.getAllSpeciesBySection(section.title));
+      emit(SectionDetailsSuccess());
+    } catch (error) {
+      emit(SectionDetailsError(errorMessage: error.toString()));
     }
   }
 
@@ -45,7 +60,7 @@ class HomeBloc extends Cubit<HomeState> {
     try {
       emit(HomeDataLoading());
       await getSections();
-      await getSpecies();
+      await getHomeSpecies();
       emit(HomeDataSuccess());
     } catch (error) {
       emit(HomeDataError(errorMessage: error.toString()));
