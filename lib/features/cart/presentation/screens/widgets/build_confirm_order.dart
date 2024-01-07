@@ -10,9 +10,10 @@ class BuildConfirmOrder extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    if(context.watch<CartBloc>().selectedMethod ==null){
+    if (context.watch<CartBloc>().selectedMethod == null) {
       context.watch<CartBloc>().selectedMethod =
-      context.watch<CartBloc>().orderMethod[0];}
+          context.watch<CartBloc>().orderMethod[0];
+    }
     print(context.watch<CartBloc>().selectedMethod?.title);
     return SizedBox(
       width: 500.0,
@@ -38,7 +39,7 @@ class BuildConfirmOrder extends StatelessWidget {
                       controller: context.read<CartBloc>().nameController,
                       hint: "الاسم بالكامل",
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
+                        if (value == null || value.toString().trim().isEmpty) {
                           return "برجاء ادخال الاسم";
                         } else {
                           return null;
@@ -50,10 +51,14 @@ class BuildConfirmOrder extends StatelessWidget {
                       hint: "رقم الهاتف",
                       isNumber: true,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
+                        if (value == null || value.toString().trim().isEmpty) {
                           return "برجاء ادخال رقم الهاتف";
-                        } else {
+                        }
+                        try {
+                          double.parse(value);
                           return null;
+                        } catch (e) {
+                          return "من فضلك ادخل ارقام فقط";
                         }
                       },
                     ),
@@ -105,7 +110,6 @@ class BuildConfirmOrder extends StatelessWidget {
                         Expanded(
                           child: InputFormField(
                             controller: context.read<CartBloc>().dateController,
-
                             onTap: () {
                               print("object");
                               context.read<CartBloc>().onSelectDate(context);
@@ -193,7 +197,8 @@ class BuildConfirmOrder extends StatelessWidget {
                                 context.read<CartBloc>().addressController,
                             hint: "العنوان بالتفصيل",
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
+                              if (value == null ||
+                                  value.toString().trim().isEmpty) {
                                 return "برجاء ادخال العنوان";
                               } else {
                                 return null;
@@ -209,8 +214,15 @@ class BuildConfirmOrder extends StatelessWidget {
                                 hint: "العمارة",
                                 isNumber: true,
                                 validator: (value) {
-
-                                  return null;},
+                                  if(value.isNotEmpty){
+                                    try {
+                                      double.parse(value);
+                                      return null;
+                                    } catch (e) {
+                                      return "من فضلك ادخل ارقام فقط";
+                                    }
+                                  }
+                                },
                               )),
                               const Gap(10),
                               Expanded(
@@ -220,7 +232,14 @@ class BuildConfirmOrder extends StatelessWidget {
                                 hint: "الدور",
                                 isNumber: true,
                                 validator: (value) {
-                                    return null;
+                                  if(value.isNotEmpty){
+                                    try {
+                                      double.parse(value);
+                                      return null;
+                                    } catch (e) {
+                                      return "من فضلك ادخل ارقام فقط";
+                                    }
+                                  }
                                 },
                               )),
                               const Gap(10),
@@ -232,7 +251,14 @@ class BuildConfirmOrder extends StatelessWidget {
                                 hint: "الشقة",
                                 isNumber: true,
                                 validator: (value) {
-                                    return null;
+                                  if(value.isNotEmpty){
+                                    try {
+                                      double.parse(value);
+                                      return null;
+                                    } catch (e) {
+                                      return "من فضلك ادخل ارقام فقط";
+                                    }
+                                  }
                                 },
                               )),
                             ],
