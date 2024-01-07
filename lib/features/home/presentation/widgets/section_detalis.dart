@@ -48,7 +48,7 @@ class SectionDetails extends StatelessWidget {
                             20,
                             (index) => const Padding(
                               padding: EdgeInsets.all(28),
-                              child: HomeItem(),
+                              // child: HomeItem(),
                             ),
                           ),
                         ],

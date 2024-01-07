@@ -6,7 +6,6 @@ import 'package:hadrmouthamza/src/app_export.dart';
 
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/loading_circle.dart';
-import '../widgets/data_dummy.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    HomeBloc.get(context).getSections();
+    HomeBloc.get(context).getHomeData();
     super.initState();
   }
 
@@ -66,7 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SpeciesSection(
                               label:
                                   HomeBloc.get(context).sections[index].title,
-                              dataList: dataList,
+                              speciesList: HomeBloc.get(context).species.where((element) => element.section.title ==  HomeBloc.get(context)
+                                          .sections[index]
+                                          .title).toList(),
                             ),
                           ),
                         ),

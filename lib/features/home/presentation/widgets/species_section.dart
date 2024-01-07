@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 import 'data_dummy.dart';
@@ -7,11 +8,11 @@ class SpeciesSection extends StatelessWidget {
   const SpeciesSection({
     super.key,
     required this.label,
-    required this.dataList,
+    required this.speciesList,
   });
 
   final String label;
-  final List<Data> dataList;
+  final List<SpeciesModel> speciesList;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +57,17 @@ class SpeciesSection extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 6,
+              itemCount: speciesList.length,
               itemBuilder: (context, index) {
+                final speciesItem = speciesList[index];
                 return Padding(
                   padding: EdgeInsets.only(
                     left: dataList.indexOf(dataList.last) == index ? 0 : 16,
                     right: dataList.indexOf(dataList.first) == index ? 0 : 16,
                   ),
-                  child: const HomeItem(),
+                  child: HomeItem(
+                    speciesItem: speciesItem,
+                  ),
                 );
               },
             ),
