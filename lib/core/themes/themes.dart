@@ -15,6 +15,18 @@ class AppThemes {
       backgroundColor: AppColors.whiteOp100,
       surfaceTintColor: AppColors.whiteOp100
     ),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: AppColors.whiteOp100,
+      dialBackgroundColor: AppColors.whiteOp100,
+      dialTextColor: AppColors.blackOp100,
+      dayPeriodTextColor: AppColors.blackOp100,
+      hourMinuteTextColor: AppColors.blackOp100,
+      // dialHandColor: AppColors.whiteOp100,
+      // hourMinuteColor: AppColors.whiteOp100,
+      // dayPeriodColor: AppColors.yellowOp100,
+      // entryModeIconColor: AppColors.whiteOp100
+
+    ),
     dialogBackgroundColor: AppColors.whiteOp100,
     dialogTheme: const DialogTheme(
       backgroundColor: AppColors.whiteOp100,

@@ -61,7 +61,7 @@ class _InputFormFieldState extends State<InputFormField> {
 
   @override
   Widget build(BuildContext context) {
-    final BorderRadius borderRadius = BorderRadius.circular(widget.radius);
+    final BorderRadius borderRadius = BorderRadius.circular(10);
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -146,11 +146,11 @@ class _InputFormFieldState extends State<InputFormField> {
                       horizontal: 15, vertical: widget.maxLines == 1 ? 10 : 15),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: borderRadius,
-                    borderSide:  BorderSide(color: AppColors.blackOp10),
+                    borderSide:  BorderSide(color: AppColors.greyOp100),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: borderRadius,
-                    borderSide:  BorderSide(color:AppColors.blackOp10 ),
+                    borderSide:  BorderSide(color:AppColors.greyOp100 ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: borderRadius,
@@ -158,11 +158,11 @@ class _InputFormFieldState extends State<InputFormField> {
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: borderRadius,
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: AppColors.greyOp100),
                   ),
                   disabledBorder: OutlineInputBorder(
                     borderRadius: borderRadius,
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: AppColors.greyOp100),
                   )),
             ),
           ],

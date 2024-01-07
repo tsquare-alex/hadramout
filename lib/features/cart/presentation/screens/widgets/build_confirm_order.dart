@@ -58,21 +58,21 @@ class BuildConfirmOrder extends StatelessWidget {
                         }
                       },
                     ),
-                    Gap(10),
+                    const Gap(10),
                     Container(
                       alignment: Alignment.topRight,
-                      child: Text(
-                        "اختر نوع الطلب",
+                      child: const Text(
+                        "طريقة الاستلام",
                         style: AppTextStyles.font20BlackSemiBold,
                       ),
                     ),
-                    Gap(10),
+                    const Gap(10),
                     Row(
                       children: List.generate(
                         context.watch<CartBloc>().orderMethod.length,
                         (index) {
                           return Container(
-                            padding: EdgeInsets.only(left: 20),
+                            padding: const EdgeInsets.only(left: 20),
                             child: Row(
                               children: [
                                 Radio<bool>(
@@ -100,25 +100,52 @@ class BuildConfirmOrder extends StatelessWidget {
                         },
                       ),
                     ),
-                    Gap(10),
-                    InputFormField(
-                      controller: context.read<CartBloc>().dateController,
-                      onTap: () {
-                        print("object");
-                        context.read<CartBloc>().onSelectDate(context);
-                      },
-                      readOnly: true,
-                      hint: "تاريخ الحجز",
-                      isNumber: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "برجاء ادخال تاريخ الحجز";
-                        } else {
-                          return null;
-                        }
-                      },
+                    const Gap(10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: InputFormField(
+                            controller: context.read<CartBloc>().dateController,
+
+                            onTap: () {
+                              print("object");
+                              context.read<CartBloc>().onSelectDate(context);
+                            },
+                            readOnly: true,
+                            hint: "تاريخ الحجز",
+                            isNumber: true,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "برجاء ادخال تاريخ الحجز";
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                        const Gap(10),
+                        Expanded(
+                          child: InputFormField(
+                            controller: context.read<CartBloc>().timeController,
+                            onTap: () {
+                              print("object");
+                              context.read<CartBloc>().onSelectTime(context);
+                            },
+                            readOnly: true,
+                            hint: "وقت الحجز",
+                            isNumber: true,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "برجاء ادخال وقت الحجز";
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    Gap(10),
+                    const Gap(10),
                     if (context.watch<CartBloc>().selectedMethod?.title ==
                         "التوصيل الي البيت")
                       Column(
@@ -129,6 +156,7 @@ class BuildConfirmOrder extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                               color: AppColors.greyOp100,
                             ),
+                            height: 50,
                             child: DropdownButton<DeliveryModel>(
                               isExpanded: true,
                               borderRadius: BorderRadius.circular(10),
@@ -160,6 +188,7 @@ class BuildConfirmOrder extends StatelessWidget {
                               }).toList(),
                             ),
                           ),
+                          const Gap(10),
                           InputFormField(
                             controller:
                                 context.read<CartBloc>().addressController,
@@ -181,15 +210,10 @@ class BuildConfirmOrder extends StatelessWidget {
                                 hint: "العمارة",
                                 isNumber: true,
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'برجاء ادخال رقم العمارة';
-                                  }
-                                  return null;
-                                },
+
+                                  return null;},
                               )),
-                              const SizedBox(
-                                width: 5,
-                              ),
+                              const Gap(10),
                               Expanded(
                                   child: InputFormField(
                                 controller:
@@ -197,16 +221,10 @@ class BuildConfirmOrder extends StatelessWidget {
                                 hint: "الدور",
                                 isNumber: true,
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "برجاء ادخال رقم الدور";
-                                  } else {
                                     return null;
-                                  }
                                 },
                               )),
-                              const SizedBox(
-                                width: 5,
-                              ),
+                              const Gap(10),
                               Expanded(
                                   child: InputFormField(
                                 controller: context
@@ -215,11 +233,7 @@ class BuildConfirmOrder extends StatelessWidget {
                                 hint: "الشقة",
                                 isNumber: true,
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "برجاء ادخال رقم الشقة";
-                                  } else {
                                     return null;
-                                  }
                                 },
                               )),
                             ],
@@ -269,26 +283,6 @@ class BuildConfirmOrder extends StatelessWidget {
                   ],
                 ),
               ),
-              // Positioned(
-              //   bottom: 500,
-              //   child: InkWell(
-              //     onTap: () {
-              //       context.pop();
-              //     },
-              //     child: Container(
-              //       width: 50,
-              //       height: 50,
-              //       padding: EdgeInsets.all(3),
-              //       decoration: BoxDecoration(
-              //         color: AppColors.whiteOp100,
-              //         borderRadius: BorderRadius.circular(10),
-              //       ),
-              //       child: Center(
-              //         child: Icon(Icons.close),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
