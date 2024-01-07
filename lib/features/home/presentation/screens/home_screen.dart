@@ -63,11 +63,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.symmetric(vertical: 24),
                             child: SpeciesSection(
-                              label:
-                                  HomeBloc.get(context).sections[index].title,
-                              speciesList: HomeBloc.get(context).species.where((element) => element.section.title ==  HomeBloc.get(context)
+                              section: HomeBloc.get(context).sections[index],
+                              speciesList: HomeBloc.get(context)
+                                  .homeSpecies
+                                  .where((element) =>
+                                      element.section.title ==
+                                      HomeBloc.get(context)
                                           .sections[index]
-                                          .title).toList(),
+                                          .title)
+                                  .toList(),
                             ),
                           ),
                         ),

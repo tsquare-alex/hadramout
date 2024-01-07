@@ -18,9 +18,21 @@ class HomeRepository {
     }
   }
 
-  Future<List<SpeciesModel>> getSpeciesBySection(String sectionName) async {
+  Future<List<SpeciesModel>> getSpeciesBySectionLimited(
+      String sectionName) async {
     try {
-      final data = await _homeDataSource.getSpeciesBySection(sectionName);
+      final data =
+          await _homeDataSource.getSpeciesBySectionLimited(sectionName);
+      return data.docs.map((doc) => SpeciesModel.fromJson(doc.data())).toList();
+    } on FirebaseException catch (_) {
+      return List.empty();
+    }
+  }
+
+  Future<List<SpeciesModel>> getAllSpeciesBySection(String sectionName) async {
+    try {
+      final data =
+          await _homeDataSource.getAllSpeciesBySection(sectionName);
       return data.docs.map((doc) => SpeciesModel.fromJson(doc.data())).toList();
     } on FirebaseException catch (_) {
       return List.empty();

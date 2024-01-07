@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -7,11 +8,11 @@ import 'home_item.dart';
 class SpeciesSection extends StatelessWidget {
   const SpeciesSection({
     super.key,
-    required this.label,
     required this.speciesList,
+    required this.section,
   });
 
-  final String label;
+  final SectionModel section;
   final List<SpeciesModel> speciesList;
 
   @override
@@ -25,7 +26,7 @@ class SpeciesSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                label,
+                section.title,
                 style: AppTextStyles.font24BlackSemiBold,
               ),
               const Gap(16),
@@ -34,7 +35,7 @@ class SpeciesSection extends StatelessWidget {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () {
-                  context.push(AppRoutes.sectionDetails, extra: label);
+                  context.push(AppRoutes.sectionDetails, extra: section);
                 },
                 child: Row(
                   children: [
