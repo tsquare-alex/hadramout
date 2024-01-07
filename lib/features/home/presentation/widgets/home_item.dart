@@ -1,13 +1,13 @@
-import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
-import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class HomeItem extends StatelessWidget {
   const HomeItem({
     super.key,
+    required this.speciesItem,
   });
 
+  final SpeciesModel speciesItem;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -39,9 +39,11 @@ class HomeItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "صينية الحبايب",
-                        style: AppTextStyles.font20BlackSemiBold,
+                      Flexible(
+                        child: Text(
+                          speciesItem.title,
+                          style: AppTextStyles.font20BlackSemiBold,
+                        ),
                       ),
                       IconButton(
                         onPressed: () {},
@@ -61,8 +63,10 @@ class HomeItem extends StatelessWidget {
                   const SizedBox(
                     height: 4,
                   ),
-                  const Text(
-                    '1 ك كفتة + 2 ك رز + 3 قطع دجاج + 1 ك طرب او 1/2 خروف مشوي',
+                  Text(
+                    speciesItem.description ?? '',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.font16BlackOp50Medium,
                   ),
                   const Gap(22),
@@ -78,8 +82,8 @@ class HomeItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text(
-                      'EGP 750',
+                    child: Text(
+                      'EGP ${speciesItem.price}',
                       style: AppTextStyles.font20BlackSemiBold,
                     ),
                   ),
@@ -90,30 +94,30 @@ class HomeItem extends StatelessWidget {
           Positioned(
             top: 0,
             child: Image.network(
-              "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
+              speciesItem.image!,
               width: 245,
-              fit: BoxFit.cover,
               height: 164,
             ),
           ),
           ElevatedButton(
             style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10,
             onPressed: () {
-              CartBloc.get(context).addToCart(
-                SpeciesModel(
-                  id: '1',
-                  image:
-                      "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
-                  title: 'wqewqe ',
-                  price: 120,
-                  createdAt: 'createdAt',
-                  section: SectionModel(id: 'id', title: 'قسم الدجاج'),
-                  offer: false,
-                  offerValue: 20,
-                  description:
-                      "//media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish",
-                ),
-              );
+              // CartBloc.get(context).addToCart(
+              //   SpeciesModel(
+              //     id: '1',
+              //     image:
+              //         "https://media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish-paella-phaidon.jpg?q=w_1900,h_1069,x_0,y_0,c_fill/h_618",
+              //     title: 'wqewqe ',
+              //     price: 120,
+              //     createdAt: 'createdAt',
+              //     section:
+              //         SectionModel(id: 'id', title: 'قسم الدجاج', index: 1),
+              //     offer: false,
+              //     offerValue: 20,
+              //     description:
+              //         "//media.cnn.com/api/v1/images/stellar/prod/160929101749-essential-spanish-dish",
+              //   ),
+              // );
             },
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,

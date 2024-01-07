@@ -11,7 +11,7 @@ class HomeDataSource {
       String sectionName) async {
     return await _firebaseDatabase
         .collection('species')
-        .where('section.title', isEqualTo: sectionName)
+        .where('section.title', isEqualTo: sectionName).limit(5)
         .get();
   }
 }

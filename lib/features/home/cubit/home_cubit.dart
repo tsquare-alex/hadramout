@@ -14,42 +14,41 @@ class HomeBloc extends Cubit<HomeState> {
 
   static HomeBloc get(context) => BlocProvider.of<HomeBloc>(context);
 
-  ScrollController pageScrollController = ScrollController();
+  ScrollController homePageScrollController = ScrollController();
+  ScrollController sectionDetailsScrollController = ScrollController();
 
-  // late final List<SectionModel> _sections = [];
-  // List<SectionModel> get sections => _sections;
-  late List<SectionModel> _sections = [];
-
+  late final List<SectionModel> _sections = [];
   List<SectionModel> get sections => _sections;
 
-  // Future<void> getSections() async {
-  //   final sections = await _homeRepository.getSections();
-  //   _sections.addAll(sections);
-  // }
+  late final List<SpeciesModel> _species = [];
+  List<SpeciesModel> get species => _species;
+
   Future<void> getSections() async {
+    final sections = await _homeRepository.getSections();
+    _sections.addAll(sections);
+  }
+
+  Future<List<SpeciesModel>> getSpeciesBySection(String sectionName) async {
+    return await _homeRepository.getSpeciesBySection(sectionName)
+      ..sort((a, b) => a.title.compareTo(b.title));
+  }
+
+  Future<void> getSpecies() async {
+    for (var section in sections) {
+      _species.addAll(
+        await _homeRepository.getSpeciesBySection(section.title),
+      );
+    }
+  }
+
+  Future<void> getHomeData() async {
     try {
       emit(HomeDataLoading());
-
-      final sections = await _homeRepository.getSections();
-      _sections = sections;
+      await getSections();
+      await getSpecies();
       emit(HomeDataSuccess());
     } catch (error) {
       emit(HomeDataError(errorMessage: error.toString()));
     }
   }
-
-  Future<List<SpeciesModel>> getSpeciesBySection(String sectionName) async {
-    return await _homeRepository.getSpeciesBySection(sectionName)
-      ..sort((a, b) => a.createdAt.compareTo(b.createdAt));
-  }
-
-  List<String> sectionsNames = [
-    "قسم الدجاج",
-    "قسم اللحوم",
-    "قسم الطواجن",
-    "قسم اللحوم",
-    "قسم المشروبات",
-    "قسم السلطات",
-    "قسم المشويات",
-  ];
 }
