@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/res.dart';
@@ -15,7 +16,7 @@ class BuildCartItems extends StatelessWidget {
         color: AppColors.greyOp50,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.only(bottom: 60.0),
       child: Column(
         children: [
@@ -25,8 +26,8 @@ class BuildCartItems extends StatelessWidget {
             itemCount: model.length,
             itemBuilder: (context, i) => Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              margin: const EdgeInsets.symmetric(
-                vertical: 0,
+              margin: const EdgeInsets.only(
+                bottom: 10,
               ),
               decoration: BoxDecoration(
                 color: AppColors.whiteOp100,
@@ -40,59 +41,78 @@ class BuildCartItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    radius: 30  ,
-                    backgroundImage: AssetImage(Res.home_logo),
-                  ),
-                  const Gap(15),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          model[i].title,
-                          style: AppTextStyles.font16BlackSemiBold,
-                        ),
-
-                        SizedBox(
-                          width: 250,
-                          child: Theme(
-                            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                            child: ExpansionTile(
-                              childrenPadding: const EdgeInsets.all(5),
-                              tilePadding: EdgeInsets.zero,
-                              title: const Row(
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      "تفاصيل",
-                                      style: AppTextStyles.font10YellowSemiBold,
-                                    ),
-                                  ),
-                                  Gap(5),
-                                  Flexible(child: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,size: 20,))
-                                ],
-                              ),
-                              trailing: const SizedBox.shrink(),
-                              children: [
-                                Text(
-                                  model[i].description??"",
-                                  style: AppTextStyles.font16BlackOp50Medium,
-                                )
-                              ],
-                            ),
+                  CircleAvatar(
+                          radius: 30,
+                          backgroundColor:model[i].image!.isEmpty?AppColors.yellowOp100:AppColors.whiteOp100,
+                          child: model[i].image!.isNotEmpty
+                              ? CachedNetworkImage(
+                            imageUrl:model[i].image!,
+                            fit: BoxFit.cover,
+                          ):const CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage(Res.home_logo,),
                           ),
                         ),
-                      ],
+                  const Gap(15),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            model[i].title,
+                            style: AppTextStyles.font16BlackSemiBold,
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: Theme(
+                              data: Theme.of(context)
+                                  .copyWith(dividerColor: Colors.transparent),
+                              child: ExpansionTile(
+                                childrenPadding: const EdgeInsets.all(5),
+                                tilePadding: EdgeInsets.zero,
+                                title: const Row(
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        "تفاصيل",
+                                        style: AppTextStyles.font10YellowSemiBold,
+                                      ),
+                                    ),
+                                    Gap(5),
+                                    Flexible(
+                                        child: Icon(
+                                      Icons.keyboard_arrow_down_outlined,
+                                      color: AppColors.yellowOp100,
+                                      size: 20,
+                                    ))
+                                  ],
+                                ),
+                                trailing: const SizedBox.shrink(),
+                                children: [
+                                  Text(
+                                    model[i].description ?? "",
+                                    style: AppTextStyles.font16BlackOp50Medium,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Row(
                     children: [
                       Row(
                         children: [
-                          Text("EGP",style: AppTextStyles.font14BlackSemiBold,),
-                          Gap(5),
+                          const Text(
+                            "EGP",
+                            style: AppTextStyles.font14BlackSemiBold,
+                          ),
+                          const Gap(5),
                           Text(
                             '${model[i].totalPrice}',
                             style: AppTextStyles.font14BlackSemiBold,
@@ -106,7 +126,7 @@ class BuildCartItems extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: () =>cubit.decrement(model[i], i),
+                            onTap: () => cubit.decrement(model[i], i),
                             child: Container(
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
@@ -140,7 +160,7 @@ class BuildCartItems extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: InkWell(
-                              onTap: () =>cubit.increment(model[i]),
+                              onTap: () => cubit.increment(model[i]),
                               child: const Center(
                                 child: Icon(
                                   Icons.add,
@@ -172,16 +192,21 @@ class BuildCartItems extends StatelessWidget {
                     color: AppColors.shadow, spreadRadius: 0, blurRadius: 12)
               ],
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("سنتبع تعليماتك بافضل ما لدينا من قدرات",style: AppTextStyles.font14BlackMedium,),
+                Text(
+                  "سنتبع تعليماتك بافضل ما لدينا من قدرات",
+                  style: AppTextStyles.font14BlackMedium,
+                ),
                 Gap(16),
-                Text("( اضافه معلومات طهي معلومات توصيل اي شي يساعدنا من وجهك نظرك لتحسن خدمتنا )",style: AppTextStyles.font10BlackOp50Regular,),
+                Text(
+                  "( اضافه معلومات طهي معلومات توصيل اي شي يساعدنا من وجهك نظرك لتحسن خدمتنا )",
+                  style: AppTextStyles.font10BlackOp50Regular,
+                ),
               ],
             ),
           ),
-
         ],
       ),
     );

@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:hadrmouthamza/core/common/models/client.dart';
 import 'package:hadrmouthamza/core/common/models/order.dart';
-import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/core/utils/custom_toast.dart';
 import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
@@ -19,7 +18,6 @@ import '../data/repository/cart_repository.dart';
 
 part 'cart_state.dart';
 
-// List<CartModel> modelList=[];
 bool included = false;
 
 class CartBloc extends Cubit<CartState> {
@@ -57,29 +55,7 @@ class CartBloc extends Cubit<CartState> {
 
   DateTime? orderDate;
   TimeOfDay? orderTime;
-
-  _androidTimePicker(
-      BuildContext context, Function(DateTime date) onConfirm) {
-    var now = DateTime.now();
-    showRoundedTimePicker(
-      context: context,
-      locale: const Locale('en', 'US'),
-      theme: ThemeData(
-        primaryColor: AppColors.whiteOp100,
-        colorScheme: const ColorScheme.light(
-            background: AppColors.whiteOp100,
-            onSurface: AppColors.blackOp100,
-            primary: AppColors.yellowOp100),
-        buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
-      ),
-      initialTime: TimeOfDay.now(),
-    ).then((time){
-      orderTime = time!;
-      onConfirm(
-          DateTime(now.year, now.month, now.day, time!.hour, time.minute));
-    }
-    );
-  }
+  
 
   void onSelectTime(
     BuildContext context,
