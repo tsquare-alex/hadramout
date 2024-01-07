@@ -5,9 +5,9 @@ class BuildCartTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
-      child: const Text('عناصر عربة التسوق',style: AppTextStyles.font24BlackSemiBold,),
+    return const Padding(
+      padding: EdgeInsets.only(bottom: 16.0),
+      child: Text('عناصر عربة التسوق',style: AppTextStyles.font24BlackSemiBold,),
     );
   }
 }

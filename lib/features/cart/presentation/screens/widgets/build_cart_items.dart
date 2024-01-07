@@ -16,7 +16,7 @@ class BuildCartItems extends StatelessWidget {
         color: AppColors.greyOp50,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.only(bottom: 60.0),
       child: Column(
         children: [
@@ -48,7 +48,7 @@ class BuildCartItems extends StatelessWidget {
                               ? CachedNetworkImage(
                             imageUrl:model[i].image!,
                             fit: BoxFit.cover,
-                          ):CircleAvatar(
+                          ):const CircleAvatar(
                             radius: 30,
                             backgroundImage: AssetImage(Res.home_logo,),
                           ),
@@ -108,11 +108,11 @@ class BuildCartItems extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(
+                          const Text(
                             "EGP",
                             style: AppTextStyles.font14BlackSemiBold,
                           ),
-                          Gap(5),
+                          const Gap(5),
                           Text(
                             '${model[i].totalPrice}',
                             style: AppTextStyles.font14BlackSemiBold,
@@ -192,7 +192,7 @@ class BuildCartItems extends StatelessWidget {
                     color: AppColors.shadow, spreadRadius: 0, blurRadius: 12)
               ],
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
