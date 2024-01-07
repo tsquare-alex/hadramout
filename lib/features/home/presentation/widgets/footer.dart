@@ -29,12 +29,15 @@ class Footer extends StatelessWidget {
             // const SizedBox(
             //   height: 5,
             // ),
-            GestureDetector(
+            InkWell(
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onTap: () => context.read<HomeBloc>().openUrl(),
               child: Image.asset(
                 ImageConstants.facebook,
-                width: 40.w,
-                height: 40.h,
+                width: 40,
+                height: 40,
               ),
             ),
             // const SizedBox(

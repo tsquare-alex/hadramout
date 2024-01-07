@@ -71,10 +71,7 @@ class HomeBloc extends Cubit<HomeState> {
   final url =
       "https://www.facebook.com/profile.php?id=61555330461128&mibextid=ZbWKwL";
   void openUrl() async {
-    emit(HomeDataLoading());
-    if (url == null) {
-      return;
-    }
+    // emit(HomeDataLoading());
     var uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
