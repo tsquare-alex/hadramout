@@ -23,8 +23,8 @@ class BuildCartButton extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text("EGP",style: AppTextStyles.font18WhiteBold,),
-                      Gap(5),
+                      const Text("EGP",style: AppTextStyles.font18WhiteBold,),
+                      const Gap(5),
                       Text("${context.watch<CartBloc>().totalCost}",style: AppTextStyles.font18WhiteBold,),
                     ],
                   ),
@@ -35,7 +35,7 @@ class BuildCartButton extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
+            const Row(
               children: [
                 Text("اكمال الطلب",style: AppTextStyles.font16WhiteBold,),
                 SizedBox(

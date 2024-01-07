@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
+import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 import '../../../cart/cubit/cart_cubit.dart';
@@ -95,11 +97,12 @@ class HomeItem extends StatelessWidget {
           ),
           Positioned(
             top: 0,
-            child: Image.network(
-              speciesItem.image!,
+            child: speciesItem.image!.isNotEmpty?CachedNetworkImage(
+              imageUrl:speciesItem.image!,
               width: 245,
               height: 164,
-            ),
+            ):Image.asset(Res.dashboard_logo,width: 245,
+              height: 164,),
           ),
           ElevatedButton(
             style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10,
