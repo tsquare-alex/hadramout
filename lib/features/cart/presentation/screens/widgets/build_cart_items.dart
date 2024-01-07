@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/features/cart/data/models/cart.dart';
 import 'package:hadrmouthamza/res.dart';
@@ -25,8 +26,8 @@ class BuildCartItems extends StatelessWidget {
             itemCount: model.length,
             itemBuilder: (context, i) => Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              margin: const EdgeInsets.symmetric(
-                vertical: 0,
+              margin: const EdgeInsets.only(
+                bottom: 10,
               ),
               decoration: BoxDecoration(
                 color: AppColors.whiteOp100,
@@ -40,14 +41,17 @@ class BuildCartItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  model[i].image != null
-                      ? CircleAvatar(
+                  CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage(model[i].image!),
-                        )
-                      : CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage(Res.home_logo),
+                          backgroundColor:model[i].image!.isEmpty?AppColors.yellowOp100:AppColors.whiteOp100,
+                          child: model[i].image!.isNotEmpty
+                              ? CachedNetworkImage(
+                            imageUrl:model[i].image!,
+                            fit: BoxFit.cover,
+                          ):CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage(Res.home_logo,),
+                          ),
                         ),
                   const Gap(15),
                   Expanded(
