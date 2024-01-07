@@ -40,58 +40,74 @@ class BuildCartItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    radius: 30  ,
-                    backgroundImage: AssetImage(Res.home_logo),
-                  ),
+                  model[i].image != null
+                      ? CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(model[i].image!),
+                        )
+                      : CircleAvatar(
+                          radius: 30,
+                          backgroundImage: AssetImage(Res.home_logo),
+                        ),
                   const Gap(15),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          model[i].title,
-                          style: AppTextStyles.font16BlackSemiBold,
-                        ),
-
-                        SizedBox(
-                          width: 250,
-                          child: Theme(
-                            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                            child: ExpansionTile(
-                              childrenPadding: const EdgeInsets.all(5),
-                              tilePadding: EdgeInsets.zero,
-                              title: const Row(
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      "تفاصيل",
-                                      style: AppTextStyles.font10YellowSemiBold,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            model[i].title,
+                            style: AppTextStyles.font16BlackSemiBold,
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: Theme(
+                              data: Theme.of(context)
+                                  .copyWith(dividerColor: Colors.transparent),
+                              child: ExpansionTile(
+                                childrenPadding: const EdgeInsets.all(5),
+                                tilePadding: EdgeInsets.zero,
+                                title: const Row(
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        "تفاصيل",
+                                        style: AppTextStyles.font10YellowSemiBold,
+                                      ),
                                     ),
-                                  ),
-                                  Gap(5),
-                                  Flexible(child: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.yellowOp100,size: 20,))
+                                    Gap(5),
+                                    Flexible(
+                                        child: Icon(
+                                      Icons.keyboard_arrow_down_outlined,
+                                      color: AppColors.yellowOp100,
+                                      size: 20,
+                                    ))
+                                  ],
+                                ),
+                                trailing: const SizedBox.shrink(),
+                                children: [
+                                  Text(
+                                    model[i].description ?? "",
+                                    style: AppTextStyles.font16BlackOp50Medium,
+                                  )
                                 ],
                               ),
-                              trailing: const SizedBox.shrink(),
-                              children: [
-                                Text(
-                                  model[i].description??"",
-                                  style: AppTextStyles.font16BlackOp50Medium,
-                                )
-                              ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Row(
                     children: [
                       Row(
                         children: [
-                          Text("EGP",style: AppTextStyles.font14BlackSemiBold,),
+                          Text(
+                            "EGP",
+                            style: AppTextStyles.font14BlackSemiBold,
+                          ),
                           Gap(5),
                           Text(
                             '${model[i].totalPrice}',
@@ -106,7 +122,7 @@ class BuildCartItems extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: () =>cubit.decrement(model[i], i),
+                            onTap: () => cubit.decrement(model[i], i),
                             child: Container(
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
@@ -140,7 +156,7 @@ class BuildCartItems extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: InkWell(
-                              onTap: () =>cubit.increment(model[i]),
+                              onTap: () => cubit.increment(model[i]),
                               child: const Center(
                                 child: Icon(
                                   Icons.add,
@@ -175,13 +191,18 @@ class BuildCartItems extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("سنتبع تعليماتك بافضل ما لدينا من قدرات",style: AppTextStyles.font14BlackMedium,),
+                Text(
+                  "سنتبع تعليماتك بافضل ما لدينا من قدرات",
+                  style: AppTextStyles.font14BlackMedium,
+                ),
                 Gap(16),
-                Text("( اضافه معلومات طهي معلومات توصيل اي شي يساعدنا من وجهك نظرك لتحسن خدمتنا )",style: AppTextStyles.font10BlackOp50Regular,),
+                Text(
+                  "( اضافه معلومات طهي معلومات توصيل اي شي يساعدنا من وجهك نظرك لتحسن خدمتنا )",
+                  style: AppTextStyles.font10BlackOp50Regular,
+                ),
               ],
             ),
           ),
-
         ],
       ),
     );
