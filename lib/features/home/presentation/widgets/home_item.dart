@@ -100,6 +100,11 @@ class HomeItem extends StatelessWidget {
                     imageUrl: speciesItem.image!,
                     width: 245,
                     height: 164,
+                    errorWidget: (context, url, error) => Image.asset(
+                      Res.dashboard_logo,
+                      width: 245,
+                      height: 164,
+                    ),
                   )
                 : Image.asset(
                     Res.dashboard_logo,

@@ -25,6 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<HomeBloc, HomeState>(
+        buildWhen: (previous, current) {
+          return (previous == HomeDataLoading() ||
+              current == HomeDataSuccess());
+        },
         builder: (context, state) {
           if (state is HomeDataLoading) {
             return const Center(
@@ -62,9 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .homeSpecies
                                 .where((element) =>
                                     element.section.title ==
-                                    HomeBloc.get(context)
-                                        .sections[index]
-                                        .title)
+                                    HomeBloc.get(context).sections[index].title)
                                 .toList(),
                           ),
                         ),

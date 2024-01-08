@@ -28,7 +28,8 @@ class HomeBloc extends Cubit<HomeState> {
   List<SpeciesModel> get species => _species.toList();
 
   Future<void> getSections() async {
-    final sections = await _homeRepository.getSections();
+    final sections = await _homeRepository.getSections()
+      ..sort((a, b) => a.index.compareTo(b.index));
     _sections.addAll(sections);
   }
 
