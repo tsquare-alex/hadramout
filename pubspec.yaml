@@ -44,6 +44,8 @@ dependencies:
   fl_chart:
   badges:
   flutter_rounded_date_picker:
+  mailer:
+  http:
 
 dev_dependencies:
   flutter_test:

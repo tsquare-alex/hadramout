@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
@@ -13,6 +14,7 @@ import 'package:hadrmouthamza/features/cart/presentation/screens/widgets/build_c
 import 'package:hadrmouthamza/src/app_export.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 import '../data/repository/cart_repository.dart';
 
@@ -45,17 +47,15 @@ class CartBloc extends Cubit<CartState> {
         buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
       ),
       initialTime: TimeOfDay.now(),
-    ).then((time){
+    ).then((time) {
       orderTime = time!;
       onConfirm(
           DateTime(now.year, now.month, now.day, time!.hour, time.minute));
-    }
-    );
+    });
   }
 
   DateTime? orderDate;
   TimeOfDay? orderTime;
-  
 
   void onSelectTime(
     BuildContext context,
@@ -149,6 +149,7 @@ class CartBloc extends Cubit<CartState> {
             orderTime: timeController.text,
           );
           await _cartRepository.addOrder(orderModel);
+          sendOrderConfirmationEmail(orderModel);
         } else if (selectedDelivery == null) {
           CustomToast.showSimpleToast(
             msg: "برجاء اختر مكان التوصيل",
@@ -176,12 +177,58 @@ class CartBloc extends Cubit<CartState> {
           orderTime: timeController.text,
         );
         await _cartRepository.addOrder(orderModel);
+        sendOrderConfirmationEmail(orderModel);
       }
       cartList = [];
       emit(AddOrderCartSuccess());
       clearData();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("cartList");
+    }
+  }
+
+  // Future<void> sendOrderConfirmationEmail(OrderModel order) async {
+  //   final cloudFunctionUrl = 'YOUR_CLOUD_FUNCTION_URL'; // Replace with your Cloud Function URL
+  //
+  //   final response = await http.post(
+  //     Uri.parse(cloudFunctionUrl),
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: jsonEncode({
+  //       'to': 'your@gmail.com', // Replace with your email address
+  //       'subject': 'Order Confirmation - #${order.id}',
+  //       'html': '<h1>Order Confirmation</h1>'
+  //           '<p>Your order details:</p>'
+  //           '<p>Order Number: ${order.id}</p>'
+  //           '<p>Total Amount: \$${order.price}</p>'
+  //           '<p>Items: ${order.cartModel.join(', ')}</p>',
+  //     }),
+  //   );
+  //
+  //   if (response.statusCode == 200) {
+  //     print('Email sent successfully');
+  //   } else {
+  //     print('Error sending email: ${response.body}');
+  //   }
+  // }
+
+  Future<void> sendOrderConfirmationEmail(OrderModel order) async {
+    final smtpServer = gmail('hadrmout3@gmail.com', 'Hadrmout@1234');
+
+    // Create the email message.
+    final message = Message()
+      ..from = const Address('hadrmout3@gmail.com', 'Hadrmout Hamza')
+      ..recipients.add('01550526487m@gmail.com') // Replace with the customer's email
+      ..subject = 'Order Confirmation - #${order.id}'
+      ..html = '<h1>The order details:</h1>'
+          '<p>Order id: ${order.id}</p>'
+          '<p>Order canceled: \$${order.cancelled}</p>'
+          '<p>Items: ${order.cartModel.join(', ')}</p>';
+
+    try {
+      final sendReport = await send(message, smtpServer);
+      print('Message sent: ' + sendReport.toString());
+    } on MailerException catch (e) {
+      print('Message not sent. Error: $e');
     }
   }
 

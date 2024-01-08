@@ -62,7 +62,7 @@ class OrderModel extends Equatable {
       'delivered': delivered,
       'price': price,
       'created_at': createdAt,
-      'cartModel': cartModel.map((x) => x.toJson()).toList(),
+      'items': cartModel.map((x) => x.toJson()).toList(),
     };
   }
 
@@ -78,8 +78,8 @@ class OrderModel extends Equatable {
       orderDate: json['order_date'] ?? DateTime.now(),
       orderTime: json['order_time'] ?? '',
       orderMethod: json['order_method'] ?? '',
-      cartModel: json['cartModel'] ?? List<CartModel>.from(
-              json['cartModel']?.map((x) => CartModel.fromJson(x))),
+      cartModel: json['items'] ?? List<CartModel>.from(
+              json['items']?.map((x) => CartModel.fromJson(x))),
       deliveryModel: DeliveryModel.fromJson(json['delivery_details']),
     );
   }
