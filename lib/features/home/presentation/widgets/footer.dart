@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class Footer extends StatelessWidget {
@@ -28,10 +29,13 @@ class Footer extends StatelessWidget {
             // const SizedBox(
             //   height: 5,
             // ),
-            Image.asset(
-              ImageConstants.facebook,
-              width: 40.w,
-              height: 40.h,
+            GestureDetector(
+              onTap: () => context.read<HomeBloc>().openUrl(),
+              child: Image.asset(
+                ImageConstants.facebook,
+                width: 40.w,
+                height: 40.h,
+              ),
             ),
             // const SizedBox(
             //   height: 5,

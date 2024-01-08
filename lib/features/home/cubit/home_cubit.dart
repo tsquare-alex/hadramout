@@ -1,5 +1,6 @@
 import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/features/home/data/repository/home_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/common/models/section.dart';
 import '../../../src/app_export.dart';
@@ -64,6 +65,19 @@ class HomeBloc extends Cubit<HomeState> {
       emit(HomeDataSuccess());
     } catch (error) {
       emit(HomeDataError(errorMessage: error.toString()));
+    }
+  }
+
+  final url =
+      "https://www.facebook.com/profile.php?id=61555330461128&mibextid=ZbWKwL";
+  void openUrl() async {
+    emit(HomeDataLoading());
+    if (url == null) {
+      return;
+    }
+    var uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     }
   }
 }
