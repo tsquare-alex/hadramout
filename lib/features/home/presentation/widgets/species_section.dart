@@ -35,7 +35,7 @@ class SpeciesSection extends StatelessWidget {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () {
-                  context.push('${AppRoutes.sectionDetails}/${section.index}', extra: section);
+                  context.go('${AppRoutes.sectionDetails}/${section.index}', extra: section);
                 },
                 child: Row(
                   children: [

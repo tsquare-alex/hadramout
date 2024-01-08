@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget {
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onTap: () => context.go(AppRoutes.cartScreen),
+            onTap: () => context.push(AppRoutes.cartScreen),
             child: Tooltip(
               message: 'عربة التسوق',
               decoration: BoxDecoration(
