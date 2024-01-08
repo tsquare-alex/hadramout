@@ -11,6 +11,7 @@ Future<void> main() async {
   );
   initGetIt();
   setPathUrlStrategy();
+  GoRouter.optionURLReflectsImperativeAPIs = true;
   Bloc.observer = AppBlocObserver();
 
   Future.wait([

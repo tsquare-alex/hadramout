@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class Footer extends StatelessWidget {
@@ -17,27 +18,33 @@ class Footer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
-              "حضرموت  حمزه",
+              "حضرموت  حمزة",
               style: AppTextStyles.font32WhiteSemiBold,
             ),
             const Text(
-              "قد يختلف توافر العناصر والاسعار والمشاركه ومناطق التوصيل والرسوم ومتطلبات الشراء للتوصيل",
+              "قد يختلف توافر العناصر والاسعار والمشاركة ومناطق التوصيل والرسوم ومتطلبات الشراء للتوصيل",
               textAlign: TextAlign.center,
               style: AppTextStyles.font24WhiteOp50Medium,
             ),
             // const SizedBox(
             //   height: 5,
             // ),
-            Image.asset(
-              ImageConstants.facebook,
-              width: 40.w,
-              height: 40.h,
+            InkWell(
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () => context.read<HomeBloc>().openUrl(),
+              child: Image.asset(
+                ImageConstants.facebook,
+                width: 40,
+                height: 40,
+              ),
             ),
             // const SizedBox(
             //   height: 5,
             // ),
             const Text(
-              " حضرموت حمزه جميع الحقوق محفوظه",
+              "حضرموت حمزة جميع الحقوق محفوظة",
               style: AppTextStyles.font24WhiteOp50Medium,
             ),
           ],

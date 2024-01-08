@@ -32,12 +32,11 @@ class AppRouter {
         ),
       ),
       GoRoute(
-        path: AppRoutes.sectionDetails,
+        path: '${AppRoutes.sectionDetails}/:index',
         pageBuilder: (context, state) {
-          final section = state.extra as SectionModel;
           return NoTransitionPage(
             key: state.pageKey,
-            child: SectionDetails(section: section),
+            child: SectionDetails(section: state.extra as SectionModel),
           );
         },
       ),
