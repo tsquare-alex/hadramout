@@ -40,47 +40,40 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(state.errorMessage),
             );
           } else if (state is HomeDataSuccess) {
-            return Scrollbar(
-              thumbVisibility: true,
-              trackVisibility: true,
-              interactive: true,
-              thickness: 6,
-              controller: context.read<HomeBloc>().homePageScrollController,
-              child: CustomScrollView(
-                shrinkWrap: true,
-                slivers: [
-                  const CustomAppBar(),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        const ExploreMenu(),
-                        ListView.builder(
-                          controller:
-                              context.read<HomeBloc>().homePageScrollController,
-                          padding: const EdgeInsets.symmetric(horizontal: 80),
-                          shrinkWrap: true,
-                          itemCount: HomeBloc.get(context).sections.length,
-                          itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 24),
-                            child: SpeciesSection(
-                              section: HomeBloc.get(context).sections[index],
-                              speciesList: HomeBloc.get(context)
-                                  .homeSpecies
-                                  .where((element) =>
-                                      element.section.title ==
-                                      HomeBloc.get(context)
-                                          .sections[index]
-                                          .title)
-                                  .toList(),
-                            ),
+            return CustomScrollView(
+              shrinkWrap: true,
+              slivers: [
+                const CustomAppBar(),
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      const ExploreMenu(),
+                      ListView.builder(
+                        controller:
+                            context.read<HomeBloc>().homePageScrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 80),
+                        shrinkWrap: true,
+                        itemCount: HomeBloc.get(context).sections.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          child: SpeciesSection(
+                            section: HomeBloc.get(context).sections[index],
+                            speciesList: HomeBloc.get(context)
+                                .homeSpecies
+                                .where((element) =>
+                                    element.section.title ==
+                                    HomeBloc.get(context)
+                                        .sections[index]
+                                        .title)
+                                .toList(),
                           ),
                         ),
-                        const Footer(),
-                      ],
-                    ),
+                      ),
+                      const Footer(),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           } else {
             return const SizedBox.shrink();

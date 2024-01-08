@@ -18,11 +18,11 @@ class Footer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
-              "حضرموت  حمزه",
+              "حضرموت  حمزة",
               style: AppTextStyles.font32WhiteSemiBold,
             ),
             const Text(
-              "قد يختلف توافر العناصر والاسعار والمشاركه ومناطق التوصيل والرسوم ومتطلبات الشراء للتوصيل",
+              "قد يختلف توافر العناصر والاسعار والمشاركة ومناطق التوصيل والرسوم ومتطلبات الشراء للتوصيل",
               textAlign: TextAlign.center,
               style: AppTextStyles.font24WhiteOp50Medium,
             ),
@@ -44,7 +44,7 @@ class Footer extends StatelessWidget {
             //   height: 5,
             // ),
             const Text(
-              " حضرموت حمزه جميع الحقوق محفوظه",
+              "حضرموت حمزة جميع الحقوق محفوظة",
               style: AppTextStyles.font24WhiteOp50Medium,
             ),
           ],

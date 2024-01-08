@@ -69,8 +69,6 @@ class HomeItem extends StatelessWidget {
                   ),
                   Text(
                     speciesItem.description ?? '',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.font16BlackOp50Medium,
                   ),
                   const Gap(22),
@@ -97,12 +95,17 @@ class HomeItem extends StatelessWidget {
           ),
           Positioned(
             top: 0,
-            child: speciesItem.image!.isNotEmpty?CachedNetworkImage(
-              imageUrl:speciesItem.image!,
-              width: 245,
-              height: 164,
-            ):Image.asset(Res.dashboard_logo,width: 245,
-              height: 164,),
+            child: speciesItem.image!.isNotEmpty
+                ? CachedNetworkImage(
+                    imageUrl: speciesItem.image!,
+                    width: 245,
+                    height: 164,
+                  )
+                : Image.asset(
+                    Res.dashboard_logo,
+                    width: 245,
+                    height: 164,
+                  ),
           ),
           ElevatedButton(
             style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10,

@@ -1,5 +1,6 @@
 import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
+import 'package:hadrmouthamza/features/home/presentation/widgets/footer.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/home_item.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -85,6 +86,7 @@ class _SectionDetailsState extends State<SectionDetails> {
                             ),
                           ),
                         ),
+                        const Footer(),
                       ],
                     ),
                   ),
