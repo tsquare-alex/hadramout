@@ -39,7 +39,7 @@ class SpeciesModel extends Equatable {
       'created_at': createdAt,
       'section': section.toJson(),
       'offer': offer,
-      'offerValue': offerValue,
+      'offer_value': offerValue,
     };
   }
 
@@ -53,7 +53,7 @@ class SpeciesModel extends Equatable {
       createdAt: json['created_at'] ?? '',
       section: SectionModel.fromJson(json['section']),
       offer: json['offer'] ?? false,
-      offerValue: json['offerValue']?.toInt() ?? 0,
+      offerValue: json['offer_value']?.toInt() ?? 0,
     );
   }
 }

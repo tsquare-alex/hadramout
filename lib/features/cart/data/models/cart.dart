@@ -38,7 +38,7 @@ class CartModel extends Equatable {
       'price': price,
       'total_price': totalPrice,
       'quantity': quantity,
-      'createdAt': createdAt,
+      'created_at': createdAt,
       'offer': offer,
       'offer_value': offerValue,
       'section': section.toJson(),
