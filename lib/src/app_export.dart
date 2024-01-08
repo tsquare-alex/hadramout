@@ -21,3 +21,5 @@ export 'package:hadrmouthamza/core/themes/themes.dart';
 export 'package:hadrmouthamza/firebase_options.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:responsive_framework/responsive_framework.dart';
+export 'package:mailer/mailer.dart';
+export 'package:mailer/smtp_server.dart';
