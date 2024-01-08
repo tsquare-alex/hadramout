@@ -7,9 +7,12 @@ class BuildCartNoData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 100),
-      width: 465,
+      padding: EdgeInsets.symmetric(
+        vertical: 15.0,
+        horizontal: MediaQuery.of(context).size.width * 0.10,
+      ),
       height: 507,
+      alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -21,7 +24,10 @@ class BuildCartNoData extends StatelessWidget {
           const Gap(
             16,
           ),
-          const Text("عربة التسوق فارغة",style: AppTextStyles.font24BlackSemiBold,),
+          const Text(
+            "عربة التسوق فارغة",
+            style: AppTextStyles.font24BlackSemiBold,
+          ),
           const Gap(
             16,
           ),
@@ -32,12 +38,19 @@ class BuildCartNoData extends StatelessWidget {
           const Gap(
             16,
           ),
-          ElevatedButton(onPressed: (){
-            Router.neglect(
-              context,
-              () => context.go(AppRoutes.initScreen),
-            );
-          },style: AppButtonStyles.buttonYellowSize511x77Rounded20, child: const Text("استكشاف قائمة حضرموت حمزة",style: AppTextStyles.font24WhiteSemiBold,))
+          ElevatedButton(
+            onPressed: () {
+              Router.neglect(
+                context,
+                () => context.go(AppRoutes.initScreen),
+              );
+            },
+            style: AppButtonStyles.buttonYellowSize511x77Rounded20,
+            child: const Text(
+              "استكشاف قائمة حضرموت حمزة",
+              style: AppTextStyles.font24WhiteSemiBold,
+            ),
+          ),
         ],
       ),
     );

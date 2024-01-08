@@ -48,6 +48,12 @@ class BuildCartItems extends StatelessWidget {
                               ? CachedNetworkImage(
                             imageUrl:model[i].image!,
                             fit: BoxFit.cover,
+                            errorWidget: (context, url, error) => const CircleAvatar(
+                              radius: 30,
+                              backgroundImage: AssetImage(
+                                Res.home_logo,
+                              ),
+                            ),
                           ):const CircleAvatar(
                             radius: 30,
                             backgroundImage: AssetImage(Res.home_logo,),
