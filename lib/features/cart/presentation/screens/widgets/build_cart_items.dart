@@ -16,7 +16,7 @@ class BuildCartItems extends StatelessWidget {
         color: AppColors.greyOp50,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(6),
       margin: const EdgeInsets.only(bottom: 60.0),
       child: Column(
         children: [

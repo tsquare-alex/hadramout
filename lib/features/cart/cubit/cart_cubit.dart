@@ -76,7 +76,7 @@ class CartBloc extends Cubit<CartState> {
       context: context,
       locale: const Locale("ar"),
       initialDate: DateTime.now(),
-      firstDate: DateTime.now().add(const Duration(days: -1)),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2050),
     ).then((DateTime? date) {
       orderDate = date!;
@@ -140,7 +140,8 @@ class CartBloc extends Cubit<CartState> {
             ),
             confirmed: false,
             delivered: false,
-            price: totalCost + selectedDelivery!.fees,
+            total: totalCost + selectedDelivery!.fees,
+            subTotal: totalCost ,
             createdAt: DateTime.now().toIso8601String(),
             cartModel: cartList,
             deliveryModel: selectedDelivery!,
@@ -169,7 +170,8 @@ class CartBloc extends Cubit<CartState> {
           ),
           confirmed: false,
           delivered: false,
-          price: totalCost,
+          total: totalCost,
+          subTotal: totalCost,
           createdAt: DateTime.now().toIso8601String(),
           cartModel: cartList,
           orderDate: orderDate!,
@@ -239,6 +241,9 @@ class CartBloc extends Cubit<CartState> {
     floorController.clear();
     apartmentController.clear();
     buildingController.clear();
+    dateController.clear();
+    timeController.clear();
+    selectedDelivery = null;
   }
 
   List<CartModel> cartList = [];
