@@ -64,7 +64,7 @@ class CartBloc extends Cubit<CartState> {
     timePicker(
         context: context,
         onConfirm: (date) {
-          timeController.text = DateFormat("hh:mm aa", "en").format(date!);
+          timeController.text = DateFormat("hh:mm aa", "ar").format(date!);
         },
         title: '');
   }
@@ -80,7 +80,7 @@ class CartBloc extends Cubit<CartState> {
       lastDate: DateTime(2050),
     ).then((DateTime? date) {
       orderDate = date!;
-      dateController.text = DateFormat("dd MMMM yyyy", "en").format(orderDate!);
+      dateController.text = DateFormat("dd MMMM yyyy", "ar").format(orderDate!);
     });
   }
 
