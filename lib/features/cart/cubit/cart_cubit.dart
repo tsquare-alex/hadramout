@@ -149,7 +149,7 @@ class CartBloc extends Cubit<CartState> {
             orderTime: timeController.text,
           );
           await _cartRepository.addOrder(orderModel);
-          sendOrderConfirmationEmail(orderModel);
+          //sendOrderConfirmationEmail(orderModel);
         } else if (selectedDelivery == null) {
           CustomToast.showSimpleToast(
             msg: "برجاء اختر مكان التوصيل",
@@ -177,7 +177,7 @@ class CartBloc extends Cubit<CartState> {
           orderTime: timeController.text,
         );
         await _cartRepository.addOrder(orderModel);
-        sendOrderConfirmationEmail(orderModel);
+        //sendOrderConfirmationEmail(orderModel);
       }
       cartList = [];
       emit(AddOrderCartSuccess());
