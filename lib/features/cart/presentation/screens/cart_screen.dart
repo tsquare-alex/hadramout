@@ -51,7 +51,7 @@ class _CartScreenState extends State<CartScreen> {
                                           value: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.10,
+                                              0.05,
                                           name: TABLET)
                                     ]).value!,
                               ),

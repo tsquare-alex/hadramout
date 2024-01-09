@@ -57,6 +57,7 @@ class CartBloc extends Cubit<CartState> {
   DateTime? orderDate;
   TimeOfDay? orderTime;
 
+  String? time;
   void onSelectTime(
     BuildContext context,
   ) {
@@ -64,7 +65,8 @@ class CartBloc extends Cubit<CartState> {
     timePicker(
         context: context,
         onConfirm: (date) {
-          timeController.text = DateFormat("hh:mm aa", "ar").format(date!);
+          time = DateFormat("mm:hh aa", "en").format(date!);
+          timeController.text = DateFormat("mm:hh aa", "ar").format(date!);
         },
         title: '');
   }
@@ -147,7 +149,7 @@ class CartBloc extends Cubit<CartState> {
             deliveryModel: selectedDelivery!,
             orderDate: orderDate!,
             orderMethod: selectedMethod!.title,
-            orderTime: timeController.text,
+            orderTime: time!,
           );
           await _cartRepository.addOrder(orderModel);
           //sendOrderConfirmationEmail(orderModel);
@@ -176,7 +178,7 @@ class CartBloc extends Cubit<CartState> {
           cartModel: cartList,
           orderDate: orderDate!,
           orderMethod: selectedMethod!.title,
-          orderTime: timeController.text,
+          orderTime: time!,
         );
         await _cartRepository.addOrder(orderModel);
         //sendOrderConfirmationEmail(orderModel);
