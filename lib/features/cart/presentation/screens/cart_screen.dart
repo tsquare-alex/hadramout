@@ -31,14 +31,17 @@ class _CartScreenState extends State<CartScreen> {
               shrinkWrap: true,
               slivers: [
                 const CustomAppBar(appBarColor: AppColors.whiteOp100),
-                SliverToBoxAdapter(
-                  child: cubit.cartList.isEmpty
-                      ? const BuildCartNoData()
-                      : Column(
+                cubit.cartList.isEmpty
+                    ? const SliverFillRemaining(
+                      hasScrollBody: false,
+                        child: BuildCartNoData(),
+                      )
+                    : SliverToBoxAdapter(
+                        child: Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                vertical: 15.0,
+                                vertical: 16.0,
                                 horizontal: ResponsiveValue<double>(context,
                                     defaultValue:
                                         MediaQuery.of(context).size.width *
@@ -73,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ],
                         ),
-                ),
+                      ),
               ],
             ),
           );

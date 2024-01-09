@@ -26,7 +26,7 @@ class ExploreMenu extends StatelessWidget {
               shrinkWrap: true,
               itemCount: context.read<HomeBloc>().sections.length,
               itemBuilder: (context, index) {
-                String title = context.read<HomeBloc>().sections[index].title;
+                final section = context.read<HomeBloc>().sections[index];
                 return Padding(
                   padding: EdgeInsets.only(
                     left: context.read<HomeBloc>().sections.indexOf(
@@ -45,9 +45,12 @@ class ExploreMenu extends StatelessWidget {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      context.push('${AppRoutes.sectionDetails}/${context.read<HomeBloc>().sections[index].index}', extra: context.read<HomeBloc>().sections[index]);
+                      context.push(
+                        '${AppRoutes.sectionDetails}/${section.index}',
+                        extra: section,
+                      );
                     },
-                    child: CustomSectionsItem(title: title),
+                    child: CustomSectionsItem(section: section),
                   ),
                 );
               },

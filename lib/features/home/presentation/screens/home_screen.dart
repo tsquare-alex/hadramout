@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           } else if (state is HomeDataSuccess) {
             return CustomScrollView(
-              shrinkWrap: true,
               slivers: [
                 const CustomAppBar(),
                 SliverToBoxAdapter(

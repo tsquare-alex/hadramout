@@ -272,7 +272,7 @@ class BuildConfirmOrder extends StatelessWidget {
                         context.read<CartBloc>().selectedDelivery != null
                             ? 'اجمالي المبلغ : ${context.read<CartBloc>().selectedDelivery!.fees + context.read<CartBloc>().totalCost}EGP'
                             : 'اجمالي المبلغ : ${context.read<CartBloc>().totalCost}EGP',
-                        style: AppTextStyles.font16BlackSemiBold,
+                        style: AppTextStyles.font20BlackSemiBold,
                       ),
                     ),
                     SizedBox(

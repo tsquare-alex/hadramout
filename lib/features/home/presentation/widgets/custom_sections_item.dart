@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:hadrmouthamza/core/common/models/section.dart';
+import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class CustomSectionsItem extends StatelessWidget {
-  const CustomSectionsItem({super.key, required this.title});
+  const CustomSectionsItem({super.key, required this.section});
 
-  final String title;
+  final SectionModel section;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,14 +22,27 @@ class CustomSectionsItem extends StatelessWidget {
             ),
           ),
           alignment: Alignment.center,
-          child: Image.asset(
-            ImageConstants.sectionImage,
-            width: 200,
-            height: 200,
-          ),
+          child: section.image.isNotEmpty
+              ? CachedNetworkImage(
+                  imageUrl: section.image,
+                  width: 150,
+                  height: 150,
+                  errorWidget: (context, url, error) => Image.asset(
+                    // Res.dashboard_logo,
+                    ImageConstants.sectionImage,
+                    width: 150,
+                    height: 150,
+                  ),
+                )
+              : Image.asset(
+                  // Res.dashboard_logo,
+                  ImageConstants.sectionImage,
+                  width: 150,
+                  height: 150,
+                ),
         ),
         Text(
-          title,
+          section.title,
           style: AppTextStyles.font20BlackMedium,
         )
       ],

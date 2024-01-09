@@ -13,10 +13,10 @@ class BuildCartItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.greyOp50,
+        color: AppColors.greyOp100,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 60.0),
       child: Column(
         children: [
@@ -25,13 +25,13 @@ class BuildCartItems extends StatelessWidget {
             shrinkWrap: true,
             itemCount: model.length,
             itemBuilder: (context, i) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               margin: const EdgeInsets.only(
-                bottom: 10,
+                bottom: 16,
               ),
               decoration: BoxDecoration(
                 color: AppColors.whiteOp100,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
                       color: AppColors.shadow, spreadRadius: 0, blurRadius: 12)
@@ -41,22 +41,23 @@ class BuildCartItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                          radius: 30,
-                          backgroundColor:model[i].image!.isEmpty?AppColors.yellowOp100:AppColors.whiteOp100,
-                          child: model[i].image!.isNotEmpty
-                              ? CachedNetworkImage(
-                            imageUrl:model[i].image!,
-                            fit: BoxFit.cover,
-                            errorWidget: (context, url, error) => const CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage(
-                                Res.home_logo,
-                              ),
-                            ),
-                          ):const CircleAvatar(
+                  model[i].image!.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: model[i].image!,
+                          height: 60,
+                          width: 60,
+                          errorWidget: (context, url, error) =>
+                              const CircleAvatar(
                             radius: 30,
-                            backgroundImage: AssetImage(Res.home_logo,),
+                            backgroundImage: AssetImage(
+                              Res.home_logo,
+                            ),
+                          ),
+                        )
+                      : const CircleAvatar(
+                          radius: 30,
+                          backgroundImage: AssetImage(
+                            Res.home_logo,
                           ),
                         ),
                   const Gap(15),
@@ -84,7 +85,8 @@ class BuildCartItems extends StatelessWidget {
                                     Flexible(
                                       child: Text(
                                         "تفاصيل",
-                                        style: AppTextStyles.font10YellowSemiBold,
+                                        style:
+                                            AppTextStyles.font10YellowSemiBold,
                                       ),
                                     ),
                                     Gap(5),
@@ -187,12 +189,9 @@ class BuildCartItems extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.only(
-              top: 20,
-            ),
             decoration: BoxDecoration(
               color: AppColors.whiteOp100,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
                     color: AppColors.shadow, spreadRadius: 0, blurRadius: 12)
