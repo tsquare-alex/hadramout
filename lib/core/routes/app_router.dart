@@ -39,6 +39,12 @@ class AppRouter {
             child: SectionDetails(section: state.extra as SectionModel),
           );
         },
+        redirect: (context, state) {
+          if (state.extra == null) {
+            return AppRoutes.initScreen;
+          }
+          return null;
+        },
       ),
       GoRoute(
         path: AppRoutes.cartScreen,

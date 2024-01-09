@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -44,8 +45,9 @@ class HomeItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
-                        child: Text(
+                        child: AutoSizeText(
                           speciesItem.title,
+                          maxLines: 1,
                           style: AppTextStyles.font20BlackSemiBold,
                         ),
                       ),
@@ -67,14 +69,15 @@ class HomeItem extends StatelessWidget {
                   const SizedBox(
                     height: 4,
                   ),
-                  Text(
+                  AutoSizeText(
                     speciesItem.description ?? '',
+                    maxLines: 4,
                     style: AppTextStyles.font16BlackOp50Medium,
                   ),
                   const Gap(22),
                   Container(
                     width: 315,
-                    height: 61,
+                    height: 41,
                     alignment: Alignment.center,
                     padding:
                         const EdgeInsetsDirectional.symmetric(horizontal: 12),

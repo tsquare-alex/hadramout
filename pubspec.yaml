@@ -47,6 +47,7 @@ dependencies:
   mailer:
   http:
   url_launcher: ^6.2.2
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
