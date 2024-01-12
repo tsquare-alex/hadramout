@@ -95,10 +95,9 @@ class SpeciesSection extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.only(
                     left:
-                        speciesList.indexOf(speciesList.last) == index ? 2 : 16,
-                    right: speciesList.indexOf(speciesList.first) == index
-                        ? 2
-                        : 16,
+                        speciesList.indexOf(speciesList.last) == index ? 2 : 8,
+                    right:
+                        speciesList.indexOf(speciesList.first) == index ? 2 : 8,
                   ),
                   child: HomeItem(
                     speciesItem: speciesItem,

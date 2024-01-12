@@ -18,7 +18,7 @@ class HomeItem extends StatelessWidget {
       height: ResponsiveValue<double>(context,
           defaultValue: 360,
           conditionalValues: [
-            Condition.smallerThan(value: 260, name: DESKTOP)
+            Condition.smallerThan(value: 267, name: DESKTOP)
           ]).value!,
       width: ResponsiveValue<double>(context,
           defaultValue: 280,
@@ -32,7 +32,7 @@ class HomeItem extends StatelessWidget {
             bottom: ResponsiveValue<double>(context,
                 defaultValue: 20,
                 conditionalValues: [
-                  Condition.smallerThan(value: 27.5 / 2, name: DESKTOP)
+                  Condition.smallerThan(value: 17, name: DESKTOP)
                 ]).value!,
             child: Container(
               width: ResponsiveValue<double>(context,
@@ -70,10 +70,10 @@ class HomeItem extends StatelessWidget {
                     conditionalValues: [
                       Condition.smallerThan(value: 10, name: DESKTOP)
                     ]).value!),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: AppColors.blackOp25,
-                    blurRadius: 2.r,
+                    blurRadius: 2,
                     blurStyle: BlurStyle.outer,
                   ),
                 ],
@@ -88,8 +88,8 @@ class HomeItem extends StatelessWidget {
                         child: AutoSizeText(
                           speciesItem.title,
                           maxLines: 2,
-                          style: AppTextStyles.font14BlackSemiBold
-                              .copyWith(fontSize: ResponsiveValue<double>(context,
+                          style: AppTextStyles.font14BlackSemiBold.copyWith(
+                              fontSize: ResponsiveValue<double>(context,
                                   defaultValue: 18,
                                   conditionalValues: [
                                 Condition.smallerThan(value: 14, name: DESKTOP)
@@ -108,26 +108,46 @@ class HomeItem extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 4.r,
+                    height: ResponsiveValue<double>(
+                      context,
+                      defaultValue: 4,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 2, name: DESKTOP)
+                      ],
+                    ).value!,
                   ),
                   const Divider(
                     color: AppColors.blackOp10,
                   ),
                   SizedBox(
-                    height: 4.r,
+                    height: ResponsiveValue<double>(
+                      context,
+                      defaultValue: 4,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 2, name: DESKTOP)
+                      ],
+                    ).value!,
                   ),
                   AutoSizeText(
                     speciesItem.description!,
                     maxLines: 5,
-                    style: AppTextStyles.font12BlackOp50Medium
-                        .copyWith(fontSize: ResponsiveValue<double>(context,
+                    style: AppTextStyles.font12BlackOp50Medium.copyWith(
+                        fontSize: ResponsiveValue<double>(context,
                             defaultValue: 16,
                             conditionalValues: [
                           Condition.smallerThan(value: 10, name: DESKTOP)
                         ]).value!),
                     minFontSize: 8,
                   ),
-                  Gap(16.r),
+                  Gap(
+                    ResponsiveValue<double>(
+                      context,
+                      defaultValue: 16,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 8, name: DESKTOP)
+                      ],
+                    ).value!,
+                  ),
                   Container(
                     height: ResponsiveValue<double>(context,
                         defaultValue: 41,
@@ -148,7 +168,8 @@ class HomeItem extends StatelessWidget {
                               Text(
                                 'EGP ${speciesItem.price}',
                                 style: AppTextStyles.font14BlackSemiBold
-                                    .copyWith(fontSize: ResponsiveValue<double>(
+                                    .copyWith(
+                                        fontSize: ResponsiveValue<double>(
                                             context,
                                             defaultValue: 16,
                                             conditionalValues: [
@@ -174,8 +195,8 @@ class HomeItem extends StatelessWidget {
                           )
                         : Text(
                             'EGP ${speciesItem.price}',
-                            style: AppTextStyles.font14BlackSemiBold
-                                .copyWith(fontSize: ResponsiveValue<double>(context,
+                            style: AppTextStyles.font14BlackSemiBold.copyWith(
+                                fontSize: ResponsiveValue<double>(context,
                                     defaultValue: 16,
                                     conditionalValues: [
                                   Condition.smallerThan(
@@ -192,44 +213,41 @@ class HomeItem extends StatelessWidget {
             child: speciesItem.image!.isNotEmpty
                 ? CachedNetworkImage(
                     imageUrl: speciesItem.image!,
-                    fit: BoxFit.cover,
                     width: ResponsiveValue<double>(context,
                         defaultValue: 130,
                         conditionalValues: [
-                          Condition.smallerThan(value: 90, name: DESKTOP)
+                          Condition.smallerThan(value: 80, name: DESKTOP)
                         ]).value!,
                     height: ResponsiveValue<double>(context,
                         defaultValue: 100,
                         conditionalValues: [
-                          Condition.smallerThan(value: 90, name: DESKTOP)
+                          Condition.smallerThan(value: 80, name: DESKTOP)
                         ]).value!,
                     errorWidget: (context, url, error) => Image.asset(
                       Res.dashboard_logo,
-                      fit: BoxFit.cover,
                       width: ResponsiveValue<double>(context,
                           defaultValue: 130,
                           conditionalValues: [
-                            Condition.smallerThan(value: 90, name: DESKTOP)
+                            Condition.smallerThan(value: 80, name: DESKTOP)
                           ]).value!,
                       height: ResponsiveValue<double>(context,
                           defaultValue: 100,
                           conditionalValues: [
-                            Condition.smallerThan(value: 90, name: DESKTOP)
+                            Condition.smallerThan(value: 80, name: DESKTOP)
                           ]).value!,
                     ),
                   )
                 : Image.asset(
                     Res.dashboard_logo,
-                    fit: BoxFit.cover,
                     width: ResponsiveValue<double>(context,
                         defaultValue: 130,
                         conditionalValues: [
-                          Condition.smallerThan(value: 90, name: DESKTOP)
+                          Condition.smallerThan(value: 80, name: DESKTOP)
                         ]).value!,
                     height: ResponsiveValue<double>(context,
                         defaultValue: 100,
                         conditionalValues: [
-                          Condition.smallerThan(value: 90, name: DESKTOP)
+                          Condition.smallerThan(value: 80, name: DESKTOP)
                         ]).value!,
                   ),
           ),

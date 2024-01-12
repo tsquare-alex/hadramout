@@ -52,31 +52,34 @@ class _SectionDetailsState extends State<SectionDetails> {
                 ),
                 SliverToBoxAdapter(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: ResponsiveValue<double>(context,
-                                defaultValue: 30,
-                                conditionalValues: [
-                                  Condition.smallerThan(
-                                      value: 30 / 2, name: DESKTOP)
-                                ]).value!,
-                            horizontal: ResponsiveValue<double>(context,
-                                defaultValue: 60,
-                                conditionalValues: [
-                                  Condition.smallerThan(
-                                      value: 60 / 2, name: DESKTOP)
-                                ]).value!),
-                        child: Text(
-                          widget.section.title,
-                          style: AppTextStyles.font16BlackSemiBold.copyWith(
-                            fontSize: ResponsiveValue<double>(context,
-                                defaultValue: 24,
-                                conditionalValues: [
-                                  Condition.smallerThan(
-                                      value: 16, name: DESKTOP)
-                                ]).value!,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: ResponsiveValue<double>(context,
+                                  defaultValue: 30,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 30 / 2, name: DESKTOP)
+                                  ]).value!,
+                              horizontal: ResponsiveValue<double>(context,
+                                  defaultValue: 60,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 60 / 2, name: DESKTOP)
+                                  ]).value!),
+                          child: Text(
+                            widget.section.title,
+                            style: AppTextStyles.font16BlackSemiBold.copyWith(
+                              fontSize: ResponsiveValue<double>(context,
+                                  defaultValue: 24,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 20, name: DESKTOP)
+                                  ]).value!,
+                            ),
                           ),
                         ),
                       ),
