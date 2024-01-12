@@ -39,14 +39,14 @@ class CustomSectionsItem extends StatelessWidget {
               ? CachedNetworkImage(
                   imageUrl: section.image,
                   width: ResponsiveValue<double>(context,
-                      defaultValue: 120,
+                      defaultValue: 180,
                       conditionalValues: [
-                        Condition.smallerThan(value: 70, name: DESKTOP)
+                        Condition.smallerThan(value: 100, name: DESKTOP)
                       ]).value!,
                   height: ResponsiveValue<double>(context,
-                      defaultValue: 120,
+                      defaultValue: 150,
                       conditionalValues: [
-                        Condition.smallerThan(value: 70, name: DESKTOP)
+                        Condition.smallerThan(value: 90, name: DESKTOP)
                       ]).value!,
                   errorWidget: (context, url, error) => Image.asset(
                     Res.dashboard_logo,

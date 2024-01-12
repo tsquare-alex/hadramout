@@ -13,6 +13,7 @@ class Res {
   static const String home_icon = "assets/images/home_icon.png";
   static const String home_icon_fill = "assets/images/home_icon_fill.png";
   static const String home_logo = "assets/images/home_logo.png";
+  static const String logo = "assets/images/logo.png";
   static const String image_not_found = "assets/images/image_not_found.png";
   static const String img_ = "assets/images/img_.png";
   static const String img_120_r = "assets/images/img_120_r.png";

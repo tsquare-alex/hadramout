@@ -138,7 +138,7 @@ class _InputFormFieldState extends State<InputFormField> {
                         context,
                         defaultValue: 18,
                         conditionalValues: [
-                          Condition.smallerThan(value: 16, name: DESKTOP)
+                          Condition.smallerThan(value: 14, name: DESKTOP)
                         ],
                       ).value!,
                     ),
@@ -147,7 +147,7 @@ class _InputFormFieldState extends State<InputFormField> {
                         context,
                         defaultValue: 18,
                         conditionalValues: [
-                          Condition.smallerThan(value: 16, name: DESKTOP)
+                          Condition.smallerThan(value: 14, name: DESKTOP)
                         ],
                       ).value!,
                     ),

@@ -22,17 +22,26 @@ class CustomAppBar extends StatelessWidget {
       backgroundColor: appBarColor ?? AppColors.greyOp100,
       pinned: true,
       surfaceTintColor: Colors.transparent,
-      leadingWidth: 150.r,
-      leading: InkWell(
+      title: InkWell(
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () => context.go(AppRoutes.initScreen),
-        child: Image.asset(
-          Res.home_logo,
-          width: 100,
-          height: 100,
-          alignment: Alignment.centerLeft,
+        child: Padding(
+          padding:  EdgeInsets.only(right: 30.r),
+          child: Image.asset(
+            Res.logo,
+            width:  ResponsiveValue<double>(context,
+                defaultValue: 70,
+                conditionalValues: [
+                  Condition.smallerThan(value: 50, name: DESKTOP)
+                ]).value!,
+            height:  ResponsiveValue<double>(context,
+                defaultValue: 70,
+                conditionalValues: [
+                  Condition.smallerThan(value: 50, name: DESKTOP)
+                ]).value!,
+          ),
         ),
       ),
       actions: [
