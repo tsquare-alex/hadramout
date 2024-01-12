@@ -2,7 +2,6 @@ import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
-import 'data_dummy.dart';
 import 'home_item.dart';
 
 class SpeciesSection extends StatelessWidget {
@@ -18,7 +17,11 @@ class SpeciesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 510,
+      height: ResponsiveValue<double>(context,
+          defaultValue: 410,
+          conditionalValues: [
+            Condition.smallerThan(value: 300, name: DESKTOP)
+          ]).value!,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +30,13 @@ class SpeciesSection extends StatelessWidget {
             children: [
               Text(
                 section.title,
-                style: AppTextStyles.font24BlackSemiBold,
+                style: AppTextStyles.font16BlackSemiBold.copyWith(
+                  fontSize: ResponsiveValue<double>(context,
+                      defaultValue: 22,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 16, name: DESKTOP)
+                      ]).value!,
+                ),
               ),
               const Gap(16),
               InkWell(
@@ -35,18 +44,40 @@ class SpeciesSection extends StatelessWidget {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () {
-                  context.push('${AppRoutes.sectionDetails}/${section.index}', extra: section);
+                  context.push('${AppRoutes.sectionDetails}/${section.index}',
+                      extra: section);
                 },
                 child: Row(
                   children: [
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "عرض الكل",
-                          style: AppTextStyles.font16YellowSemiBold,
+                          style: AppTextStyles.font10YellowSemiBold.copyWith(
+                            fontSize: ResponsiveValue<double>(context,
+                                defaultValue: 16,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 10, name: DESKTOP)
+                                ]).value!,
+                          ),
                         ),
                         const Gap(8),
-                        Image.asset(ImageConstants.arrowBack),
+                        Image.asset(
+                          ImageConstants.arrowBack,
+                          width: ResponsiveValue<double>(context,
+                              defaultValue: 20,
+                              conditionalValues: [
+                                Condition.smallerThan(
+                                    value: 20 / 2, name: DESKTOP)
+                              ]).value!,
+                          height: ResponsiveValue<double>(context,
+                              defaultValue: 20,
+                              conditionalValues: [
+                                Condition.smallerThan(
+                                    value: 20 / 2, name: DESKTOP)
+                              ]).value!,
+                        ),
                       ],
                     ),
                   ],
@@ -63,8 +94,11 @@ class SpeciesSection extends StatelessWidget {
                 final speciesItem = speciesList[index];
                 return Padding(
                   padding: EdgeInsets.only(
-                    left: dataList.indexOf(dataList.last) == index ? 0 : 16,
-                    right: dataList.indexOf(dataList.first) == index ? 0 : 16,
+                    left:
+                        speciesList.indexOf(speciesList.last) == index ? 2 : 16,
+                    right: speciesList.indexOf(speciesList.first) == index
+                        ? 2
+                        : 16,
                   ),
                   child: HomeItem(
                     speciesItem: speciesItem,

@@ -1,6 +1,5 @@
 import 'package:hadrmouthamza/core/common/models/section.dart';
 import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
-import 'package:hadrmouthamza/features/home/presentation/widgets/footer.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/home_item.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -45,53 +44,77 @@ class _SectionDetailsState extends State<SectionDetails> {
               child: Text(state.errorMessage),
             );
           } else if (state is SectionDetailsSuccess) {
-            return Scrollbar(
-              thumbVisibility: true,
-              trackVisibility: true,
-              interactive: true,
-              thickness: 6,
-              controller:
-                  context.read<HomeBloc>().sectionDetailsScrollController,
-              child: CustomScrollView(
-                controller:
-                    context.read<HomeBloc>().sectionDetailsScrollController,
-                shrinkWrap: true,
-                slivers: [
-                  const CustomAppBar(),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 60),
-                          child: Text(
-                            widget.section.title,
-                            style: AppTextStyles.font24BlackSemiBold,
+            return CustomScrollView(
+              shrinkWrap: true,
+              slivers: [
+                const CustomAppBar(
+                  appBarColor: AppColors.whiteOp100,
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: ResponsiveValue<double>(context,
+                                defaultValue: 30,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 30 / 2, name: DESKTOP)
+                                ]).value!,
+                            horizontal: ResponsiveValue<double>(context,
+                                defaultValue: 60,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 60 / 2, name: DESKTOP)
+                                ]).value!),
+                        child: Text(
+                          widget.section.title,
+                          style: AppTextStyles.font16BlackSemiBold.copyWith(
+                            fontSize: ResponsiveValue<double>(context,
+                                defaultValue: 24,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 16, name: DESKTOP)
+                                ]).value!,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 60,
-                          ),
-                          child: SingleChildScrollView(
-                            child: Wrap(
-                              children: [
-                                ...HomeBloc.get(context).species.map(
-                                    (speciesItem) =>
-                                        Padding(
-                                          padding: const EdgeInsets.all(16),
-                                          child: HomeItem(speciesItem: speciesItem),
-                                        )),
-                              ],
-                            ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(ResponsiveValue<double>(context,
+                            defaultValue: 40,
+                            conditionalValues: [
+                              Condition.smallerThan(
+                                  value: 40 / 2, name: DESKTOP)
+                            ]).value!),
+                        child: SingleChildScrollView(
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            runAlignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              ...HomeBloc.get(context).species.map(
+                                    (speciesItem) => Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 16,
+                                          horizontal: ResponsiveValue<double>(
+                                              context,
+                                              defaultValue: 16,
+                                              conditionalValues: [
+                                                Condition.smallerThan(
+                                                    value: 8, name: DESKTOP)
+                                              ]).value!),
+                                      child: HomeItem(speciesItem: speciesItem),
+                                    ),
+                                  ),
+                            ],
                           ),
                         ),
-                        const Footer(),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           } else {
             return const SizedBox.shrink();

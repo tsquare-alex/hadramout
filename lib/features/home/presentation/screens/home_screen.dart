@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/explore_menu.dart';
 import 'package:hadrmouthamza/features/home/presentation/widgets/footer.dart';
@@ -24,6 +25,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: CircleAvatar(
+        backgroundColor: Colors.green,
+        radius: 25,
+        child: Tooltip(
+          message: 'راسلنا عالواتساب',
+          margin: const EdgeInsets.only(bottom: 10),
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: InkWell(
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () => context.read<HomeBloc>().openWhatsapp(),
+            child: const FaIcon(
+              FontAwesomeIcons.whatsapp,
+              size: 30,
+            ),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       body: BlocBuilder<HomeBloc, HomeState>(
         buildWhen: (previous, current) {
           return (previous == HomeDataLoading() ||
@@ -46,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (state is HomeDataSuccess) {
             return CustomScrollView(
               slivers: [
-                const CustomAppBar(),
+                const CustomAppBar(appBarColor: AppColors.whiteOp100),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -54,11 +78,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ListView.builder(
                         controller:
                             context.read<HomeBloc>().homePageScrollController,
-                        padding: const EdgeInsets.symmetric(horizontal: 80),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: ResponsiveValue<double>(context,
+                                defaultValue: 40,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 40 / 2, name: DESKTOP)
+                                ]).value!,
+                            vertical: 20),
                         shrinkWrap: true,
                         itemCount: HomeBloc.get(context).sections.length,
                         itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          padding: EdgeInsets.symmetric(vertical: 24.r),
                           child: SpeciesSection(
                             section: HomeBloc.get(context).sections[index],
                             speciesList: HomeBloc.get(context)

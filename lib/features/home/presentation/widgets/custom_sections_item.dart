@@ -12,9 +12,22 @@ class CustomSectionsItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 240,
-          height: 208,
-          margin: const EdgeInsets.only(bottom: 16),
+          width: ResponsiveValue<double>(context,
+              defaultValue: 200,
+              conditionalValues: [
+                Condition.smallerThan(value: 120, name: DESKTOP)
+              ]).value!,
+          height: ResponsiveValue<double>(context,
+              defaultValue: 160,
+              conditionalValues: [
+                Condition.smallerThan(value: 100, name: DESKTOP)
+              ]).value!,
+          margin: EdgeInsets.only(
+              bottom: ResponsiveValue<double>(context,
+                  defaultValue: 16,
+                  conditionalValues: [
+                Condition.smallerThan(value: 8, name: DESKTOP)
+              ]).value!),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
@@ -25,25 +38,54 @@ class CustomSectionsItem extends StatelessWidget {
           child: section.image.isNotEmpty
               ? CachedNetworkImage(
                   imageUrl: section.image,
-                  width: 150,
-                  height: 150,
+                  width: ResponsiveValue<double>(context,
+                      defaultValue: 120,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 70, name: DESKTOP)
+                      ]).value!,
+                  height: ResponsiveValue<double>(context,
+                      defaultValue: 120,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 70, name: DESKTOP)
+                      ]).value!,
                   errorWidget: (context, url, error) => Image.asset(
-                    // Res.dashboard_logo,
-                    ImageConstants.sectionImage,
-                    width: 150,
-                    height: 150,
+                    Res.dashboard_logo,
+                    // ImageConstants.sectionImage,
+                    width: ResponsiveValue<double>(context,
+                        defaultValue: 120,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 70, name: DESKTOP)
+                        ]).value!,
+                    height: ResponsiveValue<double>(context,
+                        defaultValue: 120,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 70, name: DESKTOP)
+                        ]).value!,
                   ),
                 )
               : Image.asset(
-                  // Res.dashboard_logo,
-                  ImageConstants.sectionImage,
-                  width: 150,
-                  height: 150,
+                  Res.dashboard_logo,
+                  // ImageConstants.sectionImage,
+                  width: ResponsiveValue<double>(context,
+                      defaultValue: 120,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 70, name: DESKTOP)
+                      ]).value!,
+                  height: ResponsiveValue<double>(context,
+                      defaultValue: 120,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 70, name: DESKTOP)
+                      ]).value!,
                 ),
         ),
         Text(
           section.title,
-          style: AppTextStyles.font20BlackMedium,
+          style: AppTextStyles.font12BlackMedium.copyWith(
+              fontSize: ResponsiveValue<double>(context,
+                  defaultValue: 18,
+                  conditionalValues: [
+                Condition.smallerThan(value: 12, name: DESKTOP)
+              ]).value!),
         )
       ],
     );

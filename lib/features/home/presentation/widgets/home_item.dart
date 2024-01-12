@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hadrmouthamza/core/common/models/species.dart';
-import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/res.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
@@ -16,24 +15,65 @@ class HomeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 475,
-      width: 350,
+      height: ResponsiveValue<double>(context,
+          defaultValue: 360,
+          conditionalValues: [
+            Condition.smallerThan(value: 260, name: DESKTOP)
+          ]).value!,
+      width: ResponsiveValue<double>(context,
+          defaultValue: 280,
+          conditionalValues: [
+            Condition.smallerThan(value: 350 / 2, name: DESKTOP)
+          ]).value!,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           Positioned(
-            bottom: 27.5,
+            bottom: ResponsiveValue<double>(context,
+                defaultValue: 20,
+                conditionalValues: [
+                  Condition.smallerThan(value: 27.5 / 2, name: DESKTOP)
+                ]).value!,
             child: Container(
-              width: 347,
-              height: 380,
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 51),
+              width: ResponsiveValue<double>(context,
+                  defaultValue: 280,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 347 / 2, name: DESKTOP)
+                  ]).value!,
+              height: ResponsiveValue<double>(context,
+                  defaultValue: 290,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 210, name: DESKTOP)
+                  ]).value!,
+              padding: EdgeInsets.fromLTRB(
+                  ResponsiveValue<double>(context,
+                      defaultValue: 16,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 16 / 2, name: DESKTOP)
+                      ]).value!,
+                  0,
+                  ResponsiveValue<double>(context,
+                      defaultValue: 16,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 16 / 2, name: DESKTOP)
+                      ]).value!,
+                  ResponsiveValue<double>(context,
+                      defaultValue: 30,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 51 / 2, name: DESKTOP)
+                      ]).value!),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
+                borderRadius: BorderRadius.circular(ResponsiveValue<double>(
+                    context,
+                    defaultValue: 20,
+                    conditionalValues: [
+                      Condition.smallerThan(value: 10, name: DESKTOP)
+                    ]).value!),
+                boxShadow: [
                   BoxShadow(
                     color: AppColors.blackOp25,
-                    blurRadius: 2,
+                    blurRadius: 2.r,
                     blurStyle: BlurStyle.outer,
                   ),
                 ],
@@ -42,55 +82,106 @@ class HomeItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Flexible(
                         child: AutoSizeText(
                           speciesItem.title,
-                          maxLines: 1,
-                          style: AppTextStyles.font20BlackSemiBold,
+                          maxLines: 2,
+                          style: AppTextStyles.font14BlackSemiBold
+                              .copyWith(fontSize: ResponsiveValue<double>(context,
+                                  defaultValue: 18,
+                                  conditionalValues: [
+                                Condition.smallerThan(value: 14, name: DESKTOP)
+                              ]).value!),
+                          minFontSize: 12,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite_border,
-                          color: Colors.red,
-                        ),
-                      ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Icon(
+                      //     Icons.favorite_border,
+                      //     color: Colors.red,
+                      //     size: 24.r,
+                      //   ),
+                      // ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 6,
+                  SizedBox(
+                    height: 4.r,
                   ),
                   const Divider(
                     color: AppColors.blackOp10,
                   ),
-                  const SizedBox(
-                    height: 4,
+                  SizedBox(
+                    height: 4.r,
                   ),
                   AutoSizeText(
-                    speciesItem.description ?? '',
-                    maxLines: 4,
-                    style: AppTextStyles.font16BlackOp50Medium,
+                    speciesItem.description!,
+                    maxLines: 5,
+                    style: AppTextStyles.font12BlackOp50Medium
+                        .copyWith(fontSize: ResponsiveValue<double>(context,
+                            defaultValue: 16,
+                            conditionalValues: [
+                          Condition.smallerThan(value: 10, name: DESKTOP)
+                        ]).value!),
+                    minFontSize: 8,
                   ),
-                  const Gap(22),
+                  Gap(16.r),
                   Container(
-                    width: 315,
-                    height: 41,
+                    height: ResponsiveValue<double>(context,
+                        defaultValue: 41,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 41 / 2, name: DESKTOP)
+                        ]).value!,
                     alignment: Alignment.center,
-                    padding:
-                        const EdgeInsetsDirectional.symmetric(horizontal: 12),
                     decoration: ShapeDecoration(
                       color: AppColors.brownOp05,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
-                    child: Text(
-                      'EGP ${speciesItem.price}',
-                      style: AppTextStyles.font20BlackSemiBold,
-                    ),
+                    child: speciesItem.offer!
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'EGP ${speciesItem.price}',
+                                style: AppTextStyles.font14BlackSemiBold
+                                    .copyWith(fontSize: ResponsiveValue<double>(
+                                            context,
+                                            defaultValue: 16,
+                                            conditionalValues: [
+                                      Condition.smallerThan(
+                                          value: 12, name: DESKTOP)
+                                    ]).value!),
+                              ),
+                              Text(
+                                'EGP ${speciesItem.offerValue}',
+                                style: AppTextStyles
+                                    .font12BlackOp50SemiBoldLineThrough
+                                    .copyWith(
+                                  fontSize: ResponsiveValue<double>(context,
+                                      defaultValue: 14,
+                                      conditionalValues: [
+                                        Condition.smallerThan(
+                                            value: 10, name: DESKTOP)
+                                      ]).value!,
+                                  decorationColor: AppColors.blackOp50,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            'EGP ${speciesItem.price}',
+                            style: AppTextStyles.font14BlackSemiBold
+                                .copyWith(fontSize: ResponsiveValue<double>(context,
+                                    defaultValue: 16,
+                                    conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 12, name: DESKTOP)
+                                ]).value!),
+                          ),
                   ),
                 ],
               ),
@@ -101,39 +192,104 @@ class HomeItem extends StatelessWidget {
             child: speciesItem.image!.isNotEmpty
                 ? CachedNetworkImage(
                     imageUrl: speciesItem.image!,
-                    width: 245,
-                    height: 164,
+                    fit: BoxFit.cover,
+                    width: ResponsiveValue<double>(context,
+                        defaultValue: 130,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 90, name: DESKTOP)
+                        ]).value!,
+                    height: ResponsiveValue<double>(context,
+                        defaultValue: 100,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 90, name: DESKTOP)
+                        ]).value!,
                     errorWidget: (context, url, error) => Image.asset(
                       Res.dashboard_logo,
-                      width: 245,
-                      height: 164,
+                      fit: BoxFit.cover,
+                      width: ResponsiveValue<double>(context,
+                          defaultValue: 130,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 90, name: DESKTOP)
+                          ]).value!,
+                      height: ResponsiveValue<double>(context,
+                          defaultValue: 100,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 90, name: DESKTOP)
+                          ]).value!,
                     ),
                   )
                 : Image.asset(
                     Res.dashboard_logo,
-                    width: 245,
-                    height: 164,
+                    fit: BoxFit.cover,
+                    width: ResponsiveValue<double>(context,
+                        defaultValue: 130,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 90, name: DESKTOP)
+                        ]).value!,
+                    height: ResponsiveValue<double>(context,
+                        defaultValue: 100,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 90, name: DESKTOP)
+                        ]).value!,
                   ),
           ),
           ElevatedButton(
-            style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10,
+            style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10
+                .copyWith(
+              shape: MaterialStatePropertyAll(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(ResponsiveValue<double>(
+                      context,
+                      defaultValue: 10,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 5, name: DESKTOP)
+                      ]).value!),
+                ),
+              ),
+              fixedSize: MaterialStatePropertyAll(
+                Size(
+                    ResponsiveValue<double>(context,
+                        defaultValue: 162,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 188 / 2, name: DESKTOP)
+                        ]).value!,
+                    ResponsiveValue<double>(context,
+                        defaultValue: 40,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 55 / 2, name: DESKTOP)
+                        ]).value!),
+              ),
+            ),
             onPressed: () {
               CartBloc.get(context).addToCart(speciesItem);
             },
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   Icons.add,
                   color: AppColors.yellowOp100,
-                  size: 20,
+                  size: ResponsiveValue<double>(context,
+                      defaultValue: 18,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 20 / 2, name: DESKTOP)
+                      ]).value!,
                 ),
                 SizedBox(
-                  width: 12,
+                  width: ResponsiveValue<double>(context,
+                      defaultValue: 12,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 12 / 2, name: DESKTOP)
+                      ]).value!,
                 ),
                 Text(
                   "أضف إلي العربة",
-                  style: AppTextStyles.font16YellowSemiBold,
+                  style: AppTextStyles.font12YellowSemiBold.copyWith(
+                      fontSize: ResponsiveValue<double>(context,
+                          defaultValue: 14,
+                          conditionalValues: [
+                        Condition.smallerThan(value: 8, name: DESKTOP)
+                      ]).value!),
                 ),
               ],
             ),

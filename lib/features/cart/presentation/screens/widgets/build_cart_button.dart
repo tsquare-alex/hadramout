@@ -2,18 +2,27 @@ import 'package:hadrmouthamza/features/cart/cubit/cart_cubit.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 class BuildCartButton extends StatelessWidget {
-  const BuildCartButton({super.key,});
+  const BuildCartButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>context.read<CartBloc>().showCustomDialog(context),
+      onTap: () => context.read<CartBloc>().showCustomDialog(context),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: AppColors.yellowOp100,
-          borderRadius: BorderRadius.circular(15)
-        ),
+            color: AppColors.yellowOp100,
+            borderRadius: BorderRadius.circular(
+              ResponsiveValue<double>(
+                context,
+                defaultValue: 15,
+                conditionalValues: [
+                  Condition.smallerThan(value: 8, name: DESKTOP)
+                ],
+              ).value!,
+            )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -23,28 +32,80 @@ class BuildCartButton extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Text("EGP",style: AppTextStyles.font18WhiteBold,),
+                      Text(
+                        "EGP",
+                        style: AppTextStyles.font18WhiteBold.copyWith(
+                          fontSize: ResponsiveValue<double>(
+                            context,
+                            defaultValue: 18,
+                            conditionalValues: [
+                              Condition.smallerThan(value: 16, name: DESKTOP)
+                            ],
+                          ).value!,
+                        ),
+                      ),
                       const Gap(5),
-                      Text("${context.watch<CartBloc>().totalCost}",style: AppTextStyles.font18WhiteBold,),
+                      Text(
+                        "${context.watch<CartBloc>().totalCost}",
+                        style: AppTextStyles.font18WhiteBold.copyWith(
+                          fontSize: ResponsiveValue<double>(
+                            context,
+                            defaultValue: 18,
+                            conditionalValues: [
+                              Condition.smallerThan(value: 16, name: DESKTOP)
+                            ],
+                          ).value!,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text("جميع الاسعار تشمل ضريبة القيمة المضافة",style: AppTextStyles.font10WhiteOp75Medium,),
+                  const Text(
+                    "جميع الاسعار تشمل ضريبة القيمة المضافة",
+                    style: AppTextStyles.font10WhiteOp75Medium,
+                  ),
                 ],
               ),
             ),
-            const Row(
+            Row(
               children: [
-                Text("اكمال الطلب",style: AppTextStyles.font16WhiteBold,),
-                SizedBox(
+                Text(
+                  "اكمال الطلب",
+                  style: AppTextStyles.font16WhiteBold.copyWith(
+                    fontSize: ResponsiveValue<double>(
+                      context,
+                      defaultValue: 16,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 14, name: DESKTOP)
+                      ],
+                    ).value!,
+                  ),
+                ),
+                const SizedBox(
                   width: 15,
                 ),
                 CircleAvatar(
-                  radius: 30,
+                  radius: ResponsiveValue<double>(
+                    context,
+                    defaultValue: 30,
+                    conditionalValues: [
+                      Condition.smallerThan(value: 20, name: DESKTOP)
+                    ],
+                  ).value!,
                   backgroundColor: AppColors.whiteOp100,
-                  child: Icon(Icons.keyboard_arrow_left_outlined,size: 20,color: AppColors.yellowOp75,),
+                  child: Icon(
+                    Icons.keyboard_arrow_left_outlined,
+                    size: ResponsiveValue<double>(
+                      context,
+                      defaultValue: 20,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 15, name: DESKTOP)
+                      ],
+                    ).value!,
+                    color: AppColors.yellowOp75,
+                  ),
                 ),
               ],
             ),

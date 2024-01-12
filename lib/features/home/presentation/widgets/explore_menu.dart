@@ -8,19 +8,34 @@ class ExploreMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 32),
+      padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveValue<double>(context,
+              defaultValue: 40,
+              conditionalValues: [
+                Condition.smallerThan(value: 40 / 2, name: DESKTOP)
+              ]).value!,
+          vertical: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "استكشاف القائمة",
-            style: AppTextStyles.font24BlackSemiBold,
+            style: AppTextStyles.font16BlackSemiBold.copyWith(
+                fontSize: ResponsiveValue<double>(context,
+                    defaultValue: 22,
+                    conditionalValues: [
+                  Condition.smallerThan(value: 16, name: DESKTOP)
+                ]).value!),
           ),
           const SizedBox(
             height: 15,
           ),
           SizedBox(
-            height: 260,
+            height: ResponsiveValue<double>(context,
+                defaultValue: 220,
+                conditionalValues: [
+                  Condition.smallerThan(value: 130, name: DESKTOP)
+                ]).value!,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -32,13 +47,13 @@ class ExploreMenu extends StatelessWidget {
                     left: context.read<HomeBloc>().sections.indexOf(
                                 context.read<HomeBloc>().sections.last) ==
                             index
-                        ? 0
-                        : 10,
+                        ? 2
+                        : 8,
                     right: context.read<HomeBloc>().sections.indexOf(
                                 context.read<HomeBloc>().sections.first) ==
                             index
-                        ? 0
-                        : 10,
+                        ? 2
+                        : 8,
                   ),
                   child: InkWell(
                     hoverColor: Colors.transparent,

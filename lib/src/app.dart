@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       minTextAdapt: true,
+      designSize: const Size(1440, 900),
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
@@ -30,7 +31,10 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: AppThemes.lightTheme,
               scrollBehavior: const MaterialScrollBehavior().copyWith(
-                dragDevices: {PointerDeviceKind.mouse},
+                dragDevices: {
+                  PointerDeviceKind.mouse,
+                  PointerDeviceKind.touch,
+                },
               ),
               localizationsDelegates: const [
                 AppLocalizationDelegate(),

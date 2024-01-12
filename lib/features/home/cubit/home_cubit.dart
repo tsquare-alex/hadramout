@@ -78,4 +78,28 @@ class HomeBloc extends Cubit<HomeState> {
       await launchUrl(uri);
     }
   }
+
+  final whatsappUrl = 'http://wa.me/+201027475557';
+  void openWhatsapp() async {
+    var uri = Uri.parse(whatsappUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  final landlineUrl = 'tel:0224470999';
+  void callLandline() async {
+    var uri = Uri.parse(landlineUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  final mobileUrl = 'tel:01555400990';
+  void callMobile() async {
+    var uri = Uri.parse(mobileUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
 }

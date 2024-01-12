@@ -14,11 +14,15 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      toolbarHeight: 93,
+      toolbarHeight: ResponsiveValue<double>(context,
+          defaultValue: 93,
+          conditionalValues: [
+            Condition.smallerThan(value: 65, name: DESKTOP)
+          ]).value!,
       backgroundColor: appBarColor ?? AppColors.greyOp100,
       pinned: true,
       surfaceTintColor: Colors.transparent,
-      leadingWidth: 150,
+      leadingWidth: 150.r,
       leading: InkWell(
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,
@@ -33,7 +37,7 @@ class CustomAppBar extends StatelessWidget {
       ),
       actions: [
         Padding(
-          padding: const EdgeInsets.only(left: 80),
+          padding: EdgeInsets.only(left: 60.r),
           child: InkWell(
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
@@ -49,21 +53,52 @@ class CustomAppBar extends StatelessWidget {
                 clipBehavior: Clip.none,
                 children: [
                   SizedBox(
-                    width: 32,
-                    height: 30,
+                    width: ResponsiveValue<double>(context,
+                        defaultValue: 32,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 24, name: DESKTOP)
+                        ]).value!,
+                    height: ResponsiveValue<double>(context,
+                        defaultValue: 30,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 22, name: DESKTOP)
+                        ]).value!,
                     child: Image.asset(
                       Res.cartIcon,
-                      color: AppColors.yellowOp100,
-                      width: 26,
-                      height: 24,
+                      width: ResponsiveValue<double>(context,
+                          defaultValue: 26,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 18, name: DESKTOP)
+                          ]).value!,
+                      height: ResponsiveValue<double>(context,
+                          defaultValue: 24,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 17, name: DESKTOP)
+                          ]).value!,
                     ),
                   ),
                   Positioned(
-                    bottom: 20,
-                    left: 21,
+                    bottom: ResponsiveValue<double>(context,
+                        defaultValue: 21,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 16, name: DESKTOP)
+                        ]).value!,
+                    left: ResponsiveValue<double>(context,
+                        defaultValue: 21,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 16, name: DESKTOP)
+                        ]).value!,
                     child: Container(
-                      width: 20,
-                      height: 20,
+                      width: ResponsiveValue<double>(context,
+                          defaultValue: 20,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 16, name: DESKTOP)
+                          ]).value!,
+                      height: ResponsiveValue<double>(context,
+                          defaultValue: 20,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 16, name: DESKTOP)
+                          ]).value!,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColors.yellowOp100,
@@ -73,11 +108,17 @@ class CustomAppBar extends StatelessWidget {
                           builder: (context, state) {
                             var cubit = CartBloc.get(context);
                             return Text(
-                              cubit
-                                  .cartList
-                                  .length
-                                  .toString(),
-                              style: AppTextStyles.font12WhiteBold,
+                              cubit.cartList.length.toString(),
+                              style: AppTextStyles.font16WhiteBold.copyWith(
+                                fontSize: ResponsiveValue<double>(
+                                  context,
+                                  defaultValue: 12,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 10, name: DESKTOP)
+                                  ],
+                                ).value!,
+                              ),
                             );
                           },
                         ),

@@ -9,43 +9,140 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional.bottomCenter,
+      alignment: Alignment.bottomCenter,
       child: Container(
         width: double.infinity,
-        height: 400,
+        height: 250,
+            padding: EdgeInsets.symmetric(horizontal: ResponsiveValue<double>(context,
+                defaultValue: 40,
+                conditionalValues: [
+              Condition.smallerThan(value: 40 / 2, name: DESKTOP)
+            ]).value!),
         color: AppColors.darkBlue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
+            Text(
               "حضرموت  حمزة",
-              style: AppTextStyles.font32WhiteSemiBold,
+              style: AppTextStyles.font32WhiteSemiBold.copyWith(fontSize: ResponsiveValue<double>(context,
+                      defaultValue: 24,
+                      conditionalValues: [
+                    Condition.smallerThan(value: 18, name: DESKTOP)
+                  ]).value!),
             ),
-            const Text(
+            Text(
               "قد يختلف توافر العناصر والاسعار والمشاركة ومناطق التوصيل والرسوم ومتطلبات الشراء للتوصيل",
               textAlign: TextAlign.center,
-              style: AppTextStyles.font24WhiteOp50Medium,
+              style: AppTextStyles.font24WhiteOp50Medium.copyWith(fontSize: ResponsiveValue<double>(context,
+                      defaultValue: 16,
+                      conditionalValues: [
+                    Condition.smallerThan(value: 12, name: DESKTOP)
+                  ]).value!),
             ),
             // const SizedBox(
             //   height: 5,
             // ),
-            InkWell(
-              hoverColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () => context.read<HomeBloc>().openUrl(),
-              child: Image.asset(
-                ImageConstants.facebook,
-                width: 40,
-                height: 40,
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                InkWell(
+                  hoverColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () => context.read<HomeBloc>().openUrl(),
+                  child: Image.asset(
+                    ImageConstants.facebook,
+                    width: ResponsiveValue<double>(context,
+                        defaultValue: 36,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 40 / 2, name: DESKTOP)
+                        ]).value!,
+                    height: ResponsiveValue<double>(context,
+                        defaultValue: 36,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 40 / 2, name: DESKTOP)
+                        ]).value!,
+                  ),
+                ),
+                Gap(8.r),
+                InkWell(
+                  hoverColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () => context.read<HomeBloc>().callLandline(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '0224470999',
+                        style:
+                            AppTextStyles.font12WhiteBold.copyWith(fontSize: ResponsiveValue<double>(context,
+                                defaultValue: 14,
+                                conditionalValues: [
+                              Condition.smallerThan(value: 10, name: DESKTOP)
+                            ]).value!),
+                      ),
+                      Icon(
+                        Icons.phone_sharp,
+                        color: AppColors.whiteOp100,
+                        size: ResponsiveValue<double>(context,
+                            defaultValue: 20,
+                            conditionalValues: [
+                              Condition.smallerThan(
+                                  value: 24 / 2, name: DESKTOP)
+                            ]).value!,
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(8.r),
+                InkWell(
+                  hoverColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () => context.read<HomeBloc>().callMobile(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '01555400990',
+                        style:
+                            AppTextStyles.font12WhiteBold.copyWith(fontSize: ResponsiveValue<double>(context,
+                                defaultValue: 14,
+                                conditionalValues: [
+                              Condition.smallerThan(value: 10, name: DESKTOP)
+                            ]).value!),
+                      ),
+                      Icon(
+                        Icons.phone_iphone_rounded,
+                        color: AppColors.whiteOp100,
+                        size: ResponsiveValue<double>(context,
+                            defaultValue: 20,
+                            conditionalValues: [
+                              Condition.smallerThan(
+                                  value: 24 / 2, name: DESKTOP)
+                            ]).value!,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             // const SizedBox(
             //   height: 5,
             // ),
-            const Text(
+            Text(
               "حضرموت حمزة جميع الحقوق محفوظة",
-              style: AppTextStyles.font24WhiteOp50Medium,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.font24WhiteOp50Medium.copyWith(fontSize: ResponsiveValue<double>(context,
+                      defaultValue: 20,
+                      conditionalValues: [
+                    Condition.smallerThan(value: 16, name: DESKTOP)
+                  ]).value!),
             ),
           ],
         ),

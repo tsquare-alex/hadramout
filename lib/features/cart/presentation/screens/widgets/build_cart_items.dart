@@ -14,10 +14,28 @@ class BuildCartItems extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.greyOp100,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(
+          ResponsiveValue<double>(
+            context,
+            defaultValue: 10,
+            conditionalValues: [Condition.smallerThan(value: 5, name: DESKTOP)],
+          ).value!,
+        ),
       ),
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 60.0),
+      padding: EdgeInsets.all(
+        ResponsiveValue<double>(
+          context,
+          defaultValue: 16,
+          conditionalValues: [Condition.smallerThan(value: 8, name: DESKTOP)],
+        ).value!,
+      ),
+      margin: EdgeInsets.only(
+        bottom: ResponsiveValue<double>(
+          context,
+          defaultValue: 60,
+          conditionalValues: [Condition.smallerThan(value: 30, name: DESKTOP)],
+        ).value!,
+      ),
       child: Column(
         children: [
           ListView.builder(
@@ -25,13 +43,42 @@ class BuildCartItems extends StatelessWidget {
             shrinkWrap: true,
             itemCount: model.length,
             itemBuilder: (context, i) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              margin: const EdgeInsets.only(
-                bottom: 16,
+              padding: EdgeInsets.symmetric(
+                horizontal: ResponsiveValue<double>(
+                  context,
+                  defaultValue: 16,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 8, name: DESKTOP)
+                  ],
+                ).value!,
+                vertical: ResponsiveValue<double>(
+                  context,
+                  defaultValue: 10,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 5, name: DESKTOP)
+                  ],
+                ).value!,
+              ),
+              margin: EdgeInsets.only(
+                bottom: ResponsiveValue<double>(
+                  context,
+                  defaultValue: 16,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 8, name: DESKTOP)
+                  ],
+                ).value!,
               ),
               decoration: BoxDecoration(
                 color: AppColors.whiteOp100,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(
+                  ResponsiveValue<double>(
+                    context,
+                    defaultValue: 10,
+                    conditionalValues: [
+                      Condition.smallerThan(value: 5, name: DESKTOP)
+                    ],
+                  ).value!,
+                ),
                 boxShadow: const [
                   BoxShadow(
                       color: AppColors.shadow, spreadRadius: 0, blurRadius: 12)
@@ -70,65 +117,115 @@ class BuildCartItems extends StatelessWidget {
                         children: [
                           Text(
                             model[i].title,
-                            style: AppTextStyles.font16BlackSemiBold,
+                            style: AppTextStyles.font16BlackSemiBold.copyWith(
+                              fontSize: ResponsiveValue<double>(
+                                context,
+                                defaultValue: 16,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 12, name: DESKTOP)
+                                ],
+                              ).value!,
+                            ),
                           ),
-                          SizedBox(
-                            width: 250,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(dividerColor: Colors.transparent),
-                              child: ExpansionTile(
-                                childrenPadding: const EdgeInsets.all(5),
-                                tilePadding: EdgeInsets.zero,
-                                title: const Row(
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        "تفاصيل",
-                                        style:
-                                            AppTextStyles.font10YellowSemiBold,
-                                      ),
+                          Theme(
+                            data: Theme.of(context)
+                                .copyWith(dividerColor: Colors.transparent),
+                            child: ExpansionTile(
+                              childrenPadding:
+                                  const EdgeInsets.only(bottom: 15),
+                              expandedAlignment: Alignment.centerRight,
+                              tilePadding: EdgeInsets.zero,
+                              title: Row(
+                                children: [
+                                  const Flexible(
+                                    child: Text(
+                                      "تفاصيل",
+                                      style: AppTextStyles.font10YellowSemiBold,
                                     ),
-                                    Gap(5),
-                                    Flexible(
-                                        child: Icon(
+                                  ),
+                                  const Gap(5),
+                                  Flexible(
+                                    child: Icon(
                                       Icons.keyboard_arrow_down_outlined,
                                       color: AppColors.yellowOp100,
-                                      size: 20,
-                                    ))
-                                  ],
-                                ),
-                                trailing: const SizedBox.shrink(),
-                                children: [
-                                  Text(
-                                    model[i].description ?? "",
-                                    style: AppTextStyles.font16BlackOp50Medium,
-                                  )
+                                      size: ResponsiveValue<double>(
+                                        context,
+                                        defaultValue: 20,
+                                        conditionalValues: [
+                                          Condition.smallerThan(
+                                              value: 15, name: DESKTOP)
+                                        ],
+                                      ).value!,
+                                    ),
+                                  ),
                                 ],
                               ),
+                              trailing: const SizedBox.shrink(),
+                              children: [
+                                Text(
+                                  model[i].description ?? "",
+                                  style: AppTextStyles.font16BlackOp50Medium
+                                      .copyWith(
+                                    fontSize: ResponsiveValue<double>(
+                                      context,
+                                      defaultValue: 16,
+                                      conditionalValues: [
+                                        Condition.smallerThan(
+                                            value: 10, name: DESKTOP)
+                                      ],
+                                    ).value!,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
+                  const Gap(15),
                   Row(
                     children: [
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             "EGP",
-                            style: AppTextStyles.font14BlackSemiBold,
+                            style: AppTextStyles.font14BlackSemiBold.copyWith(
+                              fontSize: ResponsiveValue<double>(
+                                context,
+                                defaultValue: 14,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 10, name: DESKTOP)
+                                ],
+                              ).value!,
+                            ),
                           ),
                           const Gap(5),
                           Text(
                             '${model[i].totalPrice}',
-                            style: AppTextStyles.font14BlackSemiBold,
+                            style: AppTextStyles.font14BlackSemiBold.copyWith(
+                              fontSize: ResponsiveValue<double>(
+                                context,
+                                defaultValue: 14,
+                                conditionalValues: [
+                                  Condition.smallerThan(
+                                      value: 10, name: DESKTOP)
+                                ],
+                              ).value!,
+                            ),
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        width: 20,
+                      SizedBox(
+                        width: ResponsiveValue<double>(
+                          context,
+                          defaultValue: 20,
+                          conditionalValues: [
+                            Condition.smallerThan(value: 10, name: DESKTOP)
+                          ],
+                        ).value!,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,14 +235,29 @@ class BuildCartItems extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
-                                  color: AppColors.whiteOp100,
-                                  borderRadius: BorderRadius.circular(2),
-                                  border: Border.all(
-                                      width: 1, color: AppColors.blackOp75)),
+                                color: AppColors.whiteOp100,
+                                borderRadius: BorderRadius.circular(2),
+                                border: Border.all(
+                                    width: 1, color: AppColors.blackOp75),
+                              ),
                               child: Image.asset(
                                 Res.remove,
-                                height: 15.35,
-                                width: 12.3,
+                                height: ResponsiveValue<double>(
+                                  context,
+                                  defaultValue: 15.35,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 10, name: DESKTOP)
+                                  ],
+                                ).value!,
+                                width: ResponsiveValue<double>(
+                                  context,
+                                  defaultValue: 12.3,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 8, name: DESKTOP)
+                                  ],
+                                ).value!,
                               ),
                             ),
                           ),
@@ -155,7 +267,16 @@ class BuildCartItems extends StatelessWidget {
                           Center(
                             child: Text(
                               model[i].quantity.toString(),
-                              style: AppTextStyles.font16BlackBold,
+                              style: AppTextStyles.font16BlackBold.copyWith(
+                                fontSize: ResponsiveValue<double>(
+                                  context,
+                                  defaultValue: 16,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 12, name: DESKTOP)
+                                  ],
+                                ).value!,
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -165,15 +286,31 @@ class BuildCartItems extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               color: AppColors.yellowOp100,
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(
+                                ResponsiveValue<double>(
+                                  context,
+                                  defaultValue: 5,
+                                  conditionalValues: [
+                                    Condition.smallerThan(
+                                        value: 3, name: DESKTOP)
+                                  ],
+                                ).value!,
+                              ),
                             ),
                             child: InkWell(
                               onTap: () => cubit.increment(model[i]),
-                              child: const Center(
+                              child: Center(
                                 child: Icon(
                                   Icons.add,
                                   color: AppColors.whiteOp100,
-                                  size: 15,
+                                  size: ResponsiveValue<double>(
+                                    context,
+                                    defaultValue: 15,
+                                    conditionalValues: [
+                                      Condition.smallerThan(
+                                          value: 10, name: DESKTOP)
+                                    ],
+                                  ).value!,
                                 ),
                               ),
                             ),
@@ -188,26 +325,66 @@ class BuildCartItems extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(
+              ResponsiveValue<double>(
+                context,
+                defaultValue: 16,
+                conditionalValues: [
+                  Condition.smallerThan(value: 8, name: DESKTOP)
+                ],
+              ).value!,
+            ),
             decoration: BoxDecoration(
               color: AppColors.whiteOp100,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(
+                ResponsiveValue<double>(
+                  context,
+                  defaultValue: 10,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 5, name: DESKTOP)
+                  ],
+                ).value!,
+              ),
               boxShadow: const [
                 BoxShadow(
                     color: AppColors.shadow, spreadRadius: 0, blurRadius: 12)
               ],
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "سنتبع تعليماتك بافضل ما لدينا من قدرات",
-                  style: AppTextStyles.font14BlackMedium,
+                  style: AppTextStyles.font14BlackMedium.copyWith(
+                    fontSize: ResponsiveValue<double>(
+                      context,
+                      defaultValue: 16,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 12, name: DESKTOP)
+                      ],
+                    ).value!,
+                  ),
                 ),
-                Gap(16),
+                Gap(
+                  ResponsiveValue<double>(
+                    context,
+                    defaultValue: 16,
+                    conditionalValues: [
+                      Condition.smallerThan(value: 10, name: DESKTOP)
+                    ],
+                  ).value!,
+                ),
                 Text(
                   "( اضافه معلومات طهي معلومات توصيل اي شي يساعدنا من وجهك نظرك لتحسن خدمتنا )",
-                  style: AppTextStyles.font10BlackOp50Regular,
+                  style: AppTextStyles.font10BlackOp50Regular.copyWith(
+                    fontSize: ResponsiveValue<double>(
+                      context,
+                      defaultValue: 12,
+                      conditionalValues: [
+                        Condition.smallerThan(value: 10, name: DESKTOP)
+                      ],
+                    ).value!,
+                  ),
                 ),
               ],
             ),
