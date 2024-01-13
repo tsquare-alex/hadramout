@@ -38,13 +38,28 @@ class HomeBloc extends Cubit<HomeState> {
       ..sort((a, b) => a.title.compareTo(b.title));
   }
 
+  // Future<void> getHomeSpecies() async {
+  //   for (var section in sections) {
+  //     _homeSpecies.addAll(
+  //       await _homeRepository.getSpeciesBySectionLimited(section.title),
+  //     );
+  //   }
+  // }
+
   Future<void> getHomeSpecies() async {
+    List<Future<List<SpeciesModel>>> futures = [];
+
     for (var section in sections) {
-      _homeSpecies.addAll(
-        await _homeRepository.getSpeciesBySectionLimited(section.title),
-      );
+      futures.add(_homeRepository.getSpeciesBySectionLimited(section.title));
+    }
+
+    List<List<SpeciesModel>> results = await Future.wait(futures);
+
+    for (var speciesList in results) {
+      _homeSpecies.addAll(speciesList);
     }
   }
+
 
   Future<void> getAllSpecies(SectionModel section) async {
     emit(SectionDetailsLoading());

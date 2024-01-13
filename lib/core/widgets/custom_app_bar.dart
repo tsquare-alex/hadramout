@@ -44,6 +44,7 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
       ),
+      automaticallyImplyLeading: false,
       actions: [
         Padding(
           padding: EdgeInsets.only(left: 60.r),
