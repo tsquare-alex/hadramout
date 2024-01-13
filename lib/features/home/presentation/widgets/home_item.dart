@@ -16,7 +16,7 @@ class HomeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: ResponsiveValue<double>(context,
-          defaultValue: 360,
+          defaultValue: 370,
           conditionalValues: [
             Condition.smallerThan(value: 267, name: DESKTOP)
           ]).value!,
@@ -35,15 +35,15 @@ class HomeItem extends StatelessWidget {
                   Condition.smallerThan(value: 17, name: DESKTOP)
                 ]).value!,
             child: Container(
+              height: ResponsiveValue<double>(context,
+                  defaultValue: 300,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 210, name: DESKTOP)
+                  ]).value!,
               width: ResponsiveValue<double>(context,
                   defaultValue: 280,
                   conditionalValues: [
                     Condition.smallerThan(value: 347 / 2, name: DESKTOP)
-                  ]).value!,
-              height: ResponsiveValue<double>(context,
-                  defaultValue: 290,
-                  conditionalValues: [
-                    Condition.smallerThan(value: 210, name: DESKTOP)
                   ]).value!,
               padding: EdgeInsets.fromLTRB(
                   ResponsiveValue<double>(context,
@@ -254,16 +254,6 @@ class HomeItem extends StatelessWidget {
           ElevatedButton(
             style: AppButtonStyles.buttonOutlinedYellowSize188x55Rounded10
                 .copyWith(
-              shape: MaterialStatePropertyAll(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(ResponsiveValue<double>(
-                      context,
-                      defaultValue: 10,
-                      conditionalValues: [
-                        Condition.smallerThan(value: 5, name: DESKTOP)
-                      ]).value!),
-                ),
-              ),
               fixedSize: MaterialStatePropertyAll(
                 Size(
                     ResponsiveValue<double>(context,
