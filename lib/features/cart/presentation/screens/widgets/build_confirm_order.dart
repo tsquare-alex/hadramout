@@ -82,30 +82,39 @@ class BuildConfirmOrder extends StatelessWidget {
                   ),
                 ),
                 const Gap(0),
-                Column(
+                ResponsiveRowColumn(
+                  layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
+                      ? ResponsiveRowColumnType.COLUMN
+                      : ResponsiveRowColumnType.ROW,
+                  rowMainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(
                     context.watch<CartBloc>().orderMethod.length,
                     (index) {
-                      return Row(
-                        children: [
-                          Radio<bool>(
-                            splashRadius: 0,
-                            value: context
-                                .watch<CartBloc>()
-                                .orderMethod[index]
-                                .active,
-                            groupValue: true,
-                            onChanged: (value) {
+                      return ResponsiveRowColumnItem(
+                        child: Row(
+                          children: [
+                            Radio<bool>(
+                              splashRadius: 0,
+                              value: context
+                                  .watch<CartBloc>()
+                                  .orderMethod[index]
+                                  .active,
+                              groupValue: true,
+                              onChanged: (value) {
+                                context
+                                    .read<CartBloc>()
+                                    .selectMethod(value!, index);
+                              },
+                            ),
+                            Text(
                               context
-                                  .read<CartBloc>()
-                                  .selectMethod(value!, index);
-                            },
-                          ),
-                          Text(
-                            context.watch<CartBloc>().orderMethod[index].title,
-                            style: AppTextStyles.font14BlackSemiBold,
-                          ),
-                        ],
+                                  .watch<CartBloc>()
+                                  .orderMethod[index]
+                                  .title,
+                              style: AppTextStyles.font14BlackSemiBold,
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
@@ -178,7 +187,8 @@ class BuildConfirmOrder extends StatelessWidget {
                                 context,
                                 defaultValue: 18,
                                 conditionalValues: [
-                                  Condition.smallerThan(value: 14, name: DESKTOP)
+                                  Condition.smallerThan(
+                                      value: 14, name: DESKTOP)
                                 ],
                               ).value!,
                             ),
@@ -198,8 +208,9 @@ class BuildConfirmOrder extends StatelessWidget {
                             return DropdownMenuItem<DeliveryModel>(
                               value: model,
                               child: Text(
-                                "${model.title}      (مصاريف التوصيل ${model.fees}EGP)",
-                                style: AppTextStyles.font16BlackSemiBold.copyWith(
+                                "${model.title}      (مصاريف التوصيل ${model.fees} جنيه)",
+                                style:
+                                    AppTextStyles.font16BlackSemiBold.copyWith(
                                   fontSize: ResponsiveValue<double>(
                                     context,
                                     defaultValue: 16,
@@ -219,7 +230,8 @@ class BuildConfirmOrder extends StatelessWidget {
                         controller: context.read<CartBloc>().addressController,
                         hint: "العنوان بالتفصيل",
                         validator: (value) {
-                          if (value == null || value.toString().trim().isEmpty) {
+                          if (value == null ||
+                              value.toString().trim().isEmpty) {
                             return "برجاء ادخال العنوان";
                           } else {
                             return null;
@@ -249,7 +261,8 @@ class BuildConfirmOrder extends StatelessWidget {
                           const Gap(10),
                           Expanded(
                               child: InputFormField(
-                            controller: context.read<CartBloc>().floorController,
+                            controller:
+                                context.read<CartBloc>().floorController,
                             hint: "الدور",
                             isNumber: true,
                             validator: (value) {
@@ -291,9 +304,11 @@ class BuildConfirmOrder extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    context.read<CartBloc>().selectedDelivery != null
-                        ? 'اجمالي المبلغ : ${context.read<CartBloc>().selectedDelivery!.fees + context.read<CartBloc>().totalCost}EGP'
-                        : 'اجمالي المبلغ : ${context.read<CartBloc>().totalCost}EGP',
+                    (context.read<CartBloc>().selectedDelivery != null &&
+                            context.watch<CartBloc>().selectedMethod?.title ==
+                                "التوصيل الي البيت")
+                        ? 'اجمالي المبلغ : ${context.read<CartBloc>().selectedDelivery!.fees + context.read<CartBloc>().totalCost} جنيه'
+                        : 'اجمالي المبلغ : ${context.read<CartBloc>().totalCost} جنيه',
                     style: AppTextStyles.font20BlackSemiBold.copyWith(
                       fontSize: ResponsiveValue<double>(
                         context,
@@ -334,7 +349,8 @@ class BuildConfirmOrder extends StatelessWidget {
                               )
                             : Text(
                                 'تاكيد الطلب',
-                                style: AppTextStyles.font20WhiteSemiBold.copyWith(
+                                style:
+                                    AppTextStyles.font20WhiteSemiBold.copyWith(
                                   fontSize: ResponsiveValue<double>(
                                     context,
                                     defaultValue: 20,

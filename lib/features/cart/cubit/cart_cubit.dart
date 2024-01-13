@@ -88,12 +88,15 @@ class CartBloc extends Cubit<CartState> {
 
   DeliveryModel? selectedDelivery;
 
-  List<DeliveryModel> deliveryList = [
-    const DeliveryModel(title: "المعادي", fees: 20),
-    const DeliveryModel(title: "الجيزة", fees: 30),
-    const DeliveryModel(title: "القاهرة", fees: 40),
-    const DeliveryModel(title: "الاسماعيلية", fees: 55),
-  ];
+  late final Set<DeliveryModel> _deliveryList = {};
+  List<DeliveryModel> get deliveryList => _deliveryList.toList();
+
+  Future<void> getDeliveryLocations() async {
+    _deliveryList.clear();
+    try {
+      _deliveryList.addAll(await _cartRepository.getDeliveryLocations());
+    } catch (_) {}
+  }
 
   RadioModel? selectedMethod;
 
@@ -109,6 +112,7 @@ class CartBloc extends Cubit<CartState> {
   ];
 
   selectMethod(bool value, int index) {
+    selectedDelivery = null;
     emit(SelectMethodLoading());
     orderMethod.map((e) => e.active = false).toList();
     orderMethod[index].active = !value;
@@ -143,7 +147,7 @@ class CartBloc extends Cubit<CartState> {
             confirmed: false,
             delivered: false,
             total: totalCost + selectedDelivery!.fees,
-            subTotal: totalCost ,
+            subTotal: totalCost,
             createdAt: DateTime.now().toIso8601String(),
             cartModel: cartList,
             deliveryModel: selectedDelivery!,
@@ -221,7 +225,8 @@ class CartBloc extends Cubit<CartState> {
     // Create the email message.
     final message = Message()
       ..from = const Address('hadrmout3@gmail.com', 'Hadrmout Hamza')
-      ..recipients.add('01550526487m@gmail.com') // Replace with the customer's email
+      ..recipients
+          .add('01550526487m@gmail.com') // Replace with the customer's email
       ..subject = 'Order Confirmation - #${order.id}'
       ..html = '<h1>The order details:</h1>'
           '<p>Order id: ${order.id}</p>'
@@ -333,8 +338,8 @@ class CartBloc extends Cubit<CartState> {
     List<dynamic> jsonList = jsonDecode(jsonString);
     cartList = jsonList.map((json) => CartModel.fromJson(json)).toList();
     print(cartList.length);
-
     emit(AddOrderSpeciesSuccess());
+    await getDeliveryLocations();
   }
 
   double get totalCost {

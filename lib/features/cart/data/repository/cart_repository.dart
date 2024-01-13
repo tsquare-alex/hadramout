@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/cart/data/models/delivery.dart';
 import 'package:hadrmouthamza/src/app_export.dart';
 
 import '../../../../core/common/models/order.dart';
@@ -20,4 +21,13 @@ class CartRepository {
     }
   }
 
+  Future<List<DeliveryModel>> getDeliveryLocations() async {
+    try {
+      final data =
+          await _cartDataSource.getDeliveryLocations();
+      return data.docs.map((doc) => DeliveryModel.fromJson(doc.data())).toList();
+    } on FirebaseException catch (_) {
+      return List.empty();
+    }
+  }
 }

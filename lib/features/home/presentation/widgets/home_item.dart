@@ -166,7 +166,7 @@ class HomeItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'EGP ${speciesItem.price}',
+                                '${speciesItem.price} جنيه',
                                 style: AppTextStyles.font14BlackSemiBold
                                     .copyWith(
                                         fontSize: ResponsiveValue<double>(
@@ -178,7 +178,7 @@ class HomeItem extends StatelessWidget {
                                     ]).value!),
                               ),
                               Text(
-                                'EGP ${speciesItem.offerValue}',
+                                '${speciesItem.offerValue} جنيه',
                                 style: AppTextStyles
                                     .font12BlackOp50SemiBoldLineThrough
                                     .copyWith(
@@ -194,7 +194,7 @@ class HomeItem extends StatelessWidget {
                             ],
                           )
                         : Text(
-                            'EGP ${speciesItem.price}',
+                            '${speciesItem.price} جنيه',
                             style: AppTextStyles.font14BlackSemiBold.copyWith(
                                 fontSize: ResponsiveValue<double>(context,
                                     defaultValue: 16,

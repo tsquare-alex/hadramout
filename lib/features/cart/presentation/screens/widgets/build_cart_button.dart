@@ -11,7 +11,7 @@ class BuildCartButton extends StatelessWidget {
     return InkWell(
       onTap: () => context.read<CartBloc>().showCustomDialog(context),
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
             color: AppColors.yellowOp100,
             borderRadius: BorderRadius.circular(
@@ -29,43 +29,27 @@ class BuildCartButton extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        "EGP",
-                        style: AppTextStyles.font18WhiteBold.copyWith(
-                          fontSize: ResponsiveValue<double>(
-                            context,
-                            defaultValue: 18,
-                            conditionalValues: [
-                              Condition.smallerThan(value: 16, name: DESKTOP)
-                            ],
-                          ).value!,
-                        ),
-                      ),
-                      const Gap(5),
-                      Text(
-                        "${context.watch<CartBloc>().totalCost}",
-                        style: AppTextStyles.font18WhiteBold.copyWith(
-                          fontSize: ResponsiveValue<double>(
-                            context,
-                            defaultValue: 18,
-                            conditionalValues: [
-                              Condition.smallerThan(value: 16, name: DESKTOP)
-                            ],
-                          ).value!,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    "${context.watch<CartBloc>().totalCost} جنيه",
+                    style: AppTextStyles.font18WhiteBold.copyWith(
+                      fontSize: ResponsiveValue<double>(
+                        context,
+                        defaultValue: 22,
+                        conditionalValues: [
+                          Condition.smallerThan(value: 18, name: DESKTOP)
+                        ],
+                      ).value!,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "جميع الاسعار تشمل ضريبة القيمة المضافة",
-                    style: AppTextStyles.font10WhiteOp75Medium,
-                  ),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
+                  // const Text(
+                  //   "جميع الاسعار تشمل ضريبة القيمة المضافة",
+                  //   style: AppTextStyles.font10WhiteOp75Medium,
+                  // ),
                 ],
               ),
             ),

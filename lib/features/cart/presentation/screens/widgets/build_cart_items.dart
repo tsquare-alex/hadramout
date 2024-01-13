@@ -187,36 +187,17 @@ class BuildCartItems extends StatelessWidget {
                   const Gap(15),
                   Row(
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            "EGP",
-                            style: AppTextStyles.font14BlackSemiBold.copyWith(
-                              fontSize: ResponsiveValue<double>(
-                                context,
-                                defaultValue: 14,
-                                conditionalValues: [
-                                  Condition.smallerThan(
-                                      value: 10, name: DESKTOP)
-                                ],
-                              ).value!,
-                            ),
-                          ),
-                          const Gap(5),
-                          Text(
-                            '${model[i].totalPrice}',
-                            style: AppTextStyles.font14BlackSemiBold.copyWith(
-                              fontSize: ResponsiveValue<double>(
-                                context,
-                                defaultValue: 14,
-                                conditionalValues: [
-                                  Condition.smallerThan(
-                                      value: 10, name: DESKTOP)
-                                ],
-                              ).value!,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        '${model[i].totalPrice} جنيه',
+                        style: AppTextStyles.font14BlackSemiBold.copyWith(
+                          fontSize: ResponsiveValue<double>(
+                            context,
+                            defaultValue: 14,
+                            conditionalValues: [
+                              Condition.smallerThan(value: 10, name: DESKTOP)
+                            ],
+                          ).value!,
+                        ),
                       ),
                       SizedBox(
                         width: ResponsiveValue<double>(

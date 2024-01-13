@@ -39,9 +39,9 @@ class CustomSectionsItem extends StatelessWidget {
               ? CachedNetworkImage(
                   imageUrl: section.image,
                   width: ResponsiveValue<double>(context,
-                      defaultValue: 180,
+                      defaultValue: 190,
                       conditionalValues: [
-                        Condition.smallerThan(value: 100, name: DESKTOP)
+                        Condition.smallerThan(value: 110, name: DESKTOP)
                       ]).value!,
                   height: ResponsiveValue<double>(context,
                       defaultValue: 150,
@@ -50,31 +50,29 @@ class CustomSectionsItem extends StatelessWidget {
                       ]).value!,
                   errorWidget: (context, url, error) => Image.asset(
                     Res.dashboard_logo,
-                    // ImageConstants.sectionImage,
                     width: ResponsiveValue<double>(context,
-                        defaultValue: 120,
+                        defaultValue: 190,
                         conditionalValues: [
-                          Condition.smallerThan(value: 70, name: DESKTOP)
+                          Condition.smallerThan(value: 110, name: DESKTOP)
                         ]).value!,
                     height: ResponsiveValue<double>(context,
-                        defaultValue: 120,
+                        defaultValue: 150,
                         conditionalValues: [
-                          Condition.smallerThan(value: 70, name: DESKTOP)
+                          Condition.smallerThan(value: 90, name: DESKTOP)
                         ]).value!,
                   ),
                 )
               : Image.asset(
                   Res.dashboard_logo,
-                  // ImageConstants.sectionImage,
                   width: ResponsiveValue<double>(context,
-                      defaultValue: 120,
+                      defaultValue: 190,
                       conditionalValues: [
-                        Condition.smallerThan(value: 70, name: DESKTOP)
+                        Condition.smallerThan(value: 110, name: DESKTOP)
                       ]).value!,
                   height: ResponsiveValue<double>(context,
-                      defaultValue: 120,
+                      defaultValue: 150,
                       conditionalValues: [
-                        Condition.smallerThan(value: 70, name: DESKTOP)
+                        Condition.smallerThan(value: 90, name: DESKTOP)
                       ]).value!,
                 ),
         ),
