@@ -1,3 +1,4 @@
+import 'package:hadrmouthamza/features/home/cubit/home_cubit.dart';
 import 'package:hadrmouthamza/res.dart';
 
 import '../../features/cart/cubit/cart_cubit.dart';
@@ -34,6 +35,38 @@ class CustomAppBar extends StatelessWidget {
       ),
       automaticallyImplyLeading: false,
       actions: [
+        InkWell(
+          hoverColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: () => context.read<HomeBloc>().openUrl(),
+          child: Tooltip(
+            message: 'زورنا عالفيسبوك',
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Image.asset(
+              ImageConstants.facebook,
+              color: Colors.blue,
+              width: ResponsiveValue<double>(context,
+                  defaultValue: 36,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 40 / 2, name: DESKTOP)
+                  ]).value!,
+              height: ResponsiveValue<double>(context,
+                  defaultValue: 36,
+                  conditionalValues: [
+                    Condition.smallerThan(value: 40 / 2, name: DESKTOP)
+                  ]).value!,
+            ),
+          ),
+        ),
+        Gap(ResponsiveValue<double>(context,
+            defaultValue: 25,
+            conditionalValues: [
+              Condition.smallerThan(value: 25 / 2, name: DESKTOP)
+            ]).value!),
         Padding(
           padding: EdgeInsets.only(left: 60.r),
           child: InkWell(
