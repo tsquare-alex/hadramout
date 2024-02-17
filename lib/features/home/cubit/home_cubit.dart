@@ -60,7 +60,6 @@ class HomeBloc extends Cubit<HomeState> {
     }
   }
 
-
   Future<void> getAllSpecies(SectionModel section) async {
     emit(SectionDetailsLoading());
     _species.clear();
@@ -84,9 +83,8 @@ class HomeBloc extends Cubit<HomeState> {
     }
   }
 
-  final url =
-      "https://www.facebook.com/profile.php?id=61555330461128&mibextid=ZbWKwL";
-  void openUrl() async {
+  final url = 'https://www.facebook.com/hadramout.hamza?mibextid=ZbWKwL';
+  void openFacebookUrl() async {
     // emit(HomeDataLoading());
     var uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {

@@ -39,7 +39,7 @@ class CustomAppBar extends StatelessWidget {
           hoverColor: Colors.transparent,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          onTap: () => context.read<HomeBloc>().openUrl(),
+          onTap: () => context.read<HomeBloc>().openFacebookUrl(),
           child: Tooltip(
             message: 'زورنا عالفيسبوك',
             decoration: BoxDecoration(
@@ -49,24 +49,12 @@ class CustomAppBar extends StatelessWidget {
             child: Image.asset(
               ImageConstants.facebook,
               color: Colors.blue,
-              width: ResponsiveValue<double>(context,
-                  defaultValue: 36,
-                  conditionalValues: [
-                    Condition.smallerThan(value: 40 / 2, name: DESKTOP)
-                  ]).value!,
-              height: ResponsiveValue<double>(context,
-                  defaultValue: 36,
-                  conditionalValues: [
-                    Condition.smallerThan(value: 40 / 2, name: DESKTOP)
-                  ]).value!,
+              width: 36,
+              height: 36,
             ),
           ),
         ),
-        Gap(ResponsiveValue<double>(context,
-            defaultValue: 25,
-            conditionalValues: [
-              Condition.smallerThan(value: 25 / 2, name: DESKTOP)
-            ]).value!),
+        const Gap(25),
         Padding(
           padding: EdgeInsets.only(left: 60.r),
           child: InkWell(

@@ -54,7 +54,7 @@ class Footer extends StatelessWidget {
                   hoverColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  onTap: () => context.read<HomeBloc>().openUrl(),
+                  onTap: () => context.read<HomeBloc>().openFacebookUrl(),
                   child: Image.asset(
                     ImageConstants.facebook,
                     width: ResponsiveValue<double>(context,
